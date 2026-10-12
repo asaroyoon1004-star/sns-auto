@@ -1,0 +1,82 @@
+"""YouTube Shorts upload via the YouTube Data API v3 (OAuth refresh token, resumable upload).
+
+Env: YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN  (get them once with `python -m sns.auth_youtube`).
+"""
+import os
+
+import requests
+
+TOKEN_URL = "https://oauth2.googleapis.com/token"
+UPLOAD_URL = "https://www.googleapis.com/upload/youtube/v3/videos"
+API = "https://www.googleapis.com/youtube/v3"
+
+
+def configured():
+    return all(os.environ.get(k) for k in ("YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"))
+
+
+def access_token():
+    r = requests.post(TOKEN_URL, data={
+        "client_id": os.environ["YT_CLIENT_ID"],
+        "client_secret": os.environ["YT_CLIENT_SECRET"],
+        "refresh_token": os.environ["YT_REFRESH_TOKEN"],
+        "grant_type": "refresh_token",
+    }, timeout=30)
+    r.raise_for_status()
+    return r.json()["access_token"]
+
+
+def build_metadata(cfg, script):
+    tags = " ".join("#" + h for h in script["hashtags"])
+    desc = [script["hook"], "", *script["lines"], "", script["cta"], ""]
+    if script.get("affiliate"):
+        desc.append("※概要欄・プロフィールのリンクにはアフィリエイト広告（PR）を含みます。")
+    desc += ["※この動画はAI音声・自動生成の字幕で制作しています。内容は一般的な情報で、個別の助言ではありません。", "", tags, "#Shorts"]
+    title = f"{script['title']}｜{script['hook']}"
+    if len(title) > 95:
+        title = script["title"]
+    return title, "\n".join(desc), script["hashtags"]
+
+
+def upload(cfg, script, video_path):
+    ycfg = cfg["upload"]["youtube"]
+    title, desc, tags = build_metadata(cfg, script)
+    token = access_token()
+    body = {
+        "snippet": {"title": title, "description": desc, "tags": tags, "categoryId": ycfg.get("category_id", "27"),
+                    "defaultLanguage": "ja", "defaultAudioLanguage": "ja"},
+        "status": {"privacyStatus": ycfg.get("privacy", "public"), "selfDeclaredMadeForKids": False,
+                   # Synthetic voice + generated captions: disclose as altered/synthetic media.
+                   "containsSyntheticMedia": True},
+    }
+    size = os.path.getsize(video_path)
+    init = requests.post(
+        UPLOAD_URL, params={"uploadType": "resumable", "part": "snippet,status"},
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json; charset=UTF-8",
+                 "X-Upload-Content-Type": "video/mp4", "X-Upload-Content-Length": str(size)},
+        json=body, timeout=60,
+    )
+    init.raise_for_status()
+    with open(video_path, "rb") as f:
+        put = requests.put(init.headers["Location"], data=f,
+                           headers={"Authorization": f"Bearer {token}", "Content-Type": "video/mp4"}, timeout=600)
+    put.raise_for_status()
+    vid = put.json()["id"]
+    return {"platform": "youtube", "id": vid, "url": f"https://youtube.com/shorts/{vid}"}
+
+
+def stats(video_ids):
+    """Return {id: {views, likes, comments}} for uploaded videos."""
+    if not video_ids:
+        return {}
+    token = access_token()
+    out = {}
+    for i in range(0, len(video_ids), 50):
+        r = requests.get(f"{API}/videos", params={"part": "statistics", "id": ",".join(video_ids[i:i + 50])},
+                         headers={"Authorization": f"Bearer {token}"}, timeout=30)
+        r.raise_for_status()
+        for it in r.json().get("items", []):
+            s = it["statistics"]
+            out[it["id"]] = {"views": int(s.get("viewCount", 0)), "likes": int(s.get("likeCount", 0)),
+                             "comments": int(s.get("commentCount", 0))}
+    return out

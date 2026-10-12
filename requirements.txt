@@ -1,0 +1,6 @@
+anthropic>=0.70
+edge-tts>=7.0
+pyopenjtalk-plus>=0.4
+numpy
+pillow>=10
+requests>=2.31

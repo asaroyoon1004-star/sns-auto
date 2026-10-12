@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+data/queue/*/video.mp4
+data/queue/*/*.wav
+data/queue/*/*.mp3
+data/queue/*/slide*.png
+.env

@@ -1,0 +1,138 @@
+{
+  "channel_name": "1分でわかるお金の話",
+  "handle_hint": "@okane_1min",
+  "language": "ja",
+  "posts_per_run": 1,
+  "phase": "growth",
+  "phases": {
+    "growth": {
+      "note": "フォロワー1万人まで。短く完走率重視",
+      "chars": [
+        220,
+        300
+      ],
+      "min_duration_sec": 0
+    },
+    "monetize": {
+      "note": "TikTok Creator Rewards対象（1分超）",
+      "chars": [
+        400,
+        470
+      ],
+      "min_duration_sec": 61
+    }
+  },
+  "tts": {
+    "engine": "auto",
+    "edge_voice": "ja-JP-NanamiNeural",
+    "edge_rate": "+12%",
+    "pause_sec": 0.25
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "llm": {
+    "model": "claude-opus-5-5",
+    "effort": "medium"
+  },
+  "categories": {
+    "fixed_cost": {
+      "label": "固定費",
+      "color": [
+        "#0f3d3e",
+        "#1b6b5f"
+      ]
+    },
+    "cashless": {
+      "label": "ポイ活・カード",
+      "color": [
+        "#3b1f5c",
+        "#6a3d9a"
+      ]
+    },
+    "tax_system": {
+      "label": "税金・制度",
+      "color": [
+        "#14274e",
+        "#2c5aa0"
+      ]
+    },
+    "saving_habit": {
+      "label": "貯金習慣",
+      "color": [
+        "#4a2c0f",
+        "#9a6a2c"
+      ]
+    },
+    "invest_basic": {
+      "label": "投資の基本",
+      "color": [
+        "#123524",
+        "#2e7d4f"
+      ]
+    },
+    "scam_guard": {
+      "label": "詐欺対策",
+      "color": [
+        "#4c0f17",
+        "#a1283a"
+      ]
+    },
+    "food_daily": {
+      "label": "食費・暮らし",
+      "color": [
+        "#3d2b1f",
+        "#8a5a3b"
+      ]
+    }
+  },
+  "affiliates": {
+    "furusato": {
+      "label": "ふるさと納税サイト比較",
+      "url": "",
+      "asp_note": "A8.net / もしもアフィリエイト等で提携"
+    },
+    "sim": {
+      "label": "格安SIM・サブブランド比較",
+      "url": "",
+      "asp_note": "A8.net / afb 等"
+    },
+    "energy": {
+      "label": "電力会社の比較",
+      "url": "",
+      "asp_note": "A8.net 等"
+    },
+    "card": {
+      "label": "年会費無料の高還元クレカ",
+      "url": "",
+      "asp_note": "A8.net / afb / アクセストレード等"
+    },
+    "securities": {
+      "label": "NISA口座が開ける証券会社",
+      "url": "",
+      "asp_note": "A8.net / アクセストレード等"
+    },
+    "insurance": {
+      "label": "無料の保険相談窓口",
+      "url": "",
+      "asp_note": "A8.net / アクセストレード等"
+    }
+  },
+  "landing": {
+    "title": "1分でわかるお金の話｜リンク集",
+    "disclosure": "当ページはアフィリエイト広告（PR）を含みます。紹介リンクから申込みがあった場合、運営者が報酬を受け取ることがあります。投資・保険・金融商品の選択はご自身の判断でお願いします。"
+  },
+  "upload": {
+    "youtube": {
+      "enabled": true,
+      "privacy": "public",
+      "category_id": "27"
+    },
+    "tiktok": {
+      "enabled": true,
+      "mode": "inbox"
+    }
+  }
+}
