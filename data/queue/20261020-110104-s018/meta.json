@@ -1,0 +1,12 @@
+{
+  "status": "rendered",
+  "duration": 39.81,
+  "tts": [
+    "edge"
+  ],
+  "created_at": "20261020-110104",
+  "uploads": [],
+  "errors": [
+    "youtube: HTTPError('401 Client Error: Unauthorized for url: https://oauth2.googleapis.com/token')"
+  ]
+}
