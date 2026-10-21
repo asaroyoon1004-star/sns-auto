@@ -119,7 +119,9 @@ def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale
     if script.get("affiliate"):
         d.rounded_rectangle([SAFE_X[0] + pw + 16, 230, SAFE_X[0] + pw + 116, 290], radius=12, outline=WHITE, width=3)
         d.text((SAFE_X[0] + pw + 36, 236), "PR", font=f_small, fill=WHITE)
-    d.text((SAFE_X[0], 320), script["title"], font=f_title, fill=WHITE, stroke_width=4, stroke_fill=(0, 0, 0))
+    # A/B: the title often gives away the hook's answer (e.g. "72の法則"), so one arm leaves it off the hook screen
+    if not (kind == "hook" and script.get("variant") == "hook_title:hide"):
+        d.text((SAFE_X[0], 320), script["title"], font=f_title, fill=WHITE, stroke_width=4, stroke_fill=(0, 0, 0))
 
     # body
     size = int((92 if kind == "hook" else 80) * scale)

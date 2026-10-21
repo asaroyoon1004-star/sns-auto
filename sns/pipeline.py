@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 
 from . import analytics, landing, upload_tiktok, upload_youtube
 from .common import DATA, QUEUE, load_config, read_json, write_json, log
-from .scriptgen import next_script
+from .scriptgen import assign_variant, next_script
 
 
 def make(cfg, count, seed_only=False):
@@ -21,6 +21,7 @@ def make(cfg, count, seed_only=False):
     top_hooks = read_json(DATA / "top_hooks.json", [])
     for _ in range(count):
         s = next_script(cfg, top_hooks=top_hooks, seed_only=seed_only)
+        s["variant"] = assign_variant(cfg)
         stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
         d = QUEUE / f"{stamp}-{s['id']}"
         d.mkdir(parents=True, exist_ok=True)
