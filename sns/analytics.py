@@ -3,13 +3,41 @@
 The learned weights feed scriptgen.pick_category; the top hooks are shown to Claude as examples.
 """
 import csv
+import statistics
 from collections import defaultdict
 from datetime import datetime, timezone
 
 from . import upload_tiktok, upload_youtube
 from .common import DATA, ROOT, METRICS, QUEUE, WEIGHTS, read_json, write_json, log
 
-FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook_type", "hook", "views", "likes", "comments", "shares"]
+FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook_type", "hook", "views", "likes", "comments", "shares",
+          # added for the research loop: what was tested, and how far / how well people watched
+          "variant", "slot_jst", "duration", "avg_view_pct", "avg_view_sec", "subs_gained", "engaged_views"]
+
+
+def _context(d, meta, s):
+    """Fields that describe the video itself, so results can be compared by time slot, length and A/B arm."""
+    slot = ""
+    if meta.get("created_at"):
+        hour = (int(meta["created_at"][9:11]) + 9) % 24  # created_at is a UTC stamp YYYYMMDD-HHMMSS
+        slot = f"{hour:02d}"
+    return dict(item=d.name, category=s.get("category"), hook_type=s.get("hook_type", ""), hook=s.get("hook"),
+                variant=s.get("variant", ""), slot_jst=slot, duration=meta.get("duration", ""))
+
+
+def _ensure_header():
+    """Rewrite metrics.csv with the current FIELDS when an older header is on disk (extra columns stay blank)."""
+    if not METRICS.exists():
+        return
+    with open(METRICS, encoding="utf-8") as f:
+        r = csv.DictReader(f)
+        if r.fieldnames == FIELDS:
+            return
+        old = list(r)
+    with open(METRICS, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(old)
 
 
 def _items():
@@ -24,22 +52,23 @@ def collect():
     rows = []
     items = list(_items())
     if upload_youtube.configured():
-        ids = {u["id"]: (d, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
+        ids = {u["id"]: (d, m, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
+        deep = upload_youtube.analytics(list(ids))
         for vid, st in upload_youtube.stats(list(ids)).items():
-            d, s = ids[vid]
-            rows.append(dict(collected_at=now, item=d.name, platform="youtube", video_id=vid, category=s.get("category"), hook_type=s.get("hook_type", ""),
-                             hook=s.get("hook"), shares=0, **st))
+            d, m, s = ids[vid]
+            rows.append(dict(collected_at=now, platform="youtube", video_id=vid, **_context(d, m, s),
+                             **{"shares": 0, **st, **deep.get(vid, {})}))
     if upload_tiktok.configured():
-        by_hook = {s.get("hook"): (d, s) for d, m, s in items}
+        by_hook = {s.get("hook"): (d, m, s) for d, m, s in items}
         for vid, st in upload_tiktok.stats().items():
             match = next((v for h, v in by_hook.items() if h and h in (st.get("title") or "")), None)
             if not match:
                 continue
-            d, s = match
-            rows.append(dict(collected_at=now, item=d.name, platform="tiktok", video_id=vid, category=s.get("category"), hook_type=s.get("hook_type", ""),
-                             hook=s.get("hook"), views=st["views"], likes=st["likes"], comments=st["comments"],
-                             shares=st.get("shares", 0)))
+            d, m, s = match
+            rows.append(dict(collected_at=now, platform="tiktok", video_id=vid, **_context(d, m, s),
+                             views=st["views"], likes=st["likes"], comments=st["comments"], shares=st.get("shares", 0)))
     if rows:
+        _ensure_header()
         new = not METRICS.exists()
         with open(METRICS, "a", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
@@ -98,6 +127,7 @@ def report(cfg):
     if w:
         lines += ["", "## 次の投稿配分（カテゴリ重み）", ""]
         lines += [f"- {cfg['categories'][c]['label']}: {v}" for c, v in sorted(w.items(), key=lambda x: -x[1])]
+    lines += research_sections(rows, cfg)
     out = DATA / "report.md"
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
     log("wrote", out)
@@ -115,3 +145,57 @@ def maybe_switch_phase(cfg):
         write_json(ROOT / "config.json", cfg)
         log("switched phase to monetize (61s+ videos)")
     return cfg["phase"]
+
+
+MIN_N = 10  # per group, before a difference is treated as a finding rather than noise
+
+
+def _num(v):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def _length_bucket(r):
+    d = _num(r.get("duration"))
+    if d is None:
+        return ""
+    return "〜29秒" if d < 30 else "30〜44秒" if d < 45 else "45〜60秒" if d <= 60 else "61秒〜"
+
+
+def _table(rows, key, title):
+    groups = defaultdict(list)
+    for r in rows:
+        k = key(r)
+        if k:
+            groups[k].append(r)
+    if not groups:
+        return []
+    out = ["", f"## {title}", "",
+           "| グループ | 本数 | 再生(中央値) | 平均視聴率 | いいね率 | シェア率 | 登録/1000再生 |", "|---|---|---|---|---|---|---|"]
+    for k, g in sorted(groups.items(), key=lambda x: -statistics.median(int(r["views"]) for r in x[1])):
+        views = [int(r["views"]) for r in g]
+        tv = max(1, sum(views))
+        pct = [p for p in (_num(r.get("avg_view_pct")) for r in g) if p is not None]
+        subs = [x for x in (_num(r.get("subs_gained")) for r in g) if x is not None]
+        out.append(f"| {k}{'' if len(g) >= MIN_N else ' ※少'} | {len(g)} | {statistics.median(views):,.0f} | "
+                   f"{(f'{sum(pct) / len(pct):.0f}%') if pct else '-'} | "
+                   f"{sum(int(r['likes']) for r in g) / tv:.1%} | {sum(int(r.get('shares') or 0) for r in g) / tv:.2%} | "
+                   f"{(f'{sum(subs) / tv * 1000:.1f}') if subs else '-'} |")
+    return out
+
+
+def research_sections(rows, cfg):
+    """Breakdowns used to check the hypotheses in RESEARCH.md. '※少' marks groups below MIN_N videos."""
+    out = []
+    out += _table([r for r in rows if r.get("variant")], lambda r: r["variant"], "A/Bテスト（variant別）")
+    out += _table(rows, lambda r: r.get("hook_type"), "フックの型別")
+    out += _table(rows, lambda r: r.get("slot_jst") and f"{r['slot_jst']}時台", "投稿時間（日本時間）別")
+    out += _table(rows, _length_bucket, "尺別")
+    labels = {k: v["label"] for k, v in cfg["categories"].items()}
+    out += _table(rows, lambda r: labels.get(r.get("category"), r.get("category")), "カテゴリ別")
+    if out:
+        out += ["", f"※少 = {MIN_N}本未満。差があっても偶然の可能性が高いので、判断に使わない。",
+                "平均視聴率・登録/1000再生は YouTube Analytics の権限があるときだけ入る（RESEARCH.md 参照）。"]
+    return out

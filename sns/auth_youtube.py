@@ -9,7 +9,9 @@ import urllib.parse
 
 import requests
 
-SCOPES = "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly"
+# yt-analytics.readonly: retention / subscribers-gained per video for the weekly report
+SCOPES = ("https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly "
+          "https://www.googleapis.com/auth/yt-analytics.readonly")
 REDIRECT = "http://localhost:8080/"
 
 

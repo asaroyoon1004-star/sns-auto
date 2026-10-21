@@ -63,6 +63,15 @@ def recent_titles(limit=60):
     return [t for t in titles if t]
 
 
+def seasonal(cfg, month=None):
+    month = month or datetime.now(timezone.utc).month
+    return [x for x in cfg.get("seasonal", []) if month in x["months"]]
+
+
+def seasonal_hint(cfg):
+    return " / ".join(x["topic"] for x in seasonal(cfg)) or "特になし"
+
+
 HOOK_TYPES = ["損失回避", "警告", "統計提示", "逆説", "疑問", "比較"]
 
 
@@ -80,6 +89,7 @@ def generate_with_claude(cfg, category, top_hooks=None):
     user = (
         f"hookの型: {hook_type}（hook_type にこの語をそのまま入れる）\n"
         f"カテゴリ: {cat_label}\n"
+        f"今の時期に関心が高い話題（カテゴリに合えば優先、合わなければ無視）: {seasonal_hint(cfg)}\n"
         f"過去に作ったタイトル（重複禁止）: {avoid}\n"
         f"これまで再生数が良かったフック（型を参考に、内容は真似しない）:\n{hooks}\n\n"
         "このカテゴリで、新しい台本を1本作ってください。"
@@ -115,6 +125,11 @@ def next_seed(cfg, category=None):
         used = set()
         pool = seeds
     preferred = [s for s in pool if s["category"] == category]
+    keys = [k for x in seasonal(cfg) for k in x["keywords"]]
+    in_season = [s for s in pool if any(k in s["title"] + s["hook"] for k in keys)]
+    # a seasonal seed gets ahead of the category pick half the time, so the timely topics go out while they matter
+    if in_season and random.random() < 0.5:
+        preferred = in_season
     script = dict((preferred or pool)[0])
     used.add(script["id"])
     write_json(USED, sorted(used))
@@ -130,12 +145,32 @@ def validate(script, cfg):
         problems.append(f"lines={len(script['lines'])}")
     if not cmin * 0.85 <= total <= cmax * 1.2:
         problems.append(f"length {total} chars outside {cmin}-{cmax}")
-    banned = re.compile(r"必ず儲か|絶対に儲か|元本保証で高利回り")
+    banned = re.compile(r"必ず儲か|絶対に儲か|元本保証で高利回り|確実に(?:儲か|増え|稼げ)|今が買い時|おすすめ銘柄|爆上が|"
+                        r"ノーリスク|リスクなしで(?:増|稼|儲)|誰でも簡単に(?:稼|儲)")
     for l in [script["hook"], *script["lines"]]:
         # allowed only when the line is warning against the phrase
         if banned.search(l) and not re.search(r"禁止|危険|詐欺|サイン|ブロック", l):
             problems.append(f"banned phrase: {l}")
+    body = script["hook"] + "".join(script["lines"])
+    if script.get("category") == "invest_basic" and not re.search(r"元本割れ|減る|下が|リスク|損", body):
+        problems.append("invest script without a downside note")
     return problems
+
+
+def assign_variant(cfg):
+    """Alternate the active experiment's arms across rendered videos so each arm gets the same slots and days."""
+    exp = cfg.get("experiment") or {}
+    arms = exp.get("arms") or []
+    if not arms:
+        return ""
+    counts = {a: 0 for a in arms}
+    for p in QUEUE.glob("*/script.json"):
+        v = read_json(p, {}).get("variant", "")
+        name, _, arm = v.partition(":")
+        if name == exp["name"] and arm in counts:
+            counts[arm] += 1
+    low = min(counts.values())
+    return f"{exp['name']}:{random.choice([a for a, c in counts.items() if c == low])}"
 
 
 def next_script(cfg, top_hooks=None, seed_only=False):

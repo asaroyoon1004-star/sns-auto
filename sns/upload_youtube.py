@@ -9,6 +9,7 @@ import requests
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 UPLOAD_URL = "https://www.googleapis.com/upload/youtube/v3/videos"
 API = "https://www.googleapis.com/youtube/v3"
+ANALYTICS = "https://youtubeanalytics.googleapis.com/v2/reports"
 
 
 def configured():
@@ -79,4 +80,38 @@ def stats(video_ids):
             s = it["statistics"]
             out[it["id"]] = {"views": int(s.get("viewCount", 0)), "likes": int(s.get("likeCount", 0)),
                              "comments": int(s.get("commentCount", 0))}
+    return out
+
+
+def analytics(video_ids, start="2026-01-01"):
+    """Return {id: {avg_view_sec, avg_view_pct, subs_gained, shares[, engaged_views]}} from the YouTube Analytics API.
+
+    Needs the YouTube Analytics API enabled and a token with yt-analytics.readonly (re-run auth_youtube to add it).
+    Returns {} instead of raising, so the weekly run still works with the older token.
+    """
+    if not video_ids:
+        return {}
+    from datetime import date
+
+    try:
+        token = access_token()
+    except Exception as e:
+        print("[sns] analytics token failed:", repr(e))
+        return {}
+    out = {}
+    base = {"ids": "channel==MINE", "startDate": start, "endDate": date.today().isoformat(), "dimensions": "video"}
+    queries = [("averageViewDuration,averageViewPercentage,subscribersGained,shares",
+                ["avg_view_sec", "avg_view_pct", "subs_gained", "shares"]),
+               ("engagedViews", ["engaged_views"])]  # newer metric; skipped quietly if the API rejects it
+    for metrics, keys in queries:
+        for i in range(0, len(video_ids), 200):
+            chunk = video_ids[i:i + 200]
+            r = requests.get(ANALYTICS, headers={"Authorization": f"Bearer {token}"}, timeout=30,
+                             params={**base, "metrics": metrics, "filters": "video==" + ",".join(chunk),
+                                     "sort": "-" + metrics.split(",")[0], "maxResults": len(chunk)})
+            if r.status_code != 200:
+                print(f"[sns] YouTube Analytics ({metrics.split(',')[0]}) unavailable: {r.status_code} {r.text[:200]}")
+                break
+            for row in r.json().get("rows", []):
+                out.setdefault(row[0], {}).update({k: v for k, v in zip(keys, row[1:])})
     return out
