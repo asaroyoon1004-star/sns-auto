@@ -12,11 +12,11 @@ from datetime import datetime, timezone
 
 from . import analytics, landing, upload_tiktok, upload_youtube
 from .common import DATA, QUEUE, load_config, read_json, write_json, log
-from .render import render
 from .scriptgen import next_script
 
 
 def make(cfg, count, seed_only=False):
+    from .render import render  # heavy (Pillow/ffmpeg); not needed by analyze/landing
     made = []
     top_hooks = read_json(DATA / "top_hooks.json", [])
     for _ in range(count):
