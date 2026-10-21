@@ -140,6 +140,18 @@ def _silence(n_frames, sr):
     return b"\x00\x00" * n_frames
 
 
+def _trim_silence(data, sr, thresh=400, keep=0.04):
+    """Drop the near-silent lead-in/tail TTS engines add, so the first word lands in the first split second."""
+    import numpy as np
+
+    a = np.frombuffer(data, dtype=np.int16)
+    loud = np.flatnonzero(np.abs(a) > thresh)
+    if not loud.size:
+        return data
+    k = int(keep * sr)
+    return a[max(0, loud[0] - k): min(len(a), loud[-1] + k)].tobytes()
+
+
 def build_audio(parts, out_wav, pause, min_total):
     """Concatenate mono 16-bit wavs with pauses; pad the end so the clip reaches `min_total` seconds."""
     sr = None
@@ -150,7 +162,7 @@ def build_audio(parts, out_wav, pause, min_total):
                 sr = w.getframerate()
             elif w.getframerate() != sr:
                 raise RuntimeError("sample rate mismatch between TTS segments")
-            data = w.readframes(w.getnframes())
+            data = _trim_silence(w.readframes(w.getnframes()), w.getframerate())
         data += _silence(int(pause * sr), sr)
         frames.append(data)
         durations.append(len(data) / 2 / sr)
