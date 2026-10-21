@@ -1,4 +1,9 @@
-collected_at,item,platform,video_id,category,hook_type,hook,views,likes,comments,shares
-2026-10-21T04:33:54+00:00,20261020-111644-s011,youtube,BhHG37cTAvk,invest_basic,,お金が2倍になるまで何年かかるか、一瞬でわかる計算式。,1061,1,0,0
-2026-10-21T04:33:54+00:00,20261020-153416-s016,youtube,duwtUOD4sjk,scam_guard,,この一言が出たら、即ブロックしてください。,0,0,0,0
-2026-10-21T04:33:54+00:00,20261021-003119-s008,youtube,JfDCYdD8b8c,cashless,,同じ買い物なのに、もらえるポイントが2倍になる方法。,16,0,0,0
+collected_at,item,platform,video_id,category,hook_type,hook,views,likes,comments,shares,variant,slot_jst,duration,avg_view_pct,avg_view_sec,subs_gained,engaged_views
+2026-10-21T04:33:54+00:00,20261020-111644-s011,youtube,BhHG37cTAvk,invest_basic,,お金が2倍になるまで何年かかるか、一瞬でわかる計算式。,1061,1,0,0,,,,,,,
+2026-10-21T04:33:54+00:00,20261020-153416-s016,youtube,duwtUOD4sjk,scam_guard,,この一言が出たら、即ブロックしてください。,0,0,0,0,,,,,,,
+2026-10-21T04:33:54+00:00,20261021-003119-s008,youtube,JfDCYdD8b8c,cashless,,同じ買い物なのに、もらえるポイントが2倍になる方法。,16,0,0,0,,,,,,,
+2026-10-21T23:09:50+00:00,20261020-111644-s011,youtube,BhHG37cTAvk,invest_basic,,お金が2倍になるまで何年かかるか、一瞬でわかる計算式。,1063,1,0,0,,20,45.84,,,,
+2026-10-21T23:09:50+00:00,20261020-153416-s016,youtube,duwtUOD4sjk,scam_guard,,この一言が出たら、即ブロックしてください。,0,0,0,0,,00,48.83,,,,
+2026-10-21T23:09:50+00:00,20261021-003119-s008,youtube,JfDCYdD8b8c,cashless,,同じ買い物なのに、もらえるポイントが2倍になる方法。,133,1,0,0,,09,45.47,,,,
+2026-10-21T23:09:50+00:00,20261021-081508-s012,youtube,Mk43SNS7tVw,invest_basic,,新NISA、名前は聞くけど結局なに？を1分で。,11,0,0,0,,17,45.62,,,,
+2026-10-21T23:09:50+00:00,20261021-155036-s002,youtube,dD2Jh4Acs2w,tax_system,,ふるさと納税、まだやってない人は損してるかも。,0,0,0,0,hook_title:show,00,42.13,,,,
