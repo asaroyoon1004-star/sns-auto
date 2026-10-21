@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from . import upload_tiktok, upload_youtube
 from .common import DATA, ROOT, METRICS, QUEUE, WEIGHTS, read_json, write_json, log
 
-FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook", "views", "likes", "comments", "shares"]
+FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook_type", "hook", "views", "likes", "comments", "shares"]
 
 
 def _items():
@@ -27,7 +27,7 @@ def collect():
         ids = {u["id"]: (d, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
         for vid, st in upload_youtube.stats(list(ids)).items():
             d, s = ids[vid]
-            rows.append(dict(collected_at=now, item=d.name, platform="youtube", video_id=vid, category=s.get("category"),
+            rows.append(dict(collected_at=now, item=d.name, platform="youtube", video_id=vid, category=s.get("category"), hook_type=s.get("hook_type", ""),
                              hook=s.get("hook"), shares=0, **st))
     if upload_tiktok.configured():
         by_hook = {s.get("hook"): (d, s) for d, m, s in items}
@@ -36,7 +36,7 @@ def collect():
             if not match:
                 continue
             d, s = match
-            rows.append(dict(collected_at=now, item=d.name, platform="tiktok", video_id=vid, category=s.get("category"),
+            rows.append(dict(collected_at=now, item=d.name, platform="tiktok", video_id=vid, category=s.get("category"), hook_type=s.get("hook_type", ""),
                              hook=s.get("hook"), views=st["views"], likes=st["likes"], comments=st["comments"],
                              shares=st.get("shares", 0)))
     if rows:

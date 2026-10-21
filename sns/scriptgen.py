@@ -11,13 +11,14 @@ SCRIPT_SCHEMA = {
     "properties": {
         "title": {"type": "string"},
         "hook": {"type": "string"},
+        "hook_type": {"type": "string"},
         "lines": {"type": "array", "items": {"type": "string"}},
         "cta": {"type": "string"},
         "hashtags": {"type": "array", "items": {"type": "string"}},
         "affiliate": {"type": ["string", "null"]},
         "fact_check_notes": {"type": "string"},
     },
-    "required": ["title", "hook", "lines", "cta", "hashtags", "affiliate", "fact_check_notes"],
+    "required": ["title", "hook", "hook_type", "lines", "cta", "hashtags", "affiliate", "fact_check_notes"],
     "additionalProperties": False,
 }
 
@@ -62,6 +63,9 @@ def recent_titles(limit=60):
     return [t for t in titles if t]
 
 
+HOOK_TYPES = ["損失回避", "警告", "統計提示", "逆説", "疑問", "比較"]
+
+
 def generate_with_claude(cfg, category, top_hooks=None):
     import json
 
@@ -71,7 +75,10 @@ def generate_with_claude(cfg, category, top_hooks=None):
     avoid = "、".join(recent_titles()) or "なし"
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     hooks = "\n".join(f"- {h}" for h in (top_hooks or [])) or "- （まだデータなし）"
+    import random
+    hook_type = random.choice(HOOK_TYPES)
     user = (
+        f"hookの型: {hook_type}（hook_type にこの語をそのまま入れる）\n"
         f"カテゴリ: {cat_label}\n"
         f"過去に作ったタイトル（重複禁止）: {avoid}\n"
         f"これまで再生数が良かったフック（型を参考に、内容は真似しない）:\n{hooks}\n\n"

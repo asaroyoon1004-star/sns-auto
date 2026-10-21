@@ -1,4 +1,4 @@
-collected_at,item,platform,video_id,category,hook,views,likes,comments,shares
-2026-10-21T04:33:54+00:00,20261020-111644-s011,youtube,BhHG37cTAvk,invest_basic,お金が2倍になるまで何年かかるか、一瞬でわかる計算式。,1061,1,0,0
-2026-10-21T04:33:54+00:00,20261020-153416-s016,youtube,duwtUOD4sjk,scam_guard,この一言が出たら、即ブロックしてください。,0,0,0,0
-2026-10-21T04:33:54+00:00,20261021-003119-s008,youtube,JfDCYdD8b8c,cashless,同じ買い物なのに、もらえるポイントが2倍になる方法。,16,0,0,0
+collected_at,item,platform,video_id,category,hook_type,hook,views,likes,comments,shares
+2026-10-21T04:33:54+00:00,20261020-111644-s011,youtube,BhHG37cTAvk,invest_basic,,お金が2倍になるまで何年かかるか、一瞬でわかる計算式。,1061,1,0,0
+2026-10-21T04:33:54+00:00,20261020-153416-s016,youtube,duwtUOD4sjk,scam_guard,,この一言が出たら、即ブロックしてください。,0,0,0,0
+2026-10-21T04:33:54+00:00,20261021-003119-s008,youtube,JfDCYdD8b8c,cashless,,同じ買い物なのに、もらえるポイントが2倍になる方法。,16,0,0,0

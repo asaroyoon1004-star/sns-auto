@@ -3,6 +3,7 @@ import random
 import re
 import subprocess
 import wave
+from functools import lru_cache
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -38,7 +39,8 @@ def _hex(c):
     return tuple(int(c[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def _gradient(w, h, top, bottom):
+@lru_cache(maxsize=8)
+def _gradient_base(w, h, top, bottom):
     img = Image.new("RGB", (w, h))
     t, b = _hex(top), _hex(bottom)
     d = ImageDraw.Draw(img)
@@ -46,6 +48,10 @@ def _gradient(w, h, top, bottom):
         r = y / (h - 1)
         d.line([(0, y), (w, y)], fill=tuple(int(t[i] + (b[i] - t[i]) * r) for i in range(3)))
     return img
+
+
+def _gradient(w, h, top, bottom):
+    return _gradient_base(w, h, top, bottom).copy()
 
 
 def wrap(text, font, max_w):
@@ -98,7 +104,7 @@ def draw_rich(draw, xy_center_y, text, font, max_w, line_gap=1.35):
     return total_h
 
 
-def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0):
+def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale=1.0):
     W, H = cfg["video"]["width"], cfg["video"]["height"]
     cat = cfg["categories"].get(script["category"], {"label": "", "color": ["#222", "#444"]})
     img = _gradient(W, H, *cat["color"])
@@ -116,7 +122,7 @@ def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0):
     d.text((SAFE_X[0], 320), script["title"], font=f_title, fill=WHITE, stroke_width=4, stroke_fill=(0, 0, 0))
 
     # body
-    size = 92 if kind == "hook" else 80
+    size = int((92 if kind == "hook" else 80) * scale)
     font = _font(size)
     if kind == "hook":
         d.rounded_rectangle([60, 640, W - 60, 1260], radius=40, outline=ACCENT, width=8)
@@ -134,6 +140,21 @@ def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0):
                         radius=7, fill=ACCENT)
     d.text((SAFE_X[0], 1640), cfg["channel_name"], font=f_c, fill=(255, 255, 255, 180))
     img.save(out_png)
+
+
+def split_chunks(text, min_len=6):
+    """Split a sentence into short caption phrases (~1.5-2.5 s each) so the picture changes every couple of seconds."""
+    parts = [p for p in re.findall(r"[^、。！？]+[、。！？]?", text) if p.strip()]
+    out = []
+    for p in parts:
+        if out and (len(out[-1].rstrip("、。！？")) < min_len or len(p.rstrip("、。！？")) < min_len):
+            out[-1] += p
+        else:
+            out.append(p)
+    return out or [text]
+
+
+POP_SCALES = (0.82, 0.9, 0.96, 1.0)
 
 
 def _silence(n_frames, sr):
@@ -206,11 +227,22 @@ def render(cfg, script, workdir):
 
     lst = []
     elapsed, total = 0.0, sum(durations)
+    fps = cfg["video"]["fps"]
+    n = 0
     for i, ((kind, text), dur) in enumerate(zip(segs, durations)):
-        png = workdir / f"slide{i:02d}.png"
-        elapsed += dur
-        make_slide(cfg, script, text, kind, i + 1, len(segs), png, progress=elapsed / total)
-        lst.append(f"file '{png.name}'\nduration {dur:.3f}")
+        chunks = split_chunks(text)
+        weights = [len(c) for c in chunks]
+        for c, wgt in zip(chunks, weights):
+            cd = dur * wgt / sum(weights)
+            pops = POP_SCALES if cd > 0.6 else (1.0,)
+            for k, sc in enumerate(pops):
+                png = workdir / f"slide{n:03d}.png"
+                n += 1
+                make_slide(cfg, script, c, kind, i + 1, len(segs), png,
+                           progress=min(1.0, (elapsed + (cd if k == len(pops) - 1 else 0)) / total), scale=sc)
+                d_ = 1 / fps if k < len(pops) - 1 else cd - (len(pops) - 1) / fps
+                lst.append(f"file '{png.name}'\nduration {d_:.3f}")
+            elapsed += cd
     lst.append(f"file '{png.name}'")  # concat demuxer needs the last frame repeated
     (workdir / "slides.txt").write_text("\n".join(lst), encoding="utf-8")
 
