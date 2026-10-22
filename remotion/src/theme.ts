@@ -25,6 +25,7 @@ export const SAFE = {top: 220, bottom: 380, right: 120};
 export const FONT = {
   bold: 'IBM Plex Sans JP',
   num: 'IBM Plex Sans JP Semi',
+  serif: 'Libre Baskerville',
 };
 
 // ease-out cubic: no overshoot by construction.

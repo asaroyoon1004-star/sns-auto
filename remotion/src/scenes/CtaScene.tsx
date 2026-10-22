@@ -7,7 +7,7 @@ export const CtaScene: React.FC = () => (
   <Scene>
     <Body>
       <Reveal>
-        <div style={{fontFamily: FONT.bold, fontSize: 84, lineHeight: 1.35, color: C.text}}>
+        <div style={{fontFamily: FONT.bold, fontSize: 96, lineHeight: 1.3, color: C.text}}>
           毎日1分で、
           <br />
           お金の基礎を。

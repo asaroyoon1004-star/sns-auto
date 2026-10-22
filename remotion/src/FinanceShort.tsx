@@ -1,6 +1,6 @@
 import React from 'react';
 import {Sequence, useCurrentFrame} from 'remotion';
-import {Chrome} from './components/Frame';
+import {Chrome, Footer} from './components/Frame';
 import {BreakdownScene} from './scenes/BreakdownScene';
 import {ChartScene} from './scenes/ChartScene';
 import {CtaScene} from './scenes/CtaScene';
@@ -35,6 +35,7 @@ export const FinanceShort: React.FC = () => {
   return (
     <div style={{background: C.bg, width: '100%', height: '100%'}}>
       {seqs}
+      <Footer />
       <Chrome label={SCENES[active].label} index={active + 1} total={SCENES.length} globalFrame={frame} />
     </div>
   );
