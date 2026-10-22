@@ -83,6 +83,9 @@ def stats(video_ids):
     return out
 
 
+LAST_STATUS = {}  # what the last analytics() call saw; analytics.collect() saves it so a blank report can be diagnosed
+
+
 def analytics(video_ids, start="2026-01-01"):
     """Return {id: {avg_view_sec, avg_view_pct, subs_gained, shares[, engaged_views]}} from the YouTube Analytics API.
 
@@ -93,10 +96,13 @@ def analytics(video_ids, start="2026-01-01"):
         return {}
     from datetime import date
 
+    LAST_STATUS.clear()
+    LAST_STATUS.update(ids=len(video_ids), queries=[])
     try:
         token = access_token()
     except Exception as e:
         print("[sns] analytics token failed:", repr(e))
+        LAST_STATUS["token_error"] = type(e).__name__
         return {}
     out = {}
     base = {"ids": "channel==MINE", "startDate": start, "endDate": date.today().isoformat(), "dimensions": "video"}
@@ -111,7 +117,10 @@ def analytics(video_ids, start="2026-01-01"):
                                      "sort": "-" + metrics.split(",")[0], "maxResults": len(chunk)})
             if r.status_code != 200:
                 print(f"[sns] YouTube Analytics ({metrics.split(',')[0]}) unavailable: {r.status_code} {r.text[:200]}")
+                LAST_STATUS["queries"].append({"metric": metrics.split(",")[0], "http": r.status_code, "error": r.text[:300]})
                 break
-            for row in r.json().get("rows", []):
+            rows = r.json().get("rows", [])
+            LAST_STATUS["queries"].append({"metric": metrics.split(",")[0], "http": 200, "rows": len(rows)})
+            for row in rows:
                 out.setdefault(row[0], {}).update({k: v for k, v in zip(keys, row[1:])})
     return out

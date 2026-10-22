@@ -12,7 +12,17 @@ from .common import DATA, ROOT, METRICS, QUEUE, WEIGHTS, read_json, write_json, 
 
 FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook_type", "hook", "views", "likes", "comments", "shares",
           # added for the research loop: what was tested, and how far / how well people watched
-          "variant", "design", "slot_jst", "duration", "avg_view_pct", "avg_view_sec", "subs_gained", "engaged_views"]
+          "variant", "design", "slot_jst", "duration", "avg_view_pct", "avg_view_sec", "subs_gained", "engaged_views",
+          # hours between posting and this snapshot: a video posted 2 h ago can't be compared with one that is 2 days old
+          "age_hours"]
+
+
+def _age_hours(meta, now):
+    try:
+        made = datetime.strptime(meta["created_at"], "%Y%m%d-%H%M%S").replace(tzinfo=timezone.utc)
+    except (KeyError, ValueError):
+        return ""
+    return round((now - made).total_seconds() / 3600, 1)
 
 
 def _context(d, meta, s):
@@ -22,7 +32,8 @@ def _context(d, meta, s):
         hour = (int(meta["created_at"][9:11]) + 9) % 24  # created_at is a UTC stamp YYYYMMDD-HHMMSS
         slot = f"{hour:02d}"
     return dict(item=d.name, category=s.get("category"), hook_type=s.get("hook_type", ""), hook=s.get("hook"),
-                variant=s.get("variant", ""), design=meta.get("design", "v1"), slot_jst=slot, duration=meta.get("duration", ""))
+                variant=s.get("variant", ""), design=meta.get("design", "v1"), slot_jst=slot, duration=meta.get("duration", ""),
+                age_hours=_age_hours(meta, datetime.now(timezone.utc)))
 
 
 def _ensure_header():
@@ -54,6 +65,7 @@ def collect():
     if upload_youtube.configured():
         ids = {u["id"]: (d, m, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
         deep = upload_youtube.analytics(list(ids))
+        write_json(DATA / "analytics_status.json", {"checked_at": now, "videos_with_data": len(deep), **upload_youtube.LAST_STATUS})
         for vid, st in upload_youtube.stats(list(ids)).items():
             d, m, s = ids[vid]
             rows.append(dict(collected_at=now, platform="youtube", video_id=vid, **_context(d, m, s),
@@ -91,7 +103,7 @@ def latest():
 
 
 def learn(cfg):
-    rows = latest()
+    rows = mature(latest()) or latest()
     if not rows:
         log("no metrics yet; keeping equal category weights")
         return {}
@@ -120,6 +132,10 @@ def report(cfg):
     total = sum(int(r["views"]) for r in rows)
     lines = [f"# 週次レポート {datetime.now().strftime('%Y-%m-%d')}", "",
              f"- 計測した動画: {len(rows)} 本 / 合計再生: {total:,}", ""]
+    st = read_json(DATA / "analytics_status.json", None)
+    if st is not None and not st.get("videos_with_data"):
+        why = st.get("token_error") or "; ".join(f"{q['metric']}: HTTP {q['http']} {q.get('error', '') or str(q.get('rows')) + '行'}"[:160] for q in st.get("queries", [])) or "不明"
+        lines += [f"- ⚠ YouTube Analytics のデータが取れていません（{why}）", ""]
     lines += ["## 再生数トップ5", "", "| 媒体 | 再生 | いいね | フック |", "|---|---|---|---|"]
     for r in sorted(rows, key=lambda r: int(r["views"]), reverse=True)[:5]:
         lines.append(f"| {r['platform']} | {int(r['views']):,} | {r['likes']} | {r['hook']} |")
@@ -148,6 +164,7 @@ def maybe_switch_phase(cfg):
 
 
 MIN_N = 10  # per group, before a difference is treated as a finding rather than noise
+MIN_AGE_H = 24  # younger videos are left out of comparisons: their views are still piling up
 
 
 def _num(v):
@@ -186,9 +203,18 @@ def _table(rows, key, title):
     return out
 
 
+def mature(rows):
+    """Rows old enough to compare. Rows without an age (collected before age_hours existed) count as old."""
+    return [r for r in rows if (_num(r.get("age_hours")) is None or _num(r["age_hours"]) >= MIN_AGE_H)]
+
+
 def research_sections(rows, cfg):
     """Breakdowns used to check the hypotheses in RESEARCH.md. '※少' marks groups below MIN_N videos."""
+    young = len(rows) - len(mature(rows))
+    rows = mature(rows)
     out = []
+    if young:
+        out += ["", f"※投稿から{MIN_AGE_H}時間たっていない動画 {young} 本は、以下の比較から除外しています。"]
     out += _table([r for r in rows if r.get("variant")], lambda r: r["variant"], "A/Bテスト（variant別）")
     out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=カード+蛍光チップ、v3=ターミナル風）")
     out += _table(rows, lambda r: r.get("hook_type"), "フックの型別")
