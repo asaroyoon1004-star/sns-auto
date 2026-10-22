@@ -5,7 +5,7 @@
   "scripts": {
     "studio": "remotion studio src/index.ts",
     "still": "remotion still src/index.ts FinanceShort out/still.png",
-    "render": "remotion render src/index.ts FinanceShort out/finance-short.mp4"
+    "render": "bash scripts/render.sh"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.537",

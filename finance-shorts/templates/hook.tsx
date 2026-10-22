@@ -1,8 +1,8 @@
 import React from 'react';
 import {useCurrentFrame} from 'remotion';
-import {Body, Scene} from '../components/Frame';
-import {Reveal} from '../components/Reveal';
-import {C, FONT, prog} from '../theme';
+import {Body, Scene} from '../src/components/Frame';
+import {Reveal} from '../src/components/Reveal';
+import {C, FONT, prog} from '../src/theme';
 
 const G: React.FC<{children: React.ReactNode}> = ({children}) => <span style={{color: C.gold}}>{children}</span>;
 

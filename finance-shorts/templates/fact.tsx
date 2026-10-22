@@ -1,9 +1,9 @@
 import React from 'react';
-import {Body, Scene} from '../components/Frame';
-import {CountUp} from '../components/CountUp';
-import {Reveal} from '../components/Reveal';
-import {FINAL, PRINCIPAL, toMan} from '../data';
-import {C, FONT} from '../theme';
+import {Body, Scene} from '../src/components/Frame';
+import {CountUp} from '../src/components/CountUp';
+import {Reveal} from '../src/components/Reveal';
+import {FINAL, PRINCIPAL, toMan} from '../src/data';
+import {C, FONT} from '../src/theme';
 
 const PCT = Math.round((FINAL / PRINCIPAL - 1) * 100); // vs. principal, computed
 

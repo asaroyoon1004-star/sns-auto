@@ -1,11 +1,11 @@
 import React from 'react';
 import {Sequence, useCurrentFrame} from 'remotion';
 import {Chrome, Footer} from './components/Frame';
-import {BreakdownScene} from './scenes/BreakdownScene';
-import {ChartScene} from './scenes/ChartScene';
-import {CtaScene} from './scenes/CtaScene';
-import {HeroNumberScene} from './scenes/HeroNumberScene';
-import {HookScene} from './scenes/HookScene';
+import {ChartScene} from '../templates/chart';
+import {EndingScene} from '../templates/ending';
+import {BreakdownScene} from '../templates/fact-breakdown';
+import {HeroNumberScene} from '../templates/fact';
+import {HookScene} from '../templates/hook';
 import {C, FPS} from './theme';
 
 // [component, label, seconds] — sums to 25s.
@@ -14,7 +14,7 @@ const SCENES = [
   {C: HeroNumberScene, label: 'RESULT', sec: 6},
   {C: ChartScene, label: 'GROWTH', sec: 7},
   {C: BreakdownScene, label: 'BREAKDOWN', sec: 5},
-  {C: CtaScene, label: 'FOLLOW', sec: 4},
+  {C: EndingScene, label: 'FOLLOW', sec: 4},
 ];
 
 export const FinanceShort: React.FC = () => {

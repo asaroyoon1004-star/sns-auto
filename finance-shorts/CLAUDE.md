@@ -12,7 +12,7 @@ Green = gain, Red = cost/loss, Gold = neutral emphasis.
 
 ## Typography
 IBM Plex Sans (JP build) Bold for headlines, SemiBold for numbers. Libre Baskerville only for Latin editorial labels.
-Fonts are bundled in `public/fonts` (OFL). No other fonts.
+Fonts are bundled in `assets/fonts` (OFL). No other fonts.
 
 ## Motion
 - Duration 0.35–0.45s (11–14 frames). Only opacity / translateY / scale.
@@ -27,7 +27,15 @@ Fonts are bundled in `public/fonts` (OFL). No other fonts.
 Neon gradients, glassmorphism, emoji, huge drop shadows, TikTok-style flashy effects.
 
 ## Structure
-One React component per scene in `src/scenes/`. Shared pieces in `src/components/`. `src/FinanceShort.tsx` only sequences scenes.
+```
+finance-shorts/
+├── CLAUDE.md
+├── assets/        fonts/ icons/ logos/  (Remotion public dir; reference with staticFile())
+├── templates/     hook.tsx chart.tsx fact.tsx fact-breakdown.tsx ending.tsx — one component per scene
+├── scripts/       render.sh
+└── src/           Root, FinanceShort (sequencing only), theme, data, fonts, components/
+```
+New scenes go in `templates/`; shared pieces in `src/components/`.
 
 ## Content rules
 Figures are labelled as assumptions/simulations. No investment advice, no guarantees of returns.

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Body, Scene} from '../components/Frame';
-import {Reveal} from '../components/Reveal';
-import {C, FONT} from '../theme';
+import {Body, Scene} from '../src/components/Frame';
+import {Reveal} from '../src/components/Reveal';
+import {C, FONT} from '../src/theme';
 
-export const CtaScene: React.FC = () => (
+export const EndingScene: React.FC = () => (
   <Scene>
     <Body>
       <Reveal>

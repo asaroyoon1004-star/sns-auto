@@ -1,10 +1,10 @@
 import React from 'react';
 import {useCurrentFrame} from 'remotion';
-import {Body, Scene} from '../components/Frame';
-import {CountUp} from '../components/CountUp';
-import {Reveal} from '../components/Reveal';
-import {FINAL, GAIN, PRINCIPAL, toMan} from '../data';
-import {C, FONT, prog} from '../theme';
+import {Body, Scene} from '../src/components/Frame';
+import {CountUp} from '../src/components/CountUp';
+import {Reveal} from '../src/components/Reveal';
+import {FINAL, GAIN, PRINCIPAL, toMan} from '../src/data';
+import {C, FONT, prog} from '../src/theme';
 
 const Row: React.FC<{at: number; label: string; to: number; color: string; prefix?: string; last?: boolean}> = ({at, label, to, color, prefix, last}) => (
   <Reveal at={at}>

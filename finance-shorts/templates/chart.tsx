@@ -1,9 +1,9 @@
 import React from 'react';
 import {useCurrentFrame} from 'remotion';
-import {Body, Scene} from '../components/Frame';
-import {Reveal} from '../components/Reveal';
-import {series, toMan} from '../data';
-import {C, FONT, prog} from '../theme';
+import {Body, Scene} from '../src/components/Frame';
+import {Reveal} from '../src/components/Reveal';
+import {series, toMan} from '../src/data';
+import {C, FONT, prog} from '../src/theme';
 
 const CW = 810;
 const CH = 600;
