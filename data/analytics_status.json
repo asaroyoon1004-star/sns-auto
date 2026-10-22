@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-22T08:44:17+00:00",
+  "videos_with_data": 0,
+  "ids": 13,
+  "queries": [
+    {
+      "metric": "averageViewDuration",
+      "http": 200,
+      "rows": 0
+    },
+    {
+      "metric": "engagedViews",
+      "http": 200,
+      "rows": 0
+    }
+  ]
+}
