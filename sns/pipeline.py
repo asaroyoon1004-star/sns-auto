@@ -41,8 +41,9 @@ def publish(cfg):
         targets.append(("tiktok", upload_tiktok.upload))
     if not targets:
         log("no platform credentials set; videos stay in data/queue (dry run)")
-        return 0
+        return []
     n = 0
+    failures = []  # upload errors from this run only, so the workflow can show a failed run instead of a green one
     for d in sorted(QUEUE.iterdir()):
         meta = read_json(d / "meta.json", None)
         if not meta or meta["status"] in ("posted", "missing_video"):
@@ -61,6 +62,7 @@ def publish(cfg):
                 log(f"uploaded {d.name} to {name}")
             except Exception as e:
                 meta.setdefault("errors", []).append(f"{name}: {e!r}"[:500])
+                failures.append(f"{d.name} -> {name}")
                 log(f"upload to {name} failed: {e!r}")
         if {t for t, _ in targets} <= {u["platform"] for u in meta["uploads"]}:
             meta["status"] = "posted"
@@ -68,7 +70,7 @@ def publish(cfg):
                 (d / "video.mp4").unlink(missing_ok=True)
         write_json(d / "meta.json", meta)
         n += 1
-    return n
+    return failures
 
 
 def main():
@@ -81,8 +83,9 @@ def main():
     count = a.count or cfg.get("posts_per_run", 1)
     if a.cmd in ("make", "daily"):
         make(cfg, count, a.seed_only)
+    failures = []
     if a.cmd in ("publish", "daily"):
-        publish(cfg)
+        failures = publish(cfg)
     if a.cmd == "analyze":
         analytics.collect()
         analytics.learn(cfg)
@@ -90,6 +93,10 @@ def main():
         analytics.report(cfg)
     if a.cmd == "landing":
         landing.build(cfg)
+    if failures:
+        # state is still saved by the workflow (if: always()); the non-zero exit is what turns the run red
+        log(f"{len(failures)} upload(s) failed: " + ", ".join(failures))
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
