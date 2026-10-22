@@ -65,7 +65,8 @@ def collect():
     if upload_youtube.configured():
         ids = {u["id"]: (d, m, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
         deep = upload_youtube.analytics(list(ids))
-        write_json(DATA / "analytics_status.json", {"checked_at": now, "videos_with_data": len(deep), **upload_youtube.LAST_STATUS})
+        write_json(DATA / "analytics_status.json", {"checked_at": now, "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
+                                                       "channel_7d": upload_youtube.channel_summary(7)})
         for vid, st in upload_youtube.stats(list(ids)).items():
             d, m, s = ids[vid]
             rows.append(dict(collected_at=now, platform="youtube", video_id=vid, **_context(d, m, s),
@@ -135,7 +136,10 @@ def report(cfg):
     st = read_json(DATA / "analytics_status.json", None)
     if st is not None and not st.get("videos_with_data"):
         why = st.get("token_error") or "; ".join(f"{q['metric']}: HTTP {q['http']} {q.get('error', '') or str(q.get('rows')) + '行'}"[:160] for q in st.get("queries", [])) or "不明"
-        lines += [f"- ⚠ YouTube Analytics のデータが取れていません（{why}）", ""]
+        lines += [f"- ⚠ YouTube Analytics の動画別データが取れていません（{why}）", ""]
+    ch = (st or {}).get("channel_7d") or {}
+    if ch.get("avg_view_pct") is not None:
+        lines += [f"- チャンネル全体（直近{ch['days']}日）: 再生 {ch['views']:,.0f} / 平均視聴率 {ch['avg_view_pct']:.0f}% / 平均視聴 {ch['avg_view_sec']:.0f}秒 / 登録 +{ch['subs_gained']:.0f}", ""]
     lines += ["## 再生数トップ5", "", "| 媒体 | 再生 | いいね | フック |", "|---|---|---|---|"]
     for r in sorted(rows, key=lambda r: int(r["views"]), reverse=True)[:5]:
         lines.append(f"| {r['platform']} | {int(r['views']):,} | {r['likes']} | {r['hook']} |")

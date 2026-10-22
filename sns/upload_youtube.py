@@ -83,6 +83,28 @@ def stats(video_ids):
     return out
 
 
+def channel_summary(days=7):
+    """Channel-wide totals for the last `days` days (no per-video filter): tells 'no data yet' apart from 'the video filter matched nothing',
+    and gives an overall watch-percentage while the per-video numbers are still empty."""
+    from datetime import date, timedelta
+
+    try:
+        token = access_token()
+        end = date.today()
+        r = requests.get(ANALYTICS, headers={"Authorization": f"Bearer {token}"}, timeout=30,
+                         params={"ids": "channel==MINE", "startDate": (end - timedelta(days=days)).isoformat(), "endDate": end.isoformat(),
+                                 "metrics": "views,averageViewDuration,averageViewPercentage,subscribersGained,estimatedMinutesWatched"})
+        if r.status_code != 200:
+            return {"http": r.status_code, "error": r.text[:300]}
+        rows = r.json().get("rows") or []
+        if not rows:
+            return {"http": 200, "rows": 0}
+        keys = ["views", "avg_view_sec", "avg_view_pct", "subs_gained", "minutes_watched"]
+        return {"http": 200, "days": days, **dict(zip(keys, rows[0]))}
+    except Exception as e:
+        return {"error": type(e).__name__}
+
+
 LAST_STATUS = {}  # what the last analytics() call saw; analytics.collect() saves it so a blank report can be diagnosed
 
 
