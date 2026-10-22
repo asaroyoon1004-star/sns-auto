@@ -28,7 +28,7 @@ def make(cfg, count, seed_only=False):
         write_json(d / "script.json", s)
         video, secs, engines = render(cfg, s, d)
         write_json(d / "meta.json", {"status": "rendered", "duration": round(secs, 2), "tts": engines,
-                                     "created_at": stamp, "uploads": []})
+                                     "created_at": stamp, "uploads": [], "design": cfg["video"].get("design", "v2")})
         made.append(d)
     return made
 

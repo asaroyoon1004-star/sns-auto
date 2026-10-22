@@ -12,7 +12,7 @@ from .common import DATA, ROOT, METRICS, QUEUE, WEIGHTS, read_json, write_json, 
 
 FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook_type", "hook", "views", "likes", "comments", "shares",
           # added for the research loop: what was tested, and how far / how well people watched
-          "variant", "slot_jst", "duration", "avg_view_pct", "avg_view_sec", "subs_gained", "engaged_views"]
+          "variant", "design", "slot_jst", "duration", "avg_view_pct", "avg_view_sec", "subs_gained", "engaged_views"]
 
 
 def _context(d, meta, s):
@@ -22,7 +22,7 @@ def _context(d, meta, s):
         hour = (int(meta["created_at"][9:11]) + 9) % 24  # created_at is a UTC stamp YYYYMMDD-HHMMSS
         slot = f"{hour:02d}"
     return dict(item=d.name, category=s.get("category"), hook_type=s.get("hook_type", ""), hook=s.get("hook"),
-                variant=s.get("variant", ""), slot_jst=slot, duration=meta.get("duration", ""))
+                variant=s.get("variant", ""), design=meta.get("design", "v1"), slot_jst=slot, duration=meta.get("duration", ""))
 
 
 def _ensure_header():
@@ -190,6 +190,7 @@ def research_sections(rows, cfg):
     """Breakdowns used to check the hypotheses in RESEARCH.md. '※少' marks groups below MIN_N videos."""
     out = []
     out += _table([r for r in rows if r.get("variant")], lambda r: r["variant"], "A/Bテスト（variant別）")
+    out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=2026-10-22〜）")
     out += _table(rows, lambda r: r.get("hook_type"), "フックの型別")
     out += _table(rows, lambda r: r.get("slot_jst") and f"{r['slot_jst']}時台", "投稿時間（日本時間）別")
     out += _table(rows, _length_bucket, "尺別")

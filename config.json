@@ -31,7 +31,8 @@
   "video": {
     "width": 1080,
     "height": 1920,
-    "fps": 30
+    "fps": 30,
+    "design": "v2"
   },
   "llm": {
     "model": "claude-opus-5-5",
