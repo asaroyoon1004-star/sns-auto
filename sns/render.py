@@ -401,11 +401,21 @@ def render(cfg, script, workdir):
     elapsed, total = 0.0, sum(durations)
     fps = cfg["video"]["fps"]
     n = 0
+    v3 = cfg["video"].get("design", "v2") == "v3"
+    if v3:
+        from . import design_v3
     for i, ((kind, text), dur) in enumerate(zip(segs, durations)):
         chunks = split_chunks(text)
         weights = [len(c) for c in chunks]
         for c, wgt in zip(chunks, weights):
             cd = dur * wgt / sum(weights)
+            if v3:
+                lines, n = design_v3.chunk_frames(cfg, script, c, kind, i + 1, len(segs), min(1.0, (elapsed + cd) / total),
+                                                  cd, fps, workdir, n)
+                lst += lines
+                png = Path(lines[-1].split("'")[1])
+                elapsed += cd
+                continue
             pops = POP_SCALES if cd > 0.6 else (1.0,)
             for k, sc in enumerate(pops):
                 png = workdir / f"slide{n:03d}.png"
@@ -433,6 +443,9 @@ def render(cfg, script, workdir):
     subprocess.run(cmd, cwd=workdir, check=True)
     for p in [*wavs, *workdir.glob("slide*.png"), workdir / "slides.txt", workdir / "voice.wav"]:
         Path(p).unlink(missing_ok=True)
-    make_slide(cfg, script, script["hook"], "hook", 1, len(segs), workdir / "thumb.png", progress=0)
+    if v3:
+        design_v3.still(cfg, script, script["hook"], "hook", 1, len(segs), workdir / "thumb.png")
+    else:
+        make_slide(cfg, script, script["hook"], "hook", 1, len(segs), workdir / "thumb.png", progress=0)
     log(f"rendered {workdir / 'video.mp4'} ({total:.1f}s, tts={','.join(sorted(engines))})")
     return workdir / "video.mp4", total, sorted(engines)
