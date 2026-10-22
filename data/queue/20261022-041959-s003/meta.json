@@ -1,0 +1,12 @@
+{
+  "status": "rendered",
+  "duration": 42.32,
+  "tts": [
+    "edge"
+  ],
+  "created_at": "20261022-041959",
+  "uploads": [],
+  "errors": [
+    "youtube: HTTPError('400 Client Error: Bad Request for url: https://oauth2.googleapis.com/token')"
+  ]
+}
