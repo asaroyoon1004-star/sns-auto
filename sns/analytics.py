@@ -190,7 +190,7 @@ def research_sections(rows, cfg):
     """Breakdowns used to check the hypotheses in RESEARCH.md. '※少' marks groups below MIN_N videos."""
     out = []
     out += _table([r for r in rows if r.get("variant")], lambda r: r["variant"], "A/Bテスト（variant別）")
-    out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=2026-10-22〜）")
+    out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=カード+蛍光チップ、v3=ターミナル風）")
     out += _table(rows, lambda r: r.get("hook_type"), "フックの型別")
     out += _table(rows, lambda r: r.get("slot_jst") and f"{r['slot_jst']}時台", "投稿時間（日本時間）別")
     out += _table(rows, _length_bucket, "尺別")
