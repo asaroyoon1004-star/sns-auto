@@ -6,7 +6,7 @@ import wave
 from functools import lru_cache
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 from .common import ROOT, log
 from .tts import synth
@@ -104,7 +104,7 @@ def draw_rich(draw, xy_center_y, text, font, max_w, line_gap=1.35):
     return total_h
 
 
-def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale=1.0):
+def make_slide_v1(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale=1.0, step=0):
     W, H = cfg["video"]["width"], cfg["video"]["height"]
     cat = cfg["categories"].get(script["category"], {"label": "", "color": ["#222", "#444"]})
     img = _gradient(W, H, *cat["color"])
@@ -142,6 +142,176 @@ def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale
                         radius=7, fill=ACCENT)
     d.text((SAFE_X[0], 1640), cfg["channel_name"], font=f_c, fill=(255, 255, 255, 180))
     img.save(out_png)
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# design v2: dark money-explainer look. Big outlined caption on a translucent card, numbers as highlighter chips,
+# a hero number for amounts/ratios, a thin progress bar at the top, everything clear of the platform UI
+# (top ~130px, right ~150px, bottom ~400px).
+# ---------------------------------------------------------------------------------------------------------------
+HERO_RE = re.compile(r"[0-9０-９][0-9０-９,，.]*(?:万|千|億)?(?:円|倍|パーセント|%|リットル|年|か月|ヶ月)")
+INK = (20, 20, 24)
+
+
+def _mix(c, d, f):
+    return tuple(int(c[i] + (d[i] - c[i]) * f) for i in range(3))
+
+
+_GLOWS = [((180, 420, 520), (900, 1250, 460)), ((860, 380, 500), (200, 1300, 520)),
+          ((300, 700, 480), (860, 1100, 520)), ((820, 640, 520), (260, 1000, 480))]
+
+
+@lru_cache(maxsize=32)
+def _bg_v2(w, h, c0, c1, variant):
+    top, bottom = _mix(_hex(c0), (0, 0, 0), 0.62), _mix(_hex(c1), (0, 0, 0), 0.5)
+    base = _gradient_base(w, h, "#%02x%02x%02x" % top, "#%02x%02x%02x" % bottom).convert("RGBA")
+    glow_c = _mix(_hex(c1), (255, 255, 255), 0.25)
+    glow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    g = ImageDraw.Draw(glow)
+    for x, y, r in _GLOWS[variant % 4]:
+        g.ellipse([x - r, y - r, x + r, y + r], fill=(*glow_c, 90))
+    glow = glow.filter(ImageFilter.GaussianBlur(140))
+    deco = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(deco)
+    for k in range(-h, w, 110):  # faint diagonal stripes
+        d.line([(k, h), (k + h * 0.75, 0)], fill=(255, 255, 255, 9), width=36)
+    cx, cy = w - 120 + (variant % 2) * 40, 1480  # a faint coin
+    for r, wd in ((520, 44), (380, 16)):
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=(255, 255, 255, 20), width=wd)
+    return Image.alpha_composite(Image.alpha_composite(base, glow), deco)
+
+
+def _runs(text):
+    mask = _accent_mask(text)
+    out, i = [], 0
+    while i < len(text):
+        j = i
+        while j < len(text) and mask[j] == mask[i]:
+            j += 1
+        out.append((text[i:j], mask[i]))
+        i = j
+    return out
+
+
+def _atoms(text):
+    """Characters, except a number with its unit stays in one piece so a line never breaks inside '120リットル'."""
+    out, i = [], 0
+    for m in NUM_RE.finditer(text):
+        out += list(text[i:m.start()]) + [m.group(0)]
+        i = m.end()
+    return out + list(text[i:])
+
+
+def _wrap_atoms(text, font, max_w):
+    rows, cur = [], ""
+    for a in _atoms(text):
+        if cur and font.getlength(cur + a) > max_w and a[0] not in NO_LINE_START:
+            rows.append(cur)
+            cur = a
+        else:
+            cur += a
+    return rows + [cur] if cur else rows
+
+
+def _fit(text, base_size, max_w, max_rows):
+    size = base_size
+    while True:
+        font = _font(size)
+        rows = _wrap_atoms(text, font, max_w)
+        if len(rows) >= 2:  # even out the rows
+            alt = _wrap_atoms(text, font, min(max_w, font.getlength(text) / len(rows) * 1.08))
+            rows = alt if len(alt) == len(rows) else rows
+        if len(rows) <= max_rows or size <= 60:
+            return font, size, rows
+        size -= 8
+
+
+def _caption_v2(draw, cy, text, font, size, rows, line_gap=1.3):
+    """Draw pre-wrapped rows centered on cy; numeric runs sit on a yellow chip."""
+    lh = int(size * line_gap)
+    # CJK glyphs sit low in the font box (centre ~0.78 em below the draw origin); centre the glyphs, not the box
+    y = int(cy - (len(rows) - 1) * lh / 2 - 0.78 * size)
+    cx = (SAFE_X[0] + SAFE_X[1]) // 2
+    pos = 0
+    for row in rows:
+        x = cx - font.getlength(row) / 2
+        for seg, hot in _runs(text[pos:pos + len(row)]):
+            sw = font.getlength(seg)
+            if hot:
+                pad = size * 0.1
+                draw.rounded_rectangle([x - pad, y + size * 0.2, x + sw + pad, y + size * 1.36], radius=int(size * 0.22), fill=ACCENT)
+                draw.text((x, y), seg, font=font, fill=INK)
+            else:
+                draw.text((x, y), seg, font=font, fill=WHITE, stroke_width=max(4, size // 13), stroke_fill=(0, 0, 0))
+            x += sw
+        pos += len(row)
+        y += lh
+
+
+def _pill(draw, x, y, text, font, fill, ink, outline=None):
+    w = font.getlength(text) + 44
+    draw.rounded_rectangle([x, y, x + w, y + 62], radius=31, fill=fill, outline=outline, width=3)
+    draw.text((x + 22, y + 6), text, font=font, fill=ink)
+    return w
+
+
+def _bookmark(draw, x, y, s, fill):
+    draw.polygon([(x, y), (x + s, y), (x + s, y + s * 1.5), (x + s / 2, y + s * 1.15), (x, y + s * 1.5)], fill=fill)
+
+
+def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale=1.0, step=0):
+    if cfg["video"].get("design", "v2") == "v1":
+        return make_slide_v1(cfg, script, text, kind, idx, total, out_png, progress, scale, step)
+    W, H = cfg["video"]["width"], cfg["video"]["height"]
+    cat = cfg["categories"].get(script["category"], {"label": "", "color": ["#222222", "#444444"]})
+    img = _bg_v2(W, H, cat["color"][0], cat["color"][1], step).copy()
+    d = ImageDraw.Draw(img)
+    x0, x1 = SAFE_X
+    accent = _mix(_hex(cat["color"][1]), (255, 255, 255), 0.35)
+
+    # top: progress bar, then category / PR pills and the title
+    d.rounded_rectangle([x0 - 30, 150, x1 + 30, 162], radius=6, fill=(255, 255, 255, 60))
+    d.rounded_rectangle([x0 - 30, 150, x0 - 30 + max(12, int((x1 - x0 + 60) * progress)), 162], radius=6, fill=ACCENT)
+    f_pill = _font(42)
+    w = _pill(d, x0 - 30, 196, cat["label"], f_pill, WHITE, _mix(_hex(cat["color"][0]), (0, 0, 0), 0.3))
+    if script.get("affiliate"):
+        _pill(d, x0 - 30 + w + 14, 196, "PR", f_pill, (0, 0, 0, 0), WHITE, outline=WHITE)
+    # A/B: the title often gives away the hook's answer, so one arm leaves it off the hook screen
+    if not (kind == "hook" and script.get("variant") == "hook_title:hide"):
+        d.text((x0 - 30, 296), script["title"], font=_font(58), fill=WHITE, stroke_width=4, stroke_fill=(0, 0, 0))
+
+    # body: translucent card sized to the caption, with a hero number for amounts and ratios
+    hero = None
+    if kind == "line":
+        m = HERO_RE.search(text)
+        hero = m.group(0) if m and len(m.group(0)) <= 7 else None
+    base = int((104 if kind == "hook" else 88 if not hero else 76) * scale)
+    font, size, rows = _fit(text, base, x1 - x0 - 20, 4 if not hero else 3)
+    text_h = int(size * 1.3) * len(rows)
+    hero_h = 330 if hero else 0
+    card_h = max(520 if kind == "hook" else 400, text_h + hero_h + 190)
+    cy = 880
+    card_top, card_bot = cy - card_h // 2, cy + card_h // 2
+    card = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(card)
+    cd.rounded_rectangle([x0 - 40, card_top, x1 + 40, card_bot], radius=56, fill=(0, 0, 0, 120), outline=(*accent, 255), width=6)
+    img = Image.alpha_composite(img, card)
+    d = ImageDraw.Draw(img)
+    if hero:
+        hs = int(250 * scale)
+        while _font(hs).getlength(hero) > x1 - x0 and hs > 120:
+            hs -= 10
+        d.text(((x0 + x1) / 2, card_top + 95 + hs * 0.55), hero, font=_font(hs), fill=ACCENT, anchor="mm", stroke_width=10, stroke_fill=(0, 0, 0))
+        _caption_v2(d, card_bot - 95 - text_h / 2 + 0.2 * size, text, font, size, rows)
+    else:
+        _caption_v2(d, cy, text, font, size, rows)
+
+    if kind == "cta":
+        _bookmark(d, x0 + 20, 1405, 46, ACCENT)
+        d.text((x0 + 92, 1400), "保存して、あとで見返す", font=_font(50), fill=WHITE, stroke_width=4, stroke_fill=(0, 0, 0))
+        d.rounded_rectangle([x0 - 30, 1500, x1 + 30, 1596], radius=48, fill=ACCENT)
+        d.text(((x0 + x1) / 2, 1548), "フォローで毎日1分、お金に強くなる", font=_font(44), fill=INK, anchor="mm")
+    img.convert("RGB").save(out_png)
 
 
 def split_chunks(text, min_len=6):
@@ -241,7 +411,7 @@ def render(cfg, script, workdir):
                 png = workdir / f"slide{n:03d}.png"
                 n += 1
                 make_slide(cfg, script, c, kind, i + 1, len(segs), png,
-                           progress=min(1.0, (elapsed + (cd if k == len(pops) - 1 else 0)) / total), scale=sc)
+                           progress=min(1.0, (elapsed + (cd if k == len(pops) - 1 else 0)) / total), scale=sc, step=n // len(pops))
                 d_ = 1 / fps if k < len(pops) - 1 else cd - (len(pops) - 1) / fps
                 lst.append(f"file '{png.name}'\nduration {d_:.3f}")
             elapsed += cd
