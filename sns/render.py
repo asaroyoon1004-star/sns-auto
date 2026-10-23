@@ -494,9 +494,10 @@ def render(cfg, script, workdir):
 
         cap = design_v3.configure(cfg)["caption"]
         items = caption_timeline(segs, durations, spoken, cap, v4)
+        dock_ctx = design_v3.dock_ctx_for(script)  # the diagram frame remembers the last diagram across chunks
         for i, kind, c, cd in items:
             lines, n = design_v3.chunk_frames(cfg, script, c, kind, i + 1, len(segs), min(1.0, (elapsed + cd) / total),
-                                              cd, fps, workdir, n)
+                                              cd, fps, workdir, n, ctx=dock_ctx)
             lst += lines
             png = Path(lines[-1].split("'")[1])
             elapsed += cd
