@@ -120,7 +120,13 @@ def diagnose(video_ids):
         out["token_channels"] = [{"id": i["id"], "title": i["snippet"]["title"]} for i in c.json().get("items", [])] if c.ok else {"http": c.status_code}
         if video_ids:
             v = requests.get(f"{API}/videos", params={"part": "snippet", "id": ",".join(video_ids[:50])}, headers=h, timeout=30)
-            out["video_channels"] = sorted({i["snippet"]["channelId"] for i in v.json().get("items", [])}) if v.ok else {"http": v.status_code}
+            if v.ok:
+                by = {}
+                for i in v.json().get("items", []):
+                    by.setdefault(i["snippet"]["channelId"], []).append(i["id"])
+                out["video_channels"] = by
+            else:
+                out["video_channels"] = {"http": v.status_code}
         today = date.today()
         out["windows"] = []
         for label, start, end in [("to_today", today - timedelta(days=14), today), ("to_2d_ago", today - timedelta(days=14), today - timedelta(days=2)),
