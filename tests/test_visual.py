@@ -130,8 +130,8 @@ class StyleTests(unittest.TestCase):
         self.assertLessEqual(s["anim"]["stagger"], 0.5)
         self.assertLessEqual(s["caption"]["lead_sec"], 0.25)
 
-    def test_config_has_v4_and_arm(self):
-        self.assertIn("v4", CFG["video"]["design_arms"])
+    def test_config_has_v4_and_production_design(self):
+        self.assertEqual(CFG["video"]["design"], "sb")
         self.assertEqual(d.style(cfg_for("v4")), d.style(cfg_for("v4", **{})))
         self.assertIn("v4", CFG["video"]["styles"])
 
