@@ -25,18 +25,28 @@ SCRIPT_SCHEMA = {
 SYSTEM_PROMPT = """あなたは日本向けの「お金・節約の豆知識」縦型ショート動画（TikTok / YouTubeショート）の台本作家です。
 顔出しなし、AI音声ナレーション＋大きな字幕だけで成立する台本を書きます。
 
-守ること:
+構成（この順番）:
+1. hook（0〜2秒）: 疑問・逆説・具体的な数字のどれかで始める。30字以内。前置きや自己紹介は入れない。
+2. 前提: 誰の・何の話かを1〜2文で。hookの問いの答えはまだ言わない。
+3. 仕組み: なぜそうなるのかを短く。
+4. 具体例・数字: 数字には必ず条件を添える（例:「年利3パーセントで20年、毎月1万円積み立てた場合」）。
+5. 結論: 1つだけ。ここで答えを言う。
+1動画に伝えるメッセージは1つだけ。関連する別の話題は削る。
+
+書き方:
 - 事実は日本の公的情報（国税庁、厚生労働省、金融庁、消費者庁など）で確認できる、変わりにくい内容だけを書く。自信のない数字は書かない。
-- 「必ず儲かる」「絶対」など断定的な表現、特定の銘柄・商品の推奨はしない。投資の話には元本割れの可能性に触れる。
-- hook は最初の1秒で指が止まる一文（30字以内）。疑問形か意外な事実で、できれば具体的な数字を入れる。
-- hook で出した問いの答えは、lines の最初では言わず、最後の方まで引っ張る。
+- 事実・仮定・予測を区別して話す。仮定や予測は「仮に」「たとえば」「〜の場合」「〜とすると」と言葉で示し、断定しない。計算条件を省かない。
+- 「必ず」「絶対」「誰でも簡単に」など断定・誇張はしない。特定の銘柄・商品の推奨もしない。投資の話には元本割れの可能性に触れる。
+- 同じ説明を言い換えて繰り返さない。結論の前に要約を挟まない。
+- 「こんにちは」「今日は〜について」「それでは」のような前置きは禁止。
 - 注意書き（投資の元本割れなど）が必要なときは、短い1文（25字以内）にする。
-- lines は各40字以内の話し言葉。全体（hook+lines+cta）で {cmin}〜{cmax} 字にする。
+- lines は各40字以内、ナレーションで一息で読める話し言葉。難しい漢語より自然な言い回しにする。
+- 長さの目安は hook+lines+cta で {cmin}〜{cmax} 字。内容が足りるなら短くてよい。字数合わせの水増し（重複、言い換え、不要な注意書き）は禁止。
 - 記号や絵文字は使わない。数字は読み上げやすく書く（例: 1万2千円）。
 - cta は保存・コメント・シェアを促す一文。affiliate が null でない場合のみ「プロフィールのリンク」に誘導する。
 - hashtags は4つ。affiliate がある場合は必ず "PR" を含める。
 - affiliate は次から最も自然なもの1つ、なければ null: {affiliates}
-- fact_check_notes に、根拠にした公的情報の名前を短く書く（動画には出さない）。"""
+- fact_check_notes（動画には出さない）に、(1)根拠にした公的情報の名前、(2)計算条件・前提、(3)どの文が事実で、どれが仮定・予測かを短く書く。"""
 
 
 def _client():
@@ -75,7 +85,7 @@ def seasonal_hint(cfg):
 HOOK_TYPES = ["損失回避", "警告", "統計提示", "逆説", "疑問", "比較"]
 
 
-def generate_with_claude(cfg, category, top_hooks=None):
+def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
     import json
 
     client = _client()
@@ -93,6 +103,7 @@ def generate_with_claude(cfg, category, top_hooks=None):
         f"過去に作ったタイトル（重複禁止）: {avoid}\n"
         f"これまで再生数が良かったフック（型を参考に、内容は真似しない）:\n{hooks}\n\n"
         "このカテゴリで、新しい台本を1本作ってください。"
+        + (f"\n\n前回の台本は次の点で不合格でした。直して作り直してください:\n- " + "\n- ".join(feedback) if feedback else "")
     )
     resp = client.beta.messages.create(
         model=cfg["llm"]["model"],
@@ -124,6 +135,8 @@ def next_seed(cfg, category=None):
         log("seed bank exhausted; recycling from the start")
         used = set()
         pool = seeds
+    clean = [s for s in pool if not lint(s)]
+    pool = clean or pool  # lint-clean seeds first; the rest only once those run out
     preferred = [s for s in pool if s["category"] == category]
     keys = [k for x in seasonal(cfg) for k in x["keywords"]]
     in_season = [s for s in pool if any(k in s["title"] + s["hook"] for k in keys)]
@@ -137,13 +150,55 @@ def next_seed(cfg, category=None):
     return script
 
 
+PREAMBLE = re.compile(r"^(こんにちは|みなさん|皆さん|今日は|今回は|それでは|さて|ところで|この動画では|今から)")
+HYPE = re.compile(r"絶対|間違いなく|驚愕|衝撃|激変|最強|大損|人生が変わ|誰でも簡単")
+HOOK_DEVICE = re.compile(r"[？?]|\d|[０-９]|実は|意外|なのに|ではなく|じゃない|のに|逆|知らない|損|違い|しないで|ください|危な|危険|間違|やめ")
+PROJECTION = re.compile(r"(年利|利回り|複利).*(なります|になる|増え|貯ま|膨らみ)|(増え|貯ま|膨らみ).*(年利|利回り|複利)")
+ASSUMPTION = re.compile(r"仮に|たとえば|例えば|として|場合|想定|もし|のとき|なら|前提|とすると")
+
+
+def _bigrams(t):
+    t = re.sub(r"[、。！？\s]", "", t)
+    return {t[i:i + 2] for i in range(len(t) - 1)}
+
+
+def lint(script):
+    """Writing-quality problems of a script (hook device, preamble, hype, repetition, unqualified projections).
+    Pure text checks, so they also apply to the seed bank; validate() adds the length and safety checks."""
+    problems = []
+    hook, lines = script["hook"], script["lines"]
+    if len(hook) > 30:
+        problems.append(f"hook {len(hook)} chars (>30)")
+    if not HOOK_DEVICE.search(hook):
+        problems.append("hook has no question, contrast or number")
+    for l in [hook, *lines]:
+        if PREAMBLE.search(l):
+            problems.append(f"preamble: {l}")
+        if HYPE.search(l) and not re.search(r"禁止|危険|詐欺|サイン|ブロック", l):
+            problems.append(f"hype: {l}")
+    for l in lines:
+        if len(l) > 40:
+            problems.append(f"line {len(l)} chars (>40): {l}")
+        if PROJECTION.search(l) and not ASSUMPTION.search(l):
+            problems.append(f"projection without a stated condition: {l}")
+    seen = [(l, _bigrams(l)) for l in [hook, *lines] if len(l) >= 8]
+    for i in range(len(seen)):
+        for j in range(i + 1, len(seen)):
+            a, b = seen[i][1], seen[j][1]
+            if a and b and len(a & b) / len(a | b) >= 0.6:
+                problems.append(f"repeats: {seen[i][0]} / {seen[j][0]}")
+    if "fact_check_notes" in script and len(script["fact_check_notes"].strip()) < 6:
+        problems.append("fact_check_notes empty")
+    return problems
+
+
 def validate(script, cfg):
     problems = []
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     total = len(script["hook"]) + sum(len(l) for l in script["lines"]) + len(script["cta"])
     if not 4 <= len(script["lines"]) <= 14:
         problems.append(f"lines={len(script['lines'])}")
-    if not cmin * 0.85 <= total <= cmax * 1.2:
+    if not cmin * 0.8 <= total <= cmax * 1.15:
         problems.append(f"length {total} chars outside {cmin}-{cmax}")
     banned = re.compile(r"必ず儲か|絶対に儲か|元本保証で高利回り|確実に(?:儲か|増え|稼げ)|今が買い時|おすすめ銘柄|爆上が|"
                         r"ノーリスク|リスクなしで(?:増|稼|儲)|誰でも簡単に(?:稼|儲)")
@@ -154,7 +209,7 @@ def validate(script, cfg):
     body = script["hook"] + "".join(script["lines"])
     if script.get("category") == "invest_basic" and not re.search(r"元本割れ|減る|下が|リスク|損", body):
         problems.append("invest script without a downside note")
-    return problems
+    return problems + lint(script)
 
 
 def assign_variant(cfg):
@@ -195,9 +250,14 @@ def next_script(cfg, top_hooks=None, seed_only=False):
     if has_llm() and not seed_only:
         try:
             s = generate_with_claude(cfg, category, top_hooks)
-            if not validate(s, cfg):
+            bad = validate(s, cfg)
+            if bad:
+                log("generated script failed validation, retrying once:", bad)
+                s = generate_with_claude(cfg, category, top_hooks, feedback=bad[:6])
+                bad = validate(s, cfg)
+            if not bad:
                 return s
-            log("generated script failed validation, using seed:", validate(s, cfg))
+            log("generated script failed validation, using seed:", bad)
         except Exception as e:  # network, auth, refusal: never stop the daily run
             log("Claude generation failed, using seed:", repr(e))
     return next_seed(cfg, category)

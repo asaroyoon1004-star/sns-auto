@@ -7,10 +7,7 @@
   "phases": {
     "growth": {
       "note": "フォロワー1万人まで。短く完走率重視",
-      "chars": [
-        150,
-        210
-      ],
+      "chars": [120, 220],
       "min_duration_sec": 0
     },
     "monetize": {
