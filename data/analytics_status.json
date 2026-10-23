@@ -1,27 +1,27 @@
 {
-  "checked_at": "2026-10-23T02:25:55+00:00",
-  "videos_with_data": 0,
-  "ids": 16,
+  "checked_at": "2026-10-23T23:01:53+00:00",
+  "videos_with_data": 2,
+  "ids": 18,
   "queries": [
     {
       "metric": "averageViewDuration",
       "http": 200,
-      "rows": 0
+      "rows": 2
     },
     {
       "metric": "engagedViews",
       "http": 200,
-      "rows": 0
+      "rows": 2
     }
   ],
   "channel_7d": {
     "http": 200,
     "days": 7,
-    "views": 0,
-    "avg_view_sec": 0,
-    "avg_view_pct": 0,
+    "views": 78,
+    "avg_view_sec": 15,
+    "avg_view_pct": 40.46,
     "subs_gained": 0,
-    "minutes_watched": 0
+    "minutes_watched": 7
   },
   "diagnose": {
     "scopes": [
@@ -54,7 +54,9 @@
         "2aUht1JVb6o",
         "tLYXBL5fdnE",
         "OqOt7OjeJIc",
-        "aJ-0mhQ8_xI"
+        "aJ-0mhQ8_xI",
+        "EjJJk_Cgu0U",
+        "3WyS1R7IXtU"
       ]
     },
     "windows": [
@@ -63,13 +65,8 @@
         "start": "2026-10-09",
         "end": "2026-10-23",
         "http": 200,
-        "rows": 12,
+        "rows": 13,
         "last_rows": [
-          [
-            "2026-10-18",
-            0,
-            0
-          ],
           [
             "2026-10-19",
             0,
@@ -79,6 +76,11 @@
             "2026-10-20",
             0,
             0
+          ],
+          [
+            "2026-10-21",
+            78,
+            7
           ]
         ]
       },
@@ -87,13 +89,8 @@
         "start": "2026-10-09",
         "end": "2026-10-21",
         "http": 200,
-        "rows": 12,
+        "rows": 13,
         "last_rows": [
-          [
-            "2026-10-18",
-            0,
-            0
-          ],
           [
             "2026-10-19",
             0,
@@ -103,6 +100,11 @@
             "2026-10-20",
             0,
             0
+          ],
+          [
+            "2026-10-21",
+            78,
+            7
           ]
         ]
       },
@@ -111,13 +113,8 @@
         "start": "2026-01-01",
         "end": "2026-10-22",
         "http": 200,
-        "rows": 293,
+        "rows": 294,
         "last_rows": [
-          [
-            "2026-10-18",
-            0,
-            0
-          ],
           [
             "2026-10-19",
             0,
@@ -127,6 +124,11 @@
             "2026-10-20",
             0,
             0
+          ],
+          [
+            "2026-10-21",
+            78,
+            7
           ]
         ]
       }
