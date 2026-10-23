@@ -1,0 +1,180 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "ためたポイント、気づいたら消えてたこと、ありませんか？",
+   "caption": "ためたポイント、気づいたら消えてたこと、ありませんか？",
+   "key_message": "ためたポイント、気づいたら消えてたこと、ありませんか",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.579
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "ポイントには、有効期限があるものが多いです。",
+   "caption": "ポイントには、有効期限があるものが多いです。",
+   "key_message": "期限があるものが多い",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ポイントの失効",
+    "rows": [
+     {
+      "label": "期限があるものが多い",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.579,
+   "duration": 3.041
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "最後に使った日から期限が延びるタイプと、ためた月ごとに消えるタイプがあります。",
+   "caption": "最後に使った日から期限が延びるタイプと、ためた月ごとに消えるタイプがあります。",
+   "key_message": "最後に使った日から期限が延びるタイプと、ためた月ごとに消えるタイプがあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.62,
+   "duration": 4.854
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "キャンペーンでもらった期間限定ポイントは、特に期限が短めです。",
+   "caption": "キャンペーンでもらった期間限定ポイントは、特に期限が短めです。",
+   "key_message": "期間限定は特に短い",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ポイントの失効",
+    "rows": [
+     {
+      "label": "期間限定は特に短い",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.474,
+   "duration": 4.189
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "月に1回、ポイントアプリで期限を確認するクセをつけましょう。",
+   "caption": "月に1回、ポイントアプリで期限を確認するクセをつけましょう。",
+   "key_message": "月1回、期限を確認",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ポイントの失効",
+    "rows": [
+     {
+      "label": "月1回、期限を確認",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 15.663,
+   "duration": 3.93
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "使い道に迷ったら、日用品や食料品の支払いに充てるのが無駄がありません。",
+   "caption": "使い道に迷ったら、日用品や食料品の支払いに充てるのが無駄がありません。",
+   "key_message": "日用品の支払いに使う",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ポイントの失効",
+    "rows": [
+     {
+      "label": "日用品の支払いに使う",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 19.593,
+   "duration": 4.797
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "ポイントも、立派なお金です。",
+   "caption": "ポイントも、立派なお金です。",
+   "key_message": "ポイントも、立派なお金です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.39,
+   "duration": 2.136
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "気づかずに失効させるのが、一番もったいないパターンです。",
+   "caption": "気づかずに失効させるのが、一番もったいないパターンです。",
+   "key_message": "気づかずに失効させるのが、一番もったいないパターンです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 26.526,
+   "duration": 3.708
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "今すぐアプリで期限を見てみて。",
+   "caption": "今すぐアプリで期限を見てみて。",
+   "key_message": "今すぐアプリで期限を見てみて",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.234,
+   "duration": 1.986
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
