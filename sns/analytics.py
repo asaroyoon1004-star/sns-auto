@@ -66,7 +66,8 @@ def collect():
         ids = {u["id"]: (d, m, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
         deep = upload_youtube.analytics(list(ids))
         write_json(DATA / "analytics_status.json", {"checked_at": now, "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
-                                                       "channel_7d": upload_youtube.channel_summary(7)})
+                                                       "channel_7d": upload_youtube.channel_summary(7),
+                                                       "diagnose": upload_youtube.diagnose(list(ids))})
         for vid, st in upload_youtube.stats(list(ids)).items():
             d, m, s = ids[vid]
             rows.append(dict(collected_at=now, platform="youtube", video_id=vid, **_context(d, m, s),
