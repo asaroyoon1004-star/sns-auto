@@ -157,12 +157,13 @@ def _wrap(text, font, max_w):
         if font.getlength(ph) <= max_w:
             cur = ph
             continue
-        for a in _subphrases(ph):  # a phrase wider than the column: break at weaker points, then per character
-            if cur and font.getlength(cur + a) > max_w and a[0] not in NO_LINE_START:
-                rows.append(cur)
-                cur = a
-            else:
-                cur += a
+        for piece in _subphrases(ph):  # a phrase wider than the column: break at weaker points, then per character
+            for a in (_atoms(piece) if font.getlength(piece) > max_w else [piece]):
+                if cur and font.getlength(cur + a) > max_w and a[0] not in NO_LINE_START:
+                    rows.append(cur)
+                    cur = a
+                else:
+                    cur += a
     return rows + [cur] if cur else rows
 
 
@@ -174,12 +175,15 @@ def _fit(text, make_font, base, max_rows):
         if len(rows) >= 2:  # even out the rows
             alt = _wrap(text, font, min(X1 - X0, font.getlength(text) / len(rows) * 1.08))
             rows = alt if len(alt) == len(rows) else rows
-        if len(rows) >= 2 and len(rows[-1]) <= 2:  # no one-word orphan on the last row
+        if len(rows) >= 2 and len(rows[-1]) <= 3:  # no one-word orphan on the last row
             for w in range(X1 - X0 - 20, X1 - X0 - 260, -20):
                 alt = _wrap(text, font, w)
-                if len(alt) <= max_rows and len(alt[-1]) > 2:
+                if len(alt) <= max_rows and len(alt[-1]) > 3:
                     rows = alt
                     break
+        if len(rows) >= 3 and len(rows[-1]) <= 3 and size > 56:  # still an orphan: try a slightly smaller size
+            size -= 6
+            continue
         if len(rows) <= max_rows or size <= 56:
             return font, size, rows
         size -= 6
@@ -449,6 +453,8 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
     box = REGION
     region = base.crop(box)
     tr = min(0.4, dur * 0.5)
+    if kind == "hook" and cfg["video"].get("design") == "v3b":
+        tr = 0  # v3b: the hook is on screen from the very first frame (v3 faded it in from a blank frame)
     n_tr = max(0, int(round(tr * fps)))
     lines, n = [], n0
     static = None

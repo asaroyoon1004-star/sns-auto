@@ -173,6 +173,23 @@ def assign_variant(cfg):
     return f"{exp['name']}:{random.choice([a for a, c in counts.items() if c == low])}"
 
 
+def assign_design(cfg):
+    """A/B the video design: alternate `video.design_arms` over videos made since `video.design_ab_start`
+    (a UTC date YYYYMMDD), so each arm gets the same slots and days. Falls back to `video.design`."""
+    v = cfg["video"]
+    arms = v.get("design_arms") or []
+    if not arms:
+        return v.get("design", "v2")
+    counts = {a: 0 for a in arms}
+    for p in QUEUE.glob("*/meta.json"):
+        if p.parent.name[:8] >= v.get("design_ab_start", "00000000"):
+            d = read_json(p, {}).get("design")
+            if d in counts:
+                counts[d] += 1
+    low = min(counts.values())
+    return random.choice([a for a, c in counts.items() if c == low])
+
+
 def next_script(cfg, top_hooks=None, seed_only=False):
     category = pick_category(cfg)
     if has_llm() and not seed_only:
