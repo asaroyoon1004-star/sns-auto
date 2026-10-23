@@ -7,7 +7,10 @@
   "phases": {
     "growth": {
       "note": "フォロワー1万人まで。短く完走率重視",
-      "chars": [120, 220],
+      "chars": [
+        120,
+        220
+      ],
       "min_duration_sec": 0
     },
     "monetize": {
@@ -32,10 +35,63 @@
     "design": "v3",
     "design_arms": [
       "v1",
-      "v3b"
+      "v4"
     ],
     "design_ab_start": "20261023",
-    "design_note": "A/B: v1(旧)とv3b(v3の冒頭を最初から表示)を交互に。各5本以上・24時間経過後に週次レポートの『デザイン別』で判定。v3は6本とも約17〜19時間で再生0〜4回と低調だった（2026-10-23 PDCA）ため、まず対照を置く。"
+    "design_note": "A/B: v1(旧)とv4を交互に。v4=v3bにvisual-optの字幕・編集改善（短い字幕単位、字幕の先出し、数字・グラフの段階表示、間の調整、安全領域）を加えたもの。styles.v4で字体サイズ・余白・色・アニメ・間を調整できる。v3bは2026-10-23にv4へ置き換え。各5本以上・24時間経過後に週次レポートの『デザイン別』で判定。",
+    "styles": {
+      "v4": {
+        "fonts": {
+          "hook": 92,
+          "body": 82,
+          "hero": 64,
+          "hero_number": 230,
+          "min": 64
+        },
+        "layout": {
+          "margin": 64,
+          "text_x": 72,
+          "text_w": 810,
+          "center_y": 900,
+          "header_dy": 24,
+          "safe": {
+            "top": 150,
+            "bottom": 420,
+            "right": 140
+          },
+          "panel_right": 144
+        },
+        "colors": {
+          "bg": "#05070A",
+          "surface": "#101419",
+          "text": "#F8FAFC",
+          "second": "#8A94A6",
+          "gold": "#C8A96A",
+          "green": "#4ADE80",
+          "red": "#EF4444",
+          "rule": "#1E252F",
+          "edge": "#262E3A"
+        },
+        "anim": {
+          "fade_sec": 0.4,
+          "slide_px": 36,
+          "visual_sec": 1.0,
+          "hero_count_sec": 0.8,
+          "stagger": 0.3
+        },
+        "caption": {
+          "max_chars": 16,
+          "min_chars": 6,
+          "lead_sec": 0.12,
+          "weight": "mora"
+        },
+        "pause": {
+          "sec": 0.25,
+          "after_hook": 0.45,
+          "after_question": 0.4
+        }
+      }
+    }
   },
   "llm": {
     "model": "claude-opus-5-5",

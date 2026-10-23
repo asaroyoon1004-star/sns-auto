@@ -314,8 +314,11 @@ def make_slide(cfg, script, text, kind, idx, total, out_png, progress=0.0, scale
     img.convert("RGB").save(out_png)
 
 
-def split_chunks(text, min_len=6):
-    """Split a sentence into short caption phrases (~1.5-2.5 s each) so the picture changes every couple of seconds."""
+def split_chunks(text, min_len=6, max_chars=0):
+    """Split a sentence into short caption phrases (~1.5-2.5 s each) so the picture changes every couple of seconds.
+
+    With max_chars, a phrase longer than that is cut again at phrase boundaries (after a particle, never inside a word),
+    packing as many phrases as fit and never leaving a tiny tail."""
     parts = [p for p in re.findall(r"[^、。！？]+[、。！？]?", text) if p.strip()]
     out = []
     for p in parts:
@@ -323,7 +326,55 @@ def split_chunks(text, min_len=6):
             out[-1] += p
         else:
             out.append(p)
-    return out or [text]
+    out = out or [text]
+    if not max_chars:
+        return out
+    from . import design_v3
+
+    res = []
+    for c in out:
+        if len(c.rstrip("、。！？")) <= max_chars:
+            res.append(c)
+            continue
+        cur = []
+        n = -(-len(c.rstrip("、。！？")) // max_chars)  # pieces needed; aim for even pieces rather than a full one and a stub
+        limit = min(max_chars, -(-len(c.rstrip("、。！？")) // n) + 2)
+        for ph in design_v3._phrases(c):
+            if cur and len(cur[-1].rstrip("、。！？")) + len(ph.rstrip("、。！？")) > limit:
+                cur.append(ph)
+            elif cur:
+                cur[-1] += ph
+            else:
+                cur.append(ph)
+        if len(cur) > 1 and len(cur[-1].rstrip("、。！？")) < 4:  # no tiny tail: fold it back
+            tail = cur.pop()
+            cur[-1] += tail
+        res += cur
+    return res
+
+
+_G2P = {}
+
+
+def spoken_weight(text, mode="chars"):
+    """How long a caption chunk takes to say, relative to its siblings. 'mora' counts the kana of its reading (numbers and
+    kanji are read longer than they are written) via pyopenjtalk when installed; otherwise it counts characters."""
+    plain = re.sub(r"[、。！？\s]", "", text)
+    n = len(plain)
+    if mode == "mora":
+        if "f" not in _G2P:
+            try:
+                import pyopenjtalk
+
+                _G2P["f"] = lambda t: len(pyopenjtalk.g2p(t, kana=True))
+            except Exception:
+                _G2P["f"] = None
+        if _G2P["f"]:
+            try:
+                n = max(1, _G2P["f"](plain))
+            except Exception:
+                pass
+    return n + (0.5 if text.endswith("、") else 0)
 
 
 POP_SCALES = (0.82, 0.9, 0.96, 1.0)
@@ -345,18 +396,22 @@ def _trim_silence(data, sr, thresh=400, keep=0.04):
     return a[max(0, loud[0] - k): min(len(a), loud[-1] + k)].tobytes()
 
 
-def build_audio(parts, out_wav, pause, min_total):
-    """Concatenate mono 16-bit wavs with pauses; pad the end so the clip reaches `min_total` seconds."""
+def build_audio(parts, out_wav, pause, min_total, spoken=None):
+    """Concatenate mono 16-bit wavs with pauses (one number, or one per part); pad the end so the clip reaches `min_total` seconds.
+
+    If `spoken` is a list, it receives each part's speech-only length (without its pause and without the end padding)."""
     sr = None
     frames, durations = [], []
-    for p in parts:
+    for i, p in enumerate(parts):
         with wave.open(p) as w:
             if sr is None:
                 sr = w.getframerate()
             elif w.getframerate() != sr:
                 raise RuntimeError("sample rate mismatch between TTS segments")
             data = _trim_silence(w.readframes(w.getnframes()), w.getframerate())
-        data += _silence(int(pause * sr), sr)
+        if spoken is not None:
+            spoken.append(len(data) / 2 / sr)
+        data += _silence(int((pause[i] if isinstance(pause, (list, tuple)) else pause) * sr), sr)
         frames.append(data)
         durations.append(len(data) / 2 / sr)
     total = sum(durations)
@@ -372,12 +427,43 @@ def build_audio(parts, out_wav, pause, min_total):
     return durations
 
 
+def caption_timeline(segs, durations, spoken, cap, v4):
+    """[(segment index, kind, caption chunk, seconds on screen)] covering the whole clip.
+
+    v4 shares each segment's speech time among its chunks by how long they take to say (the pause after it goes to the
+    last chunk), then shows every caption `lead_sec` before it is spoken; v3/v3b keep the plain per-character split."""
+    items = []
+    for i, ((kind, text), dur) in enumerate(zip(segs, durations)):
+        chunks = split_chunks(text, cap["min_chars"], cap["max_chars"])
+        w = [spoken_weight(c, cap["weight"]) for c in chunks]
+        if v4:
+            ds = [spoken[i] * x / sum(w) for x in w]
+            ds[-1] += dur - spoken[i]
+        else:
+            ds = [dur * x / sum(w) for x in w]
+        items += [[i, kind, c, d] for c, d in zip(chunks, ds)]
+    lead = min(cap["lead_sec"], items[0][3] * 0.4)
+    if lead and len(items) > 1:
+        items[0][3] -= lead
+        items[-1][3] += lead
+    return items
+
+
 def render(cfg, script, workdir):
     workdir = Path(workdir)
     workdir.mkdir(parents=True, exist_ok=True)
     segs = [("hook", script["hook"])] + [("line", l) for l in script["lines"]] + [("cta", script["cta"])]
     pause = cfg["tts"].get("pause_sec", 0.25)
     min_total = cfg["phases"][cfg.get("phase", "growth")].get("min_duration_sec", 0)
+    v4 = cfg["video"].get("design") == "v4"
+    if v4:  # a beat after the hook and after a question, so the viewer can take the question in
+        from . import design_v3
+
+        st = design_v3.style(cfg)
+        pauses = [st["pause"]["after_hook"] if k == "hook" else st["pause"]["after_question"] if t.rstrip().endswith(("？", "?"))
+                  else pause for k, t in segs]
+    else:
+        pauses = [pause] * len(segs)
 
     def voice(speed):
         wavs, engines, secs = [], set(), 0.0
@@ -386,7 +472,7 @@ def render(cfg, script, workdir):
             d, eng = synth(text, p, cfg, speed=speed)
             engines.add(eng)
             wavs.append(p)
-            secs += d + pause
+            secs += d + pauses[i]
         return wavs, engines, secs
 
     wavs, engines, natural = voice(1.0)
@@ -395,27 +481,30 @@ def render(cfg, script, workdir):
         speed = max(0.85, natural / (min_total - 4))
         wavs, engines, natural = voice(speed)
         log(f"narration slowed to x{speed:.2f} ({natural:.1f}s)")
-    durations = build_audio(wavs, str(workdir / "voice.wav"), pause, min_total)
+    spoken = []
+    durations = build_audio(wavs, str(workdir / "voice.wav"), pauses, min_total, spoken)
 
     lst = []
     elapsed, total = 0.0, sum(durations)
     fps = cfg["video"]["fps"]
     n = 0
-    v3 = cfg["video"].get("design", "v2") in ("v3", "v3b")
+    v3 = cfg["video"].get("design", "v2") in ("v3", "v3b", "v4")
     if v3:
         from . import design_v3
-    for i, ((kind, text), dur) in enumerate(zip(segs, durations)):
+
+        cap = design_v3.configure(cfg)["caption"]
+        items = caption_timeline(segs, durations, spoken, cap, v4)
+        for i, kind, c, cd in items:
+            lines, n = design_v3.chunk_frames(cfg, script, c, kind, i + 1, len(segs), min(1.0, (elapsed + cd) / total),
+                                              cd, fps, workdir, n)
+            lst += lines
+            png = Path(lines[-1].split("'")[1])
+            elapsed += cd
+    for i, ((kind, text), dur) in enumerate(zip(segs, durations) if not v3 else []):
         chunks = split_chunks(text)
         weights = [len(c) for c in chunks]
         for c, wgt in zip(chunks, weights):
             cd = dur * wgt / sum(weights)
-            if v3:
-                lines, n = design_v3.chunk_frames(cfg, script, c, kind, i + 1, len(segs), min(1.0, (elapsed + cd) / total),
-                                                  cd, fps, workdir, n)
-                lst += lines
-                png = Path(lines[-1].split("'")[1])
-                elapsed += cd
-                continue
             pops = POP_SCALES if cd > 0.6 else (1.0,)
             for k, sc in enumerate(pops):
                 png = workdir / f"slide{n:03d}.png"
