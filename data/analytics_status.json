@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T01:38:58+00:00",
+  "checked_at": "2026-10-23T02:22:15+00:00",
   "videos_with_data": 0,
   "ids": 16,
   "queries": [
@@ -22,5 +22,96 @@
     "avg_view_pct": 0,
     "subs_gained": 0,
     "minutes_watched": 0
+  },
+  "diagnose": {
+    "scopes": [
+      "youtube.readonly",
+      "youtube.upload",
+      "yt-analytics.readonly"
+    ],
+    "token_channels": [
+      {
+        "id": "UCjAKijIU_DMJDAJ3i-WoZYw",
+        "title": "1日1分でお金に強くなる"
+      }
+    ],
+    "video_channels": [
+      "UCjAKijIU_DMJDAJ3i-WoZYw",
+      "UClWBvqYVSUxO7oLO9bL93Ew"
+    ],
+    "windows": [
+      {
+        "window": "to_today",
+        "start": "2026-10-09",
+        "end": "2026-10-23",
+        "http": 200,
+        "rows": 12,
+        "last_rows": [
+          [
+            "2026-10-18",
+            0,
+            0
+          ],
+          [
+            "2026-10-19",
+            0,
+            0
+          ],
+          [
+            "2026-10-20",
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "window": "to_2d_ago",
+        "start": "2026-10-09",
+        "end": "2026-10-21",
+        "http": 200,
+        "rows": 12,
+        "last_rows": [
+          [
+            "2026-10-18",
+            0,
+            0
+          ],
+          [
+            "2026-10-19",
+            0,
+            0
+          ],
+          [
+            "2026-10-20",
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "window": "from_2026_01",
+        "start": "2026-01-01",
+        "end": "2026-10-22",
+        "http": 200,
+        "rows": 293,
+        "last_rows": [
+          [
+            "2026-10-18",
+            0,
+            0
+          ],
+          [
+            "2026-10-19",
+            0,
+            0
+          ],
+          [
+            "2026-10-20",
+            0,
+            0
+          ]
+        ]
+      }
+    ]
   }
 }
