@@ -10,6 +10,7 @@ from PIL import Image
 
 from sns import design_v3 as d
 from sns import render
+from sns import scriptgen
 
 ROOT = Path(__file__).resolve().parents[1]
 CFG = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
@@ -200,6 +201,98 @@ class SyncTests(unittest.TestCase):
     def test_pause_after_hook_is_longer_in_v4(self):
         st = d.style(cfg_for("v4"))["pause"]
         self.assertGreater(st["after_hook"], CFG["tts"]["pause_sec"])
+
+
+class DockTests(unittest.TestCase):
+    def setUp(self):
+        self.cfg = cfg_for("v4")
+        self.st = d.configure(self.cfg)
+        self.dk = self.st["dock"]
+
+    def _frames(self, script, text, kind, idx, dur=2.5, ctx=None):
+        with tempfile.TemporaryDirectory() as tmp:
+            lines, n = d.chunk_frames(self.cfg, script, text, kind, idx, len(script["lines"]) + 2, 0.3, dur, 30, tmp, 0, ctx=ctx)
+            files = [Path(tmp) / x.split("'")[1] for x in lines]
+            return [Image.open(f).convert("RGB").copy() for f in files]
+
+    def _dock_box(self):
+        return (d.PANEL_X[0], self.dk["top"], d.PANEL_X[1] + 1, self.dk["top"] + self.dk["height"] + 1)
+
+    def test_every_seed_has_a_valid_diagram(self):
+        for s in SEEDS:
+            self.assertIn("visual", s, s["id"])
+            self.assertEqual(scriptgen.visual_problems(s), [], s["id"])
+
+    def test_rows_fill_in_as_the_narration_advances(self):
+        for s in SEEDS:
+            v = s["visual"]
+            self.assertEqual(d.visual_rows(v, 0), [])
+            self.assertEqual(d.visual_rows(v, len(s["lines"])), list(range(len(v["rows"]))))
+            seen = 0
+            for step in range(len(s["lines"]) + 1):
+                k = len(d.visual_rows(v, step))
+                self.assertGreaterEqual(k, seen)
+                seen = k
+
+    def test_dock_sits_below_the_panel_and_inside_the_safe_area(self):
+        sf = self.st["layout"]["safe"]
+        self.assertLessEqual(self.dk["top"] + self.dk["height"], d.H - sf["bottom"])
+        cap = self.st["caption"]
+        for kind, text in all_segments():
+            if kind == "cta":
+                continue
+            for c in render.split_chunks(text, cap["min_chars"], cap["max_chars"]):
+                pl = d.plan(kind, c)
+                self.assertLessEqual(d.CENTER_Y + pl["panel_h"] // 2 + 30, self.dk["top"], c)
+
+    def test_dock_is_on_screen_from_the_first_frame_and_not_in_the_cta(self):
+        script = dict(SEEDS[10], variant="")
+        probe = (d.PANEL_X[0] + 2, self.dk["top"] + 170)
+        for kind, text, idx in (("hook", script["hook"], 1), ("line", script["lines"][2], 4)):
+            frames = self._frames(script, text, kind, idx)
+            self.assertEqual(frames[0].getpixel(probe), d.GOLD, kind)
+            self.assertEqual(frames[-1].getpixel(probe), d.GOLD, kind)
+        cta = self._frames(script, script["cta"], "cta", len(script["lines"]) + 2)
+        self.assertEqual(cta[-1].getpixel(probe), d.BG)
+
+    def test_dock_does_not_move_while_the_panel_animates(self):
+        script = dict(SEEDS[10], variant="")
+        ctx = d.dock_ctx_for(script)
+        ctx["shown"] = set(range(len(script["visual"]["rows"])))  # nothing new to draw
+        frames = self._frames(script, script["lines"][2], "line", 4, ctx=ctx)
+        self.assertGreater(len(frames), 3)
+        box = self._dock_box()
+        ref = frames[0].crop(box).tobytes()
+        for f in frames[1:]:
+            self.assertEqual(f.crop(box).tobytes(), ref)
+
+    def test_a_new_row_grows_in(self):
+        script = dict(SEEDS[10], variant="")  # s011: the 年利1% row comes with line 3
+        ctx = d.dock_ctx_for(script)
+        frames = self._frames(script, script["lines"][2], "line", 4, ctx=ctx)
+        box = self._dock_box()
+        self.assertNotEqual(frames[0].crop(box).tobytes(), frames[-1].crop(box).tobytes())
+        self.assertEqual(ctx["shown"], {0})
+
+    def test_without_a_visual_the_dock_falls_back(self):
+        script = {k: v for k, v in SEEDS[10].items() if k != "visual"}
+        script["variant"] = ""
+        frames = self._frames(script, script["lines"][4], "line", 6, ctx=d.dock_ctx_for(script))
+        self.assertEqual(frames[-1].getpixel((d.PANEL_X[0] + 2, self.dk["top"] + 170)), d.GOLD)
+
+    def test_old_designs_have_no_dock(self):
+        d.configure(cfg_for("v3b"))
+        self.assertFalse(d.S["dock"]["enabled"])
+        self.assertEqual(d.REGION[3], 1700)
+
+    def test_generation_schema_and_prompt_ask_for_a_visual(self):
+        self.assertIn("visual", scriptgen.SCRIPT_SCHEMA["required"])
+        self.assertIn("visual", scriptgen.SYSTEM_PROMPT)
+        self.assertEqual(scriptgen.visual_problems({"hook": "a", "lines": ["1行目"], "visual": {"type": "bars", "title": "t", "rows": [
+            {"label": "x", "text": "99%", "value": 1, "line": 1}, {"label": "y", "text": "", "value": 2, "line": 5}]}}).count("visual line 5"), 1)
+        bad = {"hook": "h", "lines": ["年利3パーセント"] * 4, "visual": {"type": "bars", "title": "t", "rows": [
+            {"label": "x", "text": "99%", "value": 1, "line": 1}, {"label": "y", "text": "3%", "value": 2, "line": 2}]}}
+        self.assertIn("visual number not in the script: 99", scriptgen.visual_problems(bad))
 
 
 if __name__ == "__main__":

@@ -27,14 +27,16 @@ BASE_STYLE = {
     "anim": {"fade_sec": 0.4, "slide_px": 36, "visual_sec": 0.4, "hero_count_sec": 0.4, "stagger": 0.0},
     "caption": {"max_chars": 0, "min_chars": 6, "lead_sec": 0.0, "weight": "chars"},
     "pause": {"sec": 0.25, "after_hook": 0.25, "after_question": 0.25},
+    "dock": {"enabled": False, "top": 1150, "height": 340},
 }
 # Design v4 = v3b + the caption/edit changes of the visual-opt round; config.json video.styles.v4 may override any key.
 V4_STYLE = {
     "fonts": {"min": 64},
-    "layout": {"header_dy": 24, "panel_right": 144},  # panels and boxes stop short of the right-hand buttons
+    "layout": {"header_dy": 24, "panel_right": 144, "center_y": 780},  # panels and boxes stop short of the right-hand buttons
     "anim": {"visual_sec": 1.0, "hero_count_sec": 0.8, "stagger": 0.3},
     "caption": {"max_chars": 16, "lead_sec": 0.12, "weight": "mora"},
     "pause": {"after_hook": 0.45, "after_question": 0.4},
+    "dock": {"enabled": True},  # a diagram frame under the caption panel that stays on screen the whole video
 }
 # bounds that keep the motion calm: no zoom, no flashing, nothing that moves far or fast
 LIMITS = {("anim", "slide_px"): (0, 48), ("anim", "fade_sec"): (0.2, 0.6), ("anim", "visual_sec"): (0.2, 1.4),
@@ -74,7 +76,7 @@ def _rgb(h):
 
 def configure(cfg):
     """Load the style into the module-level layout/colour values the drawing code reads."""
-    global S, BG, SURFACE, TEXT, SECOND, GOLD, GREEN, RED, RULE, EDGE, MARGIN, X0, X1, PANEL_X, CENTER_Y
+    global S, BG, SURFACE, TEXT, SECOND, GOLD, GREEN, RED, RULE, EDGE, MARGIN, X0, X1, PANEL_X, CENTER_Y, REGION
     S = style(cfg)
     c = S["colors"]
     BG, SURFACE, TEXT, SECOND, GOLD = (_rgb(c[k]) for k in ("bg", "surface", "text", "second", "gold"))
@@ -83,6 +85,8 @@ def configure(cfg):
     MARGIN, CENTER_Y = lo["margin"], lo["center_y"]
     X0, X1 = lo["text_x"], lo["text_x"] + lo["text_w"]
     PANEL_X = (MARGIN, W - lo["panel_right"])
+    # with the dock the animated area stops above it, so the dock stays still while the caption panel fades and slides
+    REGION = (0, 300, W, S["dock"]["top"] - 10 if S["dock"]["enabled"] else 1700)
     return S
 
 
@@ -437,12 +441,112 @@ def plan(kind, text):
         font, size, rows = _fit(text, lambda s: Sans("Bold", s), S["fonts"]["body"], 4)
     text_h = int(size * 1.34) * len(rows)
     spec = visual_spec(text) if kind == "line" else None
+    dock_spec = None
+    if S["dock"]["enabled"]:
+        dock_spec, spec = spec, None  # the diagram lives in the dock, the panel keeps only text and the big number
     vis_h = _vis_height(spec)
     pad = 64
     extra = (4 + 44) if kind == "hook" else (310 if hero else 0)
     panel_h = max(460 if kind == "hook" else 360, pad * 2 + extra + text_h + (vis_h + 44 if spec else 0))
-    return dict(kind=kind, text=text, hero=hero, spec=spec, vis_h=vis_h, font=font, size=size, rows=rows, text_h=text_h, extra=extra,
+    return dict(kind=kind, text=text, hero=hero, spec=spec, dock_spec=dock_spec, vis_h=vis_h, font=font, size=size, rows=rows, text_h=text_h, extra=extra,
                 panel_h=panel_h, count=bool(hero and _split_hero(hero)[0].replace(",", "").isdigit()), anim=bool(spec) or bool(hero and _split_hero(hero)[0].replace(",", "").isdigit()), tone=_tone(text))
+
+
+def _stepper(d, x0, x1, cy, step, n, big):
+    """Row of nodes, one per line of the script: passed ones gold, the current one ringed, the rest hollow."""
+    r = 16 if big else 10
+    xs = [x0 + r + i * (x1 - x0 - 2 * r) / max(1, n - 1) for i in range(n)]
+    d.rectangle([xs[0], cy - 2, xs[-1], cy + 2], fill=RULE + (255,))
+    done = min(max(step, 0), n)
+    if done:
+        d.rectangle([xs[0], cy - 2, xs[done - 1], cy + 2], fill=GOLD + (255,))
+    for i, x in enumerate(xs):
+        passed = i < done
+        d.ellipse([x - r, cy - r, x + r, cy + r], fill=(GOLD if passed else SURFACE) + (255,), outline=(GOLD if passed else EDGE) + (255,), width=3)
+        if i == done - 1:
+            d.ellipse([x - r - 7, cy - r - 7, x + r + 7, cy + r + 7], outline=GOLD + (255,), width=3)
+
+
+DOCK_TAG = {"bars": "比較", "gauge": "割合", "timeline": "期間"}
+
+
+def _fade(c, p):
+    """Colour c blended from the panel surface at p=0 to itself at p=1 (a row fading in without alpha layers)."""
+    return tuple(int(SURFACE[i] + (c[i] - SURFACE[i]) * p) for i in range(3)) + (255,)
+
+
+def visual_rows(vis, step):
+    """Indexes of the rows of a script's `visual` the narration has reached (row.line <= number of lines said so far)."""
+    return [i for i, r in enumerate(vis["rows"]) if r["line"] <= step]
+
+
+def draw_dock_visual(d, vis, x0, x1, top, step, grow=None, p=1.0):
+    """The script's own diagram: `bars` (a comparison) or `steps` (the points in order). Rows appear as the narration reaches
+    them; rows not reached yet are empty slots, so the frame is there from the first second. Rows in `grow` animate with p."""
+    grow = grow or ()
+    rows = vis["rows"]
+    n = len(rows)
+    pitch = 62 if n <= 4 else 54
+    lab = Sans("SemiBold", 36)
+    big = Sans("Bold", 38)
+    if vis["type"] == "bars":
+        lw = int(min(330, max(lab.getlength(r["label"]) for r in rows) + 24))
+        tw = int(min(300, max(big.getlength(r["text"]) for r in rows) + 24))
+        bx0, bx1 = x0 + lw, x1 - tw
+        mx = max(r["value"] for r in rows)
+        top_i = max(range(n), key=lambda i: rows[i]["value"])
+        for i, r in enumerate(rows):
+            y = top + i * pitch
+            on = r["line"] <= step
+            rp = _ease(p) if i in grow else 1.0
+            lab.draw(d, x0, y + 40, r["label"], (TEXT if on else SECOND) + (255,))
+            d.rectangle([bx0, y + 8, bx1, y + 44], fill=RULE + (255,))
+            if on:
+                w = max(6, int((bx1 - bx0) * r["value"] / mx * rp))
+                d.rectangle([bx0, y + 8, bx0 + w, y + 44], fill=(GOLD if i == top_i else SECOND) + (255,))
+                big.draw(d, bx1 + 18, y + 42, r["text"], _fade(TEXT, rp))
+    else:
+        for i, r in enumerate(rows):
+            y = top + i * pitch
+            on = r["line"] <= step
+            rp = _ease(p) if i in grow else 1.0
+            fill = (_fade(GOLD, rp) if rp < 1 else GOLD + (255,)) if on else SURFACE + (255,)
+            d.ellipse([x0, y + 4, x0 + 40, y + 44], fill=fill, outline=(GOLD if on else EDGE) + (255,), width=3)
+            num = Sans("Bold", 28)
+            num.draw(d, x0 + 20 - num.getlength(str(i + 1)) / 2, y + 36, str(i + 1), (SURFACE if on else SECOND) + (255,))
+            if on:
+                lab.draw(d, x0 + 62, y + 40, r["label"], _fade(TEXT, rp))
+
+
+def draw_dock(img, ctx, p=1.0, grow=None):
+    """The diagram frame under the caption panel, on screen for the whole video.
+
+    A script with a `visual` gets that diagram, filling in as the narration reaches each row. Without one, the frame shows the
+    latest comparison/gauge/timeline taken from the numbers in the narration (growing in when it is new) above a slim step
+    row, or a large step row until the first number comes up."""
+    dk = S["dock"]
+    d = ImageDraw.Draw(img)
+    top, h = dk["top"], dk["height"]
+    d.rounded_rectangle([PANEL_X[0], top, PANEL_X[1], top + h], radius=14, fill=SURFACE + (255,), outline=EDGE + (255,), width=2)
+    d.rectangle([PANEL_X[0], top + 14, PANEL_X[0] + 5, top + h - 14], fill=GOLD + (255,))
+    x0, x1 = X0 + 32, PANEL_X[1] - 40
+    tag = Sans("SemiBold", 30)
+    vis, spec = ctx.get("visual"), ctx.get("spec")
+    if vis:
+        tag.draw(d, x0, top + 52, vis["title"], SECOND + (255,))
+        draw_dock_visual(d, vis, x0, x1, top + 76, ctx["step"], grow, p)
+    elif spec:
+        tag.draw(d, x0, top + 52, DOCK_TAG[spec["type"]], SECOND + (255,))
+        draw_visual(d, spec, x0, x1, top + 82, ctx.get("tone", GOLD) + (255,), p, S["anim"]["stagger"])
+        _stepper(d, x0, x1, top + h - 36, ctx["step"], ctx["n"], False)
+    else:
+        tag.draw(d, x0, top + 52, "話の流れ", SECOND + (255,))
+        _stepper(d, x0, x1, top + h // 2 + 30, ctx["step"], ctx["n"], True)
+
+
+def dock_ctx_for(script):
+    """Fresh dock state for a script."""
+    return {"n": len(script["lines"]), "step": 0, "spec": None, "visual": script.get("visual"), "shown": set()}
 
 
 def draw_chrome(img, cfg, script, kind, idx, total, progress):
@@ -522,10 +626,13 @@ def still(cfg, script, text, kind, idx, total, out_png, progress=0.0):
     img = _base(cfg, script, kind, idx, total, progress)
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw_content(layer, plan(kind, text))
-    Image.alpha_composite(img, layer).convert("RGB").save(out_png)
+    img = Image.alpha_composite(img, layer)
+    if S["dock"]["enabled"] and kind != "cta":
+        draw_dock(img, dock_ctx_for(script))
+    img.convert("RGB").save(out_png)
 
 
-def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdir, n0):
+def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdir, n0, ctx=None):
     """Frames for one caption chunk: a short fade + slide-up, a count-up on the big number and (v4) bars appearing one
     after another, then a held frame. Timings and distances come from the style (config video.styles).
 
@@ -533,6 +640,17 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
     st = configure(cfg)
     an = st["anim"]
     pl = plan(kind, text)
+    dock = st["dock"]["enabled"] and kind != "cta"  # the CTA box needs the room
+    new_spec, grow = False, set()
+    if dock:
+        ctx = ctx if ctx is not None else dock_ctx_for(script)
+        ctx["step"] = 0 if kind == "hook" else idx - 1
+        if ctx.get("visual"):
+            grow = set(visual_rows(ctx["visual"], ctx["step"])) - ctx["shown"]  # rows the narration has just reached
+            ctx["shown"] |= grow
+            new_spec = bool(grow)
+        elif pl["dock_spec"] and pl["dock_spec"] != ctx.get("spec"):
+            ctx["spec"], ctx["tone"], new_spec = pl["dock_spec"], pl["tone"], True
     base = _base(cfg, script, kind, idx, total, progress)
     box = REGION
     region = base.crop(box)
@@ -541,7 +659,7 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
         tr = 0  # the hook is on screen from the very first frame (v3 faded it in from a blank frame)
     staged = an["stagger"] > 0
     # v3/v3b (stagger 0) animate everything over the single fade; v4 gives diagrams and the count-up their own, slower clocks
-    tr_vis = min(an["visual_sec"], dur * 0.8) if (staged and pl["spec"]) else 0.0
+    tr_vis = min(an["visual_sec"], dur * 0.8) if (staged and (pl["spec"] or new_spec)) else 0.0
     tr_cnt = min(an["hero_count_sec"], dur * 0.8) if (staged and pl["count"]) else 0.0
     n_tr = max(0, int(round(max(tr, tr_vis, tr_cnt) * fps)))
     lines, n = [], n0
@@ -569,6 +687,8 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
         reg = region.copy()
         reg.alpha_composite(lay, dest=(0, int(round((1 - e) * an["slide_px"]))))
         frame.paste(reg, (box[0], box[1]))
+        if dock:
+            draw_dock(frame, ctx, min(1.0, t / tr_vis) if (new_spec and tr_vis) else 1.0, grow)
         png = Path(workdir) / f"slide{n:04d}.png"
         n += 1
         frame.convert("RGB").save(png, compress_level=1)
@@ -576,7 +696,10 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
     final = base.copy()
     full = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw_content(full, pl, 1.0)
-    final = Image.alpha_composite(final, full).convert("RGB")
+    final = Image.alpha_composite(final, full)
+    if dock:
+        draw_dock(final, ctx, 1.0)
+    final = final.convert("RGB")
     png = Path(workdir) / f"slide{n:04d}.png"
     n += 1
     final.save(png, compress_level=1)

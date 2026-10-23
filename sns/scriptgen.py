@@ -17,8 +17,22 @@ SCRIPT_SCHEMA = {
         "hashtags": {"type": "array", "items": {"type": "string"}},
         "affiliate": {"type": ["string", "null"]},
         "fact_check_notes": {"type": "string"},
+        "visual": {
+            "type": ["object", "null"],
+            "properties": {
+                "type": {"type": "string", "enum": ["bars", "steps"]},
+                "title": {"type": "string"},
+                "rows": {"type": "array", "items": {
+                    "type": "object",
+                    "properties": {"label": {"type": "string"}, "text": {"type": "string"}, "value": {"type": "number"},
+                                   "line": {"type": "integer"}},
+                    "required": ["label", "text", "value", "line"], "additionalProperties": False}},
+            },
+            "required": ["type", "title", "rows"],
+            "additionalProperties": False,
+        },
     },
-    "required": ["title", "hook", "hook_type", "lines", "cta", "hashtags", "affiliate", "fact_check_notes"],
+    "required": ["title", "hook", "hook_type", "lines", "cta", "hashtags", "affiliate", "fact_check_notes", "visual"],
     "additionalProperties": False,
 }
 
@@ -46,6 +60,7 @@ SYSTEM_PROMPT = """あなたは日本向けの「お金・節約の豆知識」�
 - cta は保存・コメント・シェアを促す一文。affiliate が null でない場合のみ「プロフィールのリンク」に誘導する。
 - hashtags は4つ。affiliate がある場合は必ず "PR" を含める。
 - affiliate は次から最も自然なもの1つ、なければ null: {affiliates}
+- visual は動画の下に出し続ける図。数字を比べる話なら type=bars（label=項目、value=棒の長さの比、text=表示する数字と単位、line=その数字を話す lines の番号）、そうでなければ type=steps（label=要点を20字以内、text は空文字、value は 0、line=その要点を話す lines の番号）。title は16字以内、rows は2〜4個。text と label に使う数字は台本に出てくるものだけにし、新しい数字を作らない。図にできる内容がなければ null。
 - fact_check_notes（動画には出さない）に、(1)根拠にした公的情報の名前、(2)計算条件・前提、(3)どの文が事実で、どれが仮定・予測かを短く書く。"""
 
 
@@ -162,6 +177,35 @@ def _bigrams(t):
     return {t[i:i + 2] for i in range(len(t) - 1)}
 
 
+def visual_problems(script):
+    """Problems with the optional `visual` (the diagram shown under the captions): shape, sizes, line numbers, and numbers
+    that the narration never says."""
+    v = script.get("visual")
+    if not v:
+        return []
+    out = []
+    rows, n = v.get("rows") or [], len(script["lines"])
+    if v.get("type") not in ("bars", "steps"):
+        out.append("visual type")
+    if not 2 <= len(rows) <= 4:
+        out.append(f"visual rows={len(rows)}")
+    if len(v.get("title", "")) > 16:
+        out.append("visual title too long")
+    body = script["hook"] + "".join(script["lines"])
+    said = set(re.findall(r"\d+(?:\.\d+)?", body.replace(",", "").replace("，", "")))
+    for r in rows:
+        if not 1 <= r.get("line", 0) <= n:
+            out.append(f"visual line {r.get('line')}")
+        if len(r.get("label", "")) > 22 or len(r.get("text", "")) > 12 or not r.get("label"):
+            out.append(f"visual row size: {r.get('label')}")
+        if v.get("type") == "bars" and not r.get("value", 0) > 0:
+            out.append(f"visual bar value: {r.get('label')}")
+        for num in re.findall(r"\d+(?:\.\d+)?", r.get("label", "") + r.get("text", "")):
+            if num not in said:
+                out.append(f"visual number not in the script: {num}")
+    return out
+
+
 def lint(script):
     """Writing-quality problems of a script (hook device, preamble, hype, repetition, unqualified projections).
     Pure text checks, so they also apply to the seed bank; validate() adds the length and safety checks."""
@@ -189,7 +233,7 @@ def lint(script):
                 problems.append(f"repeats: {seen[i][0]} / {seen[j][0]}")
     if "fact_check_notes" in script and len(script["fact_check_notes"].strip()) < 6:
         problems.append("fact_check_notes empty")
-    return problems
+    return problems + visual_problems(script)
 
 
 def validate(script, cfg):

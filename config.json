@@ -50,16 +50,16 @@
         },
         "layout": {
           "margin": 64,
+          "panel_right": 144,
           "text_x": 72,
           "text_w": 810,
-          "center_y": 900,
+          "center_y": 780,
           "header_dy": 24,
           "safe": {
             "top": 150,
             "bottom": 420,
             "right": 140
-          },
-          "panel_right": 144
+          }
         },
         "colors": {
           "bg": "#05070A",
@@ -89,6 +89,11 @@
           "sec": 0.25,
           "after_hook": 0.45,
           "after_question": 0.4
+        },
+        "dock": {
+          "enabled": true,
+          "top": 1150,
+          "height": 340
         }
       }
     }
