@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T02:22:15+00:00",
+  "checked_at": "2026-10-23T02:25:55+00:00",
   "videos_with_data": 0,
   "ids": 16,
   "queries": [
@@ -35,10 +35,28 @@
         "title": "1日1分でお金に強くなる"
       }
     ],
-    "video_channels": [
-      "UCjAKijIU_DMJDAJ3i-WoZYw",
-      "UClWBvqYVSUxO7oLO9bL93Ew"
-    ],
+    "video_channels": {
+      "UClWBvqYVSUxO7oLO9bL93Ew": [
+        "BhHG37cTAvk",
+        "duwtUOD4sjk",
+        "JfDCYdD8b8c",
+        "Mk43SNS7tVw",
+        "dD2Jh4Acs2w",
+        "82XsPYMBTrs"
+      ],
+      "UCjAKijIU_DMJDAJ3i-WoZYw": [
+        "d18p-40FMDA",
+        "4JBcfJDYj7M",
+        "gbuHIpKFhvI",
+        "PBHTBTUrwWI",
+        "MZ7y0Cfb5NU",
+        "T7_vMTWDhxw",
+        "2aUht1JVb6o",
+        "tLYXBL5fdnE",
+        "OqOt7OjeJIc",
+        "aJ-0mhQ8_xI"
+      ]
+    },
     "windows": [
       {
         "window": "to_today",
