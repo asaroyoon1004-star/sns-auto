@@ -220,7 +220,7 @@ def research_sections(rows, cfg):
     if young:
         out += ["", f"※投稿から{MIN_AGE_H}時間たっていない動画 {young} 本は、以下の比較から除外しています。"]
     out += _table([r for r in rows if r.get("variant")], lambda r: r["variant"], "A/Bテスト（variant別）")
-    out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=カード+蛍光チップ、v3=ターミナル風）")
+    out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=カード+蛍光チップ、v3=ターミナル風、v3b=v3+冒頭を最初から表示）")
     out += _table(rows, lambda r: r.get("hook_type"), "フックの型別")
     out += _table(rows, lambda r: r.get("slot_jst") and f"{r['slot_jst']}時台", "投稿時間（日本時間）別")
     out += _table(rows, _length_bucket, "尺別")

@@ -401,7 +401,7 @@ def render(cfg, script, workdir):
     elapsed, total = 0.0, sum(durations)
     fps = cfg["video"]["fps"]
     n = 0
-    v3 = cfg["video"].get("design", "v2") == "v3"
+    v3 = cfg["video"].get("design", "v2") in ("v3", "v3b")
     if v3:
         from . import design_v3
     for i, ((kind, text), dur) in enumerate(zip(segs, durations)):

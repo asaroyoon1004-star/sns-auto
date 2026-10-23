@@ -157,12 +157,13 @@ def _wrap(text, font, max_w):
         if font.getlength(ph) <= max_w:
             cur = ph
             continue
-        for a in _subphrases(ph):  # a phrase wider than the column: break at weaker points, then per character
-            if cur and font.getlength(cur + a) > max_w and a[0] not in NO_LINE_START:
-                rows.append(cur)
-                cur = a
-            else:
-                cur += a
+        for piece in _subphrases(ph):  # a phrase wider than the column: break at weaker points, then per character
+            for a in (_atoms(piece) if font.getlength(piece) > max_w else [piece]):
+                if cur and font.getlength(cur + a) > max_w and a[0] not in NO_LINE_START:
+                    rows.append(cur)
+                    cur = a
+                else:
+                    cur += a
     return rows + [cur] if cur else rows
 
 
@@ -449,6 +450,8 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
     box = REGION
     region = base.crop(box)
     tr = min(0.4, dur * 0.5)
+    if kind == "hook" and cfg["video"].get("design") == "v3b":
+        tr = 0  # v3b: the hook is on screen from the very first frame (v3 faded it in from a blank frame)
     n_tr = max(0, int(round(tr * fps)))
     lines, n = [], n0
     static = None
