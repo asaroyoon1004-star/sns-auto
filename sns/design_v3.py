@@ -18,6 +18,74 @@ SECOND, GOLD = (138, 148, 166), (200, 169, 106)
 GREEN, RED = (74, 222, 128), (239, 68, 68)
 RULE, EDGE = (30, 37, 47), (38, 46, 58)
 
+BASE_STYLE = {
+    "fonts": {"hook": 92, "body": 82, "hero": 64, "hero_number": 230, "min": 56},
+    "layout": {"margin": 64, "panel_right": 64, "text_x": 72, "text_w": 810, "center_y": 900, "header_dy": 0,
+               "safe": {"top": 150, "bottom": 420, "right": 140}},
+    "colors": {"bg": "#05070A", "surface": "#101419", "text": "#F8FAFC", "second": "#8A94A6", "gold": "#C8A96A",
+               "green": "#4ADE80", "red": "#EF4444", "rule": "#1E252F", "edge": "#262E3A"},
+    "anim": {"fade_sec": 0.4, "slide_px": 36, "visual_sec": 0.4, "hero_count_sec": 0.4, "stagger": 0.0},
+    "caption": {"max_chars": 0, "min_chars": 6, "lead_sec": 0.0, "weight": "chars"},
+    "pause": {"sec": 0.25, "after_hook": 0.25, "after_question": 0.25},
+}
+# Design v4 = v3b + the caption/edit changes of the visual-opt round; config.json video.styles.v4 may override any key.
+V4_STYLE = {
+    "fonts": {"min": 64},
+    "layout": {"header_dy": 24, "panel_right": 144},  # panels and boxes stop short of the right-hand buttons
+    "anim": {"visual_sec": 1.0, "hero_count_sec": 0.8, "stagger": 0.3},
+    "caption": {"max_chars": 16, "lead_sec": 0.12, "weight": "mora"},
+    "pause": {"after_hook": 0.45, "after_question": 0.4},
+}
+# bounds that keep the motion calm: no zoom, no flashing, nothing that moves far or fast
+LIMITS = {("anim", "slide_px"): (0, 48), ("anim", "fade_sec"): (0.2, 0.6), ("anim", "visual_sec"): (0.2, 1.4),
+          ("anim", "hero_count_sec"): (0.2, 1.2), ("anim", "stagger"): (0.0, 0.5), ("caption", "lead_sec"): (0.0, 0.25),
+          ("pause", "sec"): (0.1, 0.6), ("pause", "after_hook"): (0.1, 0.8), ("pause", "after_question"): (0.1, 0.8),
+          ("fonts", "min"): (48, 96)}
+S = {}
+
+
+def _merge(a, b):
+    for k, v in b.items():
+        if isinstance(v, dict):
+            _merge(a.setdefault(k, {}), v)
+        else:
+            a[k] = v
+    return a
+
+
+def style(cfg):
+    """Resolved style for the configured design: BASE_STYLE (= v3/v3b), plus V4_STYLE for design v4, plus config video.styles[design]."""
+    import copy
+
+    design = cfg["video"].get("design", "v3")
+    st = copy.deepcopy(BASE_STYLE)
+    if design == "v4":
+        _merge(st, copy.deepcopy(V4_STYLE))
+    _merge(st, copy.deepcopy((cfg["video"].get("styles") or {}).get(design, {})))
+    for (grp, key), (lo, hi) in LIMITS.items():
+        st[grp][key] = min(hi, max(lo, st[grp][key]))
+    return st
+
+
+def _rgb(h):
+    h = h.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def configure(cfg):
+    """Load the style into the module-level layout/colour values the drawing code reads."""
+    global S, BG, SURFACE, TEXT, SECOND, GOLD, GREEN, RED, RULE, EDGE, MARGIN, X0, X1, PANEL_X, CENTER_Y
+    S = style(cfg)
+    c = S["colors"]
+    BG, SURFACE, TEXT, SECOND, GOLD = (_rgb(c[k]) for k in ("bg", "surface", "text", "second", "gold"))
+    GREEN, RED, RULE, EDGE = (_rgb(c[k]) for k in ("green", "red", "rule", "edge"))
+    lo = S["layout"]
+    MARGIN, CENTER_Y = lo["margin"], lo["center_y"]
+    X0, X1 = lo["text_x"], lo["text_x"] + lo["text_w"]
+    PANEL_X = (MARGIN, W - lo["panel_right"])
+    return S
+
+
 MARGIN = 64                      # safe area
 X0, X1 = 72, 72 + 810            # text column: 75% of the width, left aligned (clear of the right-side buttons)
 PANEL_X = (MARGIN, W - MARGIN)
@@ -181,10 +249,10 @@ def _fit(text, make_font, base, max_rows):
                 if len(alt) <= max_rows and len(alt[-1]) > 3:
                     rows = alt
                     break
-        if len(rows) >= 3 and len(rows[-1]) <= 3 and size > 56:  # still an orphan: try a slightly smaller size
+        if len(rows) >= 3 and len(rows[-1]) <= 3 and size > S["fonts"]["min"]:  # still an orphan: try a slightly smaller size
             size -= 6
             continue
-        if len(rows) <= max_rows or size <= 56:
+        if len(rows) <= max_rows or size <= S["fonts"]["min"]:
             return font, size, rows
         size -= 6
 
@@ -299,8 +367,18 @@ def _vis_height(spec):
     return 100 if spec["type"] == "gauge" else 110
 
 
-def draw_visual(d, spec, x0, x1, top, accent, p):
-    """Flat, animated diagram (opacity-free: it grows with p, ease-out, no overshoot)."""
+def _row_p(p, i, n, stagger):
+    """Progress of bar `i` of `n` when p runs 0..1 linearly: bars start `stagger` apart and each eases out."""
+    if not stagger or n < 2:
+        return _ease(p)
+    span = 1 - (n - 1) * stagger
+    return _ease(max(0.0, min(1.0, (p - i * stagger) / span)))
+
+
+def draw_visual(d, spec, x0, x1, top, accent, p, stagger=0.0):
+    """Flat, animated diagram (opacity-free: it grows with p, ease-out, no overshoot).
+
+    With stagger=0, p is already eased (v3). With stagger>0, p is linear and the bars appear one after another."""
     p = max(0.0, min(1.0, p))
     lab = Sans("SemiBold", 38)
     small = Sans("SemiBold", 32)
@@ -313,7 +391,7 @@ def draw_visual(d, spec, x0, x1, top, accent, p):
             top_row = v == mx
             lab.draw(d, x0, y + 46, tok, (TEXT if top_row else SECOND) + (255,))
             d.rectangle([x0 + lw, y + 10, x0 + lw + bw, y + 14 + 36], fill=RULE + (255,))
-            w = max(6, int(bw * v / mx * p))
+            w = max(6, int(bw * v / mx * (_row_p(p, i, len(rows), stagger) if stagger else p)))
             d.rectangle([x0 + lw, y + 10, x0 + lw + w, y + 50], fill=(accent if top_row else SECOND + (255,)))
     elif spec["type"] == "gauge":
         w = x1 - x0
@@ -352,11 +430,11 @@ def plan(kind, text):
         m = HERO_RE.search(text)
         hero = m.group(0) if m and len(m.group(0)) <= 8 else None
     if kind == "hook":
-        font, size, rows = _fit(text, Serif, 92, 5)
+        font, size, rows = _fit(text, Serif, S["fonts"]["hook"], 5)
     elif hero:
-        font, size, rows = _fit(text, lambda s: Sans("Bold", s), 64, 3)
+        font, size, rows = _fit(text, lambda s: Sans("Bold", s), S["fonts"]["hero"], 3)
     else:
-        font, size, rows = _fit(text, lambda s: Sans("Bold", s), 82, 4)
+        font, size, rows = _fit(text, lambda s: Sans("Bold", s), S["fonts"]["body"], 4)
     text_h = int(size * 1.34) * len(rows)
     spec = visual_spec(text) if kind == "line" else None
     vis_h = _vis_height(spec)
@@ -370,24 +448,25 @@ def plan(kind, text):
 def draw_chrome(img, cfg, script, kind, idx, total, progress):
     """Header (category, PR, progress rule, title). Static during a chunk."""
     d = ImageDraw.Draw(img)
+    dy = S["layout"]["header_dy"]  # v4 moves the header below the platform's top UI
     cat = cfg["categories"].get(script["category"], {"label": ""})
     f = Sans("SemiBold", 40)
-    d.rectangle([MARGIN + 8, 150, MARGIN + 24, 166], fill=GOLD)
-    f.draw(d, MARGIN + 42, 170, cat["label"], SECOND)
+    d.rectangle([MARGIN + 8, 150 + dy, MARGIN + 24, 166 + dy], fill=GOLD)
+    f.draw(d, MARGIN + 42, 170 + dy, cat["label"], SECOND)
     x = MARGIN + 42 + f.getlength(cat["label"]) + 28
     if script.get("affiliate"):
         fp = Sans("SemiBold", 32)
         wpr = fp.getlength("PR") + 28
-        d.rectangle([x, 136, x + wpr, 180], outline=SECOND, width=2)
-        fp.draw(d, x + 14, 170, "PR", SECOND)
-    d.rectangle([MARGIN, 204, W - MARGIN, 205], fill=RULE)
-    d.rectangle([MARGIN, 203, MARGIN + max(6, int((W - 2 * MARGIN) * progress)), 206], fill=GOLD)
+        d.rectangle([x, 136 + dy, x + wpr, 180 + dy], outline=SECOND, width=2)
+        fp.draw(d, x + 14, 170 + dy, "PR", SECOND)
+    d.rectangle([MARGIN, 204 + dy, W - MARGIN, 205 + dy], fill=RULE)
+    d.rectangle([MARGIN, 203 + dy, MARGIN + max(6, int((W - 2 * MARGIN) * progress)), 206 + dy], fill=GOLD)
     # A/B: the title often gives away the hook's answer, so one arm leaves it off the hook screen
     if not (kind == "hook" and script.get("variant") == "hook_title:hide"):
-        Serif(52).draw(d, MARGIN + 8, 286, script["title"], SECOND)
+        Serif(52).draw(d, MARGIN + 8, 286 + dy, script["title"], SECOND)
 
 
-def draw_content(layer, pl, count_p=1.0):
+def draw_content(layer, pl, count_p=1.0, vis_p=None):
     """Panel + text on a transparent layer in full-frame coordinates."""
     d = ImageDraw.Draw(layer)
     top = CENTER_Y - pl["panel_h"] // 2
@@ -404,7 +483,7 @@ def draw_content(layer, pl, count_p=1.0):
     accent = pl["tone"] + (255,)
     if pl["hero"]:
         big, unit = _split_hero(pl["hero"])
-        hs = 230
+        hs = S["fonts"]["hero_number"]
         while Sans("SemiBold", hs).getlength(big) + 20 + (Sans("SemiBold", 76).getlength(unit) if unit else 0) > X1 - X0 - 40 and hs > 110:
             hs -= 10
         shown = _count_text(big, count_p) if pl["count"] else big
@@ -418,7 +497,8 @@ def draw_content(layer, pl, count_p=1.0):
         y = ry + 34
     used = _draw_rows(d, X0 + 32, y, rows, text, pl["font"], size, lambda s: Sans("SemiBold", s), accent)
     if pl["spec"]:
-        draw_visual(d, pl["spec"], X0 + 32, X1 - 8, y + used + 44, accent, count_p)
+        draw_visual(d, pl["spec"], X0 + 32, X1 - 8, y + used + 44, accent, count_p if vis_p is None else vis_p,
+                    S["anim"]["stagger"] if vis_p is not None else 0.0)
     if kind == "cta":
         by = bot + 56
         d.rectangle([PANEL_X[0], by, PANEL_X[1], by + 92], outline=GOLD + (255,), width=3)
@@ -438,6 +518,7 @@ def _base(cfg, script, kind, idx, total, progress):
 
 def still(cfg, script, text, kind, idx, total, out_png, progress=0.0):
     """Final (settled) frame, used for thumbnails and previews."""
+    configure(cfg)
     img = _base(cfg, script, kind, idx, total, progress)
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     draw_content(layer, plan(kind, text))
@@ -445,17 +526,24 @@ def still(cfg, script, text, kind, idx, total, out_png, progress=0.0):
 
 
 def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdir, n0):
-    """Frames for one caption chunk: ~0.4 s fade + slide-up (with a count-up on the big number), then a held frame.
+    """Frames for one caption chunk: a short fade + slide-up, a count-up on the big number and (v4) bars appearing one
+    after another, then a held frame. Timings and distances come from the style (config video.styles).
 
     Returns (concat-list lines, next frame number)."""
+    st = configure(cfg)
+    an = st["anim"]
     pl = plan(kind, text)
     base = _base(cfg, script, kind, idx, total, progress)
     box = REGION
     region = base.crop(box)
-    tr = min(0.4, dur * 0.5)
-    if kind == "hook" and cfg["video"].get("design") == "v3b":
-        tr = 0  # v3b: the hook is on screen from the very first frame (v3 faded it in from a blank frame)
-    n_tr = max(0, int(round(tr * fps)))
+    tr = min(an["fade_sec"], dur * 0.5)
+    if kind == "hook" and cfg["video"].get("design") in ("v3b", "v4"):
+        tr = 0  # the hook is on screen from the very first frame (v3 faded it in from a blank frame)
+    staged = an["stagger"] > 0
+    # v3/v3b (stagger 0) animate everything over the single fade; v4 gives diagrams and the count-up their own, slower clocks
+    tr_vis = min(an["visual_sec"], dur * 0.8) if (staged and pl["spec"]) else 0.0
+    tr_cnt = min(an["hero_count_sec"], dur * 0.8) if (staged and pl["count"]) else 0.0
+    n_tr = max(0, int(round(max(tr, tr_vis, tr_cnt) * fps)))
     lines, n = [], n0
     static = None
     if not pl["anim"]:
@@ -463,19 +551,23 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
         draw_content(static, pl)
         static = static.crop(box)
     for f in range(1, n_tr + 1):
-        p = f / n_tr
-        e = _ease(p)
+        t = f / fps
+        e = _ease(min(1.0, t / tr)) if tr else 1.0
         layer = static
         if layer is None:
             full = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            draw_content(full, pl, count_p=e)
+            cnt = _ease(min(1.0, t / tr_cnt)) if tr_cnt else e
+            if staged:
+                draw_content(full, pl, count_p=cnt, vis_p=min(1.0, t / tr_vis) if tr_vis else 1.0)
+            else:
+                draw_content(full, pl, count_p=cnt if pl["count"] else e)
             layer = full.crop(box)
         a = layer.getchannel("A").point(lambda v, k=e: int(v * k))
         lay = layer.copy()
         lay.putalpha(a)
         frame = base.copy()
         reg = region.copy()
-        reg.alpha_composite(lay, dest=(0, int(round((1 - e) * 36))))
+        reg.alpha_composite(lay, dest=(0, int(round((1 - e) * an["slide_px"]))))
         frame.paste(reg, (box[0], box[1]))
         png = Path(workdir) / f"slide{n:04d}.png"
         n += 1
@@ -490,3 +582,6 @@ def chunk_frames(cfg, script, text, kind, idx, total, progress, dur, fps, workdi
     final.save(png, compress_level=1)
     lines.append(f"file '{png.name}'\nduration {max(0.05, dur - n_tr / fps):.4f}")
     return lines, n
+
+
+configure({"video": {}})
