@@ -1,4 +1,5 @@
 """Render a 1080x1920 caption-style short from a script: one slide per sentence, synced to its narration."""
+import json
 import random
 import re
 import subprocess
@@ -455,11 +456,13 @@ def render(cfg, script, workdir):
     segs = [("hook", script["hook"])] + [("line", l) for l in script["lines"]] + [("cta", script["cta"])]
     pause = cfg["tts"].get("pause_sec", 0.25)
     min_total = cfg["phases"][cfg.get("phase", "growth")].get("min_duration_sec", 0)
-    v4 = cfg["video"].get("design") == "v4"
-    if v4:  # a beat after the hook and after a question, so the viewer can take the question in
-        from . import design_v3
+    from . import design_scene, design_v3, qa, scenes as scene_mod
 
-        st = design_v3.style(cfg)
+    design = cfg["video"].get("design", "v2")
+    dm = design_scene if design in design_scene.DESIGNS else design_v3  # the module that draws this design
+    v4 = design == "v4" or design in design_scene.DESIGNS
+    if v4:  # a beat after the hook and after a question, so the viewer can take the question in
+        st = dm.style(cfg)
         pauses = [st["pause"]["after_hook"] if k == "hook" else st["pause"]["after_question"] if t.rstrip().endswith(("？", "?"))
                   else pause for k, t in segs]
     else:
@@ -488,18 +491,20 @@ def render(cfg, script, workdir):
     elapsed, total = 0.0, sum(durations)
     fps = cfg["video"]["fps"]
     n = 0
-    v3 = cfg["video"].get("design", "v2") in ("v3", "v3b", "v4")
+    v3 = design in ("v3", "v3b", "v4") or design in design_scene.DESIGNS
+    frame_issues = []
     if v3:
-        from . import design_v3
-
-        cap = design_v3.configure(cfg)["caption"]
+        cap = dm.configure(cfg)["caption"]
         items = caption_timeline(segs, durations, spoken, cap, v4)
-        dock_ctx = design_v3.dock_ctx_for(script)  # the diagram frame remembers the last diagram across chunks
+        dock_ctx = dm.dock_ctx_for(script)  # the diagram frame remembers the last diagram across chunks
         for i, kind, c, cd in items:
-            lines, n = design_v3.chunk_frames(cfg, script, c, kind, i + 1, len(segs), min(1.0, (elapsed + cd) / total),
+            lines, n = dm.chunk_frames(cfg, script, c, kind, i + 1, len(segs), min(1.0, (elapsed + cd) / total),
                                               cd, fps, workdir, n, ctx=dock_ctx)
             lst += lines
             png = Path(lines[-1].split("'")[1])
+            if v3 and design in ("v4", *design_scene.DESIGNS):  # a finished frame with text in the platform UI zones, or nothing on it
+                for prob in qa.frame_problems(workdir / png):
+                    frame_issues.append(f"t={elapsed:.1f}s '{c}': {prob}")
             elapsed += cd
     for i, ((kind, text), dur) in enumerate(zip(segs, durations) if not v3 else []):
         chunks = split_chunks(text)
@@ -534,7 +539,15 @@ def render(cfg, script, workdir):
     for p in [*wavs, *workdir.glob("slide*.png"), workdir / "slides.txt", workdir / "voice.wav"]:
         Path(p).unlink(missing_ok=True)
     if v3:
-        design_v3.still(cfg, script, script["hook"], "hook", 1, len(segs), workdir / "thumb.png")
+        dm.still(cfg, script, script["hook"], "hook", 1, len(segs), workdir / "thumb.png")
+        plan = scene_mod.attach_timing(scene_mod.plan_scenes(script), items)  # what each scene was meant to say, and when
+        issues = {"frames": frame_issues, "scenes": qa.scene_problems(plan, total),
+                  "video": qa.video_problems(workdir / "video.mp4", total, fps), "consistency": scene_mod.consistency(script)}
+        for kind_, probs in issues.items():
+            for prob in probs:
+                log(f"QA {kind_}: {prob}")
+        (workdir / "scene_plan.json").write_text(json.dumps({"design": design, "scenes": plan, "qa": issues}, ensure_ascii=False, indent=1),
+                                                 encoding="utf-8")
     else:
         make_slide(cfg, script, script["hook"], "hook", 1, len(segs), workdir / "thumb.png", progress=0)
     log(f"rendered {workdir / 'video.mp4'} ({total:.1f}s, tts={','.join(sorted(engines))})")
