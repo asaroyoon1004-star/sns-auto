@@ -175,12 +175,15 @@ def _fit(text, make_font, base, max_rows):
         if len(rows) >= 2:  # even out the rows
             alt = _wrap(text, font, min(X1 - X0, font.getlength(text) / len(rows) * 1.08))
             rows = alt if len(alt) == len(rows) else rows
-        if len(rows) >= 2 and len(rows[-1]) <= 2:  # no one-word orphan on the last row
+        if len(rows) >= 2 and len(rows[-1]) <= 3:  # no one-word orphan on the last row
             for w in range(X1 - X0 - 20, X1 - X0 - 260, -20):
                 alt = _wrap(text, font, w)
-                if len(alt) <= max_rows and len(alt[-1]) > 2:
+                if len(alt) <= max_rows and len(alt[-1]) > 3:
                     rows = alt
                     break
+        if len(rows) >= 3 and len(rows[-1]) <= 3 and size > 56:  # still an orphan: try a slightly smaller size
+            size -= 6
+            continue
         if len(rows) <= max_rows or size <= 56:
             return font, size, rows
         size -= 6
