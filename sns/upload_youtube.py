@@ -105,6 +105,37 @@ def channel_summary(days=7):
         return {"error": type(e).__name__}
 
 
+def diagnose(video_ids):
+    """Why does the Analytics API return nothing while Studio shows numbers? Records, without secrets: the token's scopes,
+    which channel the token belongs to versus the channel of the uploaded videos, and a plain per-day query over a few date windows."""
+    from datetime import date, timedelta
+
+    out = {}
+    try:
+        token = access_token()
+        h = {"Authorization": f"Bearer {token}"}
+        t = requests.get("https://oauth2.googleapis.com/tokeninfo", params={"access_token": token}, timeout=30)
+        out["scopes"] = [x.rsplit("/", 1)[-1] for x in (t.json().get("scope", "") if t.ok else "").split()]
+        c = requests.get(f"{API}/channels", params={"part": "id,snippet", "mine": "true"}, headers=h, timeout=30)
+        out["token_channels"] = [{"id": i["id"], "title": i["snippet"]["title"]} for i in c.json().get("items", [])] if c.ok else {"http": c.status_code}
+        if video_ids:
+            v = requests.get(f"{API}/videos", params={"part": "snippet", "id": ",".join(video_ids[:50])}, headers=h, timeout=30)
+            out["video_channels"] = sorted({i["snippet"]["channelId"] for i in v.json().get("items", [])}) if v.ok else {"http": v.status_code}
+        today = date.today()
+        out["windows"] = []
+        for label, start, end in [("to_today", today - timedelta(days=14), today), ("to_2d_ago", today - timedelta(days=14), today - timedelta(days=2)),
+                                  ("from_2026_01", date(2026, 1, 1), today - timedelta(days=1))]:
+            r = requests.get(ANALYTICS, headers=h, timeout=30,
+                             params={"ids": "channel==MINE", "startDate": start.isoformat(), "endDate": end.isoformat(),
+                                     "dimensions": "day", "metrics": "views,estimatedMinutesWatched", "sort": "day"})
+            rows = r.json().get("rows") or [] if r.ok else []
+            out["windows"].append({"window": label, "start": start.isoformat(), "end": end.isoformat(), "http": r.status_code,
+                                   "rows": len(rows), "last_rows": rows[-3:], **({"error": r.text[:200]} if not r.ok else {})})
+    except Exception as e:
+        out["error"] = type(e).__name__
+    return out
+
+
 LAST_STATUS = {}  # what the last analytics() call saw; analytics.collect() saves it so a blank report can be diagnosed
 
 
