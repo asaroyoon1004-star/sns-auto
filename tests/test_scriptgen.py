@@ -84,5 +84,22 @@ class SeedById(unittest.TestCase):
             g.seed_by_id("nope")
 
 
+class HookRules(unittest.TestCase):
+    LINES = ["手取りは、額面の約8割です。", "残りは社会保険料と税金。", "住民税は前の年の所得で決まります。", "明細を項目ごとに見てみましょう。"]
+
+    def lint(self, hook):
+        return g.lint(script(hook, self.LINES))
+
+    def test_question_without_number_is_flagged(self):
+        self.assertTrue(any("question hook without a number" in p for p in self.lint("額面と手取り、なんでこんなに違うの？")))
+
+    def test_question_with_number_passes(self):
+        self.assertEqual(self.lint("手取りは額面の約8割。残りの2割はどこへ？"), [])
+
+    def test_hedge_is_flagged(self):
+        self.assertTrue(any("hedged hook" in p for p in self.lint("毎月の支払いが一定で安心、それが一番危ないかもしれません。")))
+        self.assertTrue(any("hedged hook" in p for p in self.lint("電気を使ってないのに電気代がかかるって知ってた？")))
+
+
 if __name__ == "__main__":
     unittest.main()
