@@ -1,0 +1,178 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "電気代、使い方は同じでも会社を変えるだけで変わることがあります。",
+   "caption": "電気代、使い方は同じでも会社を変えるだけで変わることがあります。",
+   "key_message": "電気代、使い方は同じでも会社を変えるだけで変わることがあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.303
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "今は電力会社を自由に選べる時代です。",
+   "caption": "今は電力会社を自由に選べる時代です。",
+   "key_message": "今は電力会社を自由に選べる時代です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.303,
+   "duration": 2.659
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "家族の人数や、昼と夜どちらに電気を使うかで、お得なプランが変わります。",
+   "caption": "家族の人数や、昼と夜どちらに電気を使うかで、お得なプランが変わります。",
+   "key_message": "家族の人数や、昼と夜どちらに電気を使うかで、お得なプランが変わります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.962,
+   "duration": 5.084
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "まずは検針票や、ウェブの明細で、毎月の使用量を確認しましょう。",
+   "caption": "まずは検針票や、ウェブの明細で、毎月の使用量を確認しましょう。",
+   "key_message": "毎月の使用量を確認",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電力会社の見直し",
+    "rows": [
+     {
+      "label": "毎月の使用量を確認",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.046,
+   "duration": 4.871
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "比較サイトに使用量を入れれば、年間の差額の目安がわかります。",
+   "caption": "比較サイトに使用量を入れれば、年間の差額の目安がわかります。",
+   "key_message": "比較サイトで年間差額を見る",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電力会社の見直し",
+    "rows": [
+     {
+      "label": "比較サイトで年間差額を見る",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.917,
+   "duration": 4.16
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "切り替えは申し込むだけで、工事も基本的に不要です。",
+   "caption": "切り替えは申し込むだけで、工事も基本的に不要です。",
+   "key_message": "切り替えは申し込むだけ",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電力会社の見直し",
+    "rows": [
+     {
+      "label": "切り替えは申し込むだけ",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.077,
+   "duration": 3.529
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "停電しやすくなる、ということもありません。",
+   "caption": "停電しやすくなる、ということもありません。",
+   "key_message": "停電しやすくなる、ということもありません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.606,
+   "duration": 2.681
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "ガスとセットにすると、割引になる場合もあります。",
+   "caption": "ガスとセットにすると、割引になる場合もあります。",
+   "key_message": "ガスとセットで割引も",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電力会社の見直し",
+    "rows": [
+     {
+      "label": "ガスとセットで割引も",
+      "line": 7
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.287,
+   "duration": 3.257
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "比較サイトはプロフィールのリンクに置いてあります。",
+   "caption": "比較サイトはプロフィールのリンクに置いてあります。",
+   "key_message": "比較サイトはプロフィールのリンクに置いてあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.544,
+   "duration": 2.913
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
