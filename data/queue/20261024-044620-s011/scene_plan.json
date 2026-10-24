@@ -1,0 +1,220 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "お金が2倍になるまで何年かかるか、一瞬でわかる計算式。",
+   "caption": "お金が2倍になるまで何年かかるか、一瞬でわかる計算式。",
+   "key_message": "お金が2倍になるまで何年かかるか、一瞬でわかる計算式",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "2倍"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.021
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "それが72の法則です。",
+   "caption": "それが72の法則です。",
+   "key_message": "それが72の法則です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "72"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.021,
+   "duration": 1.816
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "72を、年利のパーセントで割るだけ。",
+   "caption": "72を、年利のパーセントで割るだけ。",
+   "key_message": "72を、年利のパーセントで割るだけ",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "72"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 5.837,
+   "duration": 2.737
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "例えば年利1パーセントなら、72年かかります。",
+   "caption": "例えば年利1パーセントなら、72年かかります。",
+   "key_message": "年利1%",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "2倍になるまでの年数",
+    "rows": [
+     {
+      "label": "年利1%",
+      "value": 72,
+      "text": "72年",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1パーセント",
+    "72年"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 8.574,
+   "duration": 3.416
+  },
+  {
+   "index": 4,
+   "role": "example",
+   "narration": "年利3パーセントなら、約24年。",
+   "caption": "年利3パーセントなら、約24年。",
+   "key_message": "年利3%",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "2倍になるまでの年数",
+    "rows": [
+     {
+      "label": "年利3%",
+      "value": 24,
+      "text": "約24年",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "3パーセント",
+    "24年"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.99,
+   "duration": 2.654
+  },
+  {
+   "index": 5,
+   "role": "example",
+   "narration": "年利6パーセントなら、約12年です。",
+   "caption": "年利6パーセントなら、約12年です。",
+   "key_message": "年利6%",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "2倍になるまでの年数",
+    "rows": [
+     {
+      "label": "年利6%",
+      "value": 12,
+      "text": "約12年",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [
+    "6パーセント",
+    "12年"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 14.644,
+   "duration": 2.774
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "逆に、借金にも同じことが言えます。",
+   "caption": "逆に、借金にも同じことが言えます。",
+   "key_message": "逆に、借金にも同じことが言えます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.418,
+   "duration": 2.673
+  },
+  {
+   "index": 7,
+   "role": "example",
+   "narration": "年利18パーセントの借金は、約4年で2倍に膨らむ計算です。",
+   "caption": "年利18パーセントの借金は、約4年で2倍に膨らむ計算です。",
+   "key_message": "年利18%",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "2倍になるまでの年数",
+    "rows": [
+     {
+      "label": "年利18%",
+      "value": 4,
+      "text": "約4年",
+      "line": 7
+     }
+    ]
+   },
+   "emphasis": [
+    "18パーセント",
+    "4年",
+    "2倍"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.091,
+   "duration": 4.529
+  },
+  {
+   "index": 8,
+   "role": "caveat",
+   "narration": "ただし、投資の利回りは保証されたものではないので、あくまで目安として使ってください。",
+   "caption": "ただし、投資の利回りは保証されたものではないので、あくまで目安として使ってください。",
+   "key_message": "ただし、投資の利回りは保証されたものではないので、あくまで目安として使ってください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、投資の利回りは保証されたものではないので、あくまで目安として使ってください。",
+   "start": 24.62,
+   "duration": 5.425
+  },
+  {
+   "index": 9,
+   "role": "cta",
+   "narration": "面白いと思ったら保存して、誰かに話してみて。",
+   "caption": "面白いと思ったら保存して、誰かに話してみて。",
+   "key_message": "面白いと思ったら保存して、誰かに話してみて",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.045,
+   "duration": 3.348
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
