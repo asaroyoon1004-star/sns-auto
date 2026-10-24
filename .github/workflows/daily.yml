@@ -5,6 +5,11 @@ on:
     - cron: "0 3 * * *"    # 12:00 JST
     - cron: "0 11 * * *"   # 20:00 JST
   workflow_dispatch:
+    inputs:
+      seed_id:
+        description: "再投稿したい台本ID（例: s011 = 72の法則）。空なら通常どおり次の台本"
+        required: false
+        default: ""
 permissions:
   contents: write
 concurrency: { group: sns-pipeline, cancel-in-progress: false }
@@ -27,7 +32,8 @@ jobs:
           TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
           TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
           TIKTOK_REFRESH_TOKEN: ${{ secrets.TIKTOK_REFRESH_TOKEN }}
-        run: python -m sns.pipeline daily
+          SEED_ID: ${{ github.event.inputs.seed_id }}
+        run: python -m sns.pipeline daily ${SEED_ID:+--seed-id "$SEED_ID"}
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: "videos-${{ github.run_id }}", path: "data/queue/*/video.mp4", retention-days: 14, if-no-files-found: ignore }

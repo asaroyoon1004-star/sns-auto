@@ -167,6 +167,16 @@ def next_seed(cfg, category=None):
     return script
 
 
+def seed_by_id(seed_id):
+    """A specific seed again, e.g. to re-post a video that went to the wrong channel. Leaves used_ids alone."""
+    for s in read_json(SEED, []):
+        if s["id"] == seed_id:
+            script = dict(s)
+            script["source"] = "seed"
+            return script
+    raise SystemExit(f"seed id not found: {seed_id}")
+
+
 PREAMBLE = re.compile(r"^(こんにちは|みなさん|皆さん|今日は|今回は|それでは|さて|ところで|この動画では|今から)")
 HYPE = re.compile(r"絶対|間違いなく|驚愕|衝撃|激変|最強|大損|人生が変わ|誰でも簡単|99パーセント|9割の人|ほとんどの人が知らない|99%")
 HOOK_DEVICE = re.compile(r"[？?]|\d|[０-９]|実は|意外|なのに|ではなく|じゃない|のに|逆|知らない|損|違い|しないで|ください|危な|危険|間違|やめ")
