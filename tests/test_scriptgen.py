@@ -71,5 +71,18 @@ class SeedTests(unittest.TestCase):
         self.assertIn("120〜220", out)
 
 
+class SeedById(unittest.TestCase):
+    def test_returns_seed_without_marking_used(self):
+        before = g.read_json(g.USED, [])
+        s = g.seed_by_id("s011")
+        self.assertEqual(s["title"], "72の法則")
+        self.assertEqual(s["source"], "seed")
+        self.assertEqual(g.read_json(g.USED, []), before)
+
+    def test_unknown_id_stops(self):
+        with self.assertRaises(SystemExit):
+            g.seed_by_id("nope")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,7 @@
 python -m sns.pipeline make [--count N] [--seed-only]   # script -> voice -> video into data/queue/
 python -m sns.pipeline publish                          # upload every rendered-but-unposted video
 python -m sns.pipeline daily [--count N]                # make + publish (what the scheduler runs)
+python -m sns.pipeline daily --seed-id s011             # re-make one seed script and publish it
 python -m sns.pipeline analyze                          # collect stats -> learn weights -> report
 python -m sns.pipeline landing                          # rebuild the link-in-bio page
 """
@@ -12,15 +13,15 @@ from datetime import datetime, timezone
 
 from . import analytics, landing, upload_tiktok, upload_youtube
 from .common import DATA, QUEUE, load_config, read_json, write_json, log
-from .scriptgen import assign_design, assign_variant, next_script
+from .scriptgen import assign_design, assign_variant, next_script, seed_by_id
 
 
-def make(cfg, count, seed_only=False):
+def make(cfg, count, seed_only=False, seed_id=None):
     from .render import render  # heavy (Pillow/ffmpeg); not needed by analyze/landing
     made = []
     top_hooks = read_json(DATA / "top_hooks.json", [])
     for _ in range(count):
-        s = next_script(cfg, top_hooks=top_hooks, seed_only=seed_only)
+        s = seed_by_id(seed_id) if seed_id else next_script(cfg, top_hooks=top_hooks, seed_only=seed_only)
         s["variant"] = assign_variant(cfg)
         cfg["video"]["design"] = assign_design(cfg)  # may differ per video when video.design_arms is set
         stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
@@ -79,11 +80,12 @@ def main():
     ap.add_argument("cmd", choices=["make", "publish", "daily", "analyze", "landing"])
     ap.add_argument("--count", type=int)
     ap.add_argument("--seed-only", action="store_true")
+    ap.add_argument("--seed-id", help="render this seed script (e.g. s011) instead of picking the next one")
     a = ap.parse_args()
     cfg = load_config()
     count = a.count or cfg.get("posts_per_run", 1)
     if a.cmd in ("make", "daily"):
-        make(cfg, count, a.seed_only)
+        make(cfg, 1 if a.seed_id else count, a.seed_only, a.seed_id)
     failures = []
     if a.cmd in ("publish", "daily"):
         failures = publish(cfg)
