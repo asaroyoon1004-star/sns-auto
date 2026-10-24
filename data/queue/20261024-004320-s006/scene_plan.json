@@ -1,0 +1,167 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "エアコンの電気代、フィルター掃除だけで下がります。",
+   "caption": "エアコンの電気代、フィルター掃除だけで下がります。",
+   "key_message": "エアコンの電気代、フィルター掃除だけで下がります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.212
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "フィルターが目詰まりすると、空気を吸い込む力が落ちます。",
+   "caption": "フィルターが目詰まりすると、空気を吸い込む力が落ちます。",
+   "key_message": "フィルターが目詰まりすると、空気を吸い込む力が落ちます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.212,
+   "duration": 3.627
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "その分、エアコンは余計にパワーを使って頑張ってしまいます。",
+   "caption": "その分、エアコンは余計にパワーを使って頑張ってしまいます。",
+   "key_message": "その分、エアコンは余計にパワーを使って頑張ってしまいます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.839,
+   "duration": 3.826
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "2週間に1回の掃除で、冷房で約4パーセント、暖房で約6パーセントの節電になるという試算があります。",
+   "caption": "2週間に1回の掃除で、冷房で約4パーセント、暖房で約6パーセントの節電になるという試算があります。",
+   "key_message": "冷房",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "フィルター掃除の節電効果",
+    "rows": [
+     {
+      "label": "冷房",
+      "value": 4,
+      "text": "約4パーセント",
+      "line": 3
+     },
+     {
+      "label": "暖房",
+      "value": 6,
+      "text": "約6パーセント",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "2週",
+    "1",
+    "4パーセント",
+    "6パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 10.665,
+   "duration": 7.073
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "掃除機でホコリを吸って、汚れがひどければ水洗い。",
+   "caption": "掃除機でホコリを吸って、汚れがひどければ水洗い。",
+   "key_message": "掃除機でホコリを吸って、汚れがひどければ水洗い",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.738,
+   "duration": 3.331
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "しっかり乾かしてから戻すのがポイントです。",
+   "caption": "しっかり乾かしてから戻すのがポイントです。",
+   "key_message": "しっかり乾かしてから戻すのがポイントです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.069,
+   "duration": 2.586
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "それから、こまめにオンオフするより、自動運転がおすすめ。",
+   "caption": "それから、こまめにオンオフするより、自動運転がおすすめ。",
+   "key_message": "それから、こまめにオンオフするより、自動運転がおすすめ",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.655,
+   "duration": 3.882
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "設定温度を一気に変えず、風量は自動にしておきましょう。",
+   "caption": "設定温度を一気に変えず、風量は自動にしておきましょう。",
+   "key_message": "設定温度を一気に変えず、風量は自動にしておきましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.537,
+   "duration": 3.739
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "保存して、次の休みに試してみてね。",
+   "caption": "保存して、次の休みに試してみてね。",
+   "key_message": "保存して、次の休みに試してみてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 31.276,
+   "duration": 2.771
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
