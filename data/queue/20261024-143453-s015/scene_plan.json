@@ -1,0 +1,205 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "病気で会社を休んでも、給料の約3分の2がもらえる制度があります。",
+   "caption": "病気で会社を休んでも、給料の約3分の2がもらえる制度があります。",
+   "key_message": "病気で会社を休んでも、給料の約3分の2がもらえる制度があります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "3分",
+    "2"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.574
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "それが、健康保険の傷病手当金です。",
+   "caption": "それが、健康保険の傷病手当金です。",
+   "key_message": "それが、健康保険の傷病手当金です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.574,
+   "duration": 2.949
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "会社員や公務員が加入する健康保険の制度です。",
+   "caption": "会社員や公務員が加入する健康保険の制度です。",
+   "key_message": "健康保険の制度",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "傷病手当金",
+    "rows": [
+     {
+      "label": "健康保険の制度",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.523,
+   "duration": 3.174
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "仕事以外の病気やけがで働けないときに使えます。",
+   "caption": "仕事以外の病気やけがで働けないときに使えます。",
+   "key_message": "仕事以外の病気やけがで働けないときに使えます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 10.697,
+   "duration": 3.158
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "連続して3日休んだあと、4日目から支給の対象になります。",
+   "caption": "連続して3日休んだあと、4日目から支給の対象になります。",
+   "key_message": "3日休んで4日目から対象",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "傷病手当金",
+    "rows": [
+     {
+      "label": "3日休んで4日目から対象",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "3日",
+    "4日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.855,
+   "duration": 4.13
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "金額は、おおよそ給料の3分の2。",
+   "caption": "金額は、おおよそ給料の3分の2。",
+   "key_message": "金額は給料の約3分の2",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "傷病手当金",
+    "rows": [
+     {
+      "label": "金額は給料の約3分の2",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [
+    "3分",
+    "2"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.985,
+   "duration": 2.619
+  },
+  {
+   "index": 6,
+   "role": "example",
+   "narration": "支給期間は、通算で最長1年6か月です。",
+   "caption": "支給期間は、通算で最長1年6か月です。",
+   "key_message": "支給は通算で最長1年6か月",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "傷病手当金",
+    "rows": [
+     {
+      "label": "支給は通算で最長1年6か月",
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [
+    "1年",
+    "6か月"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.604,
+   "duration": 3.403
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "申請は、加入している健康保険に書類を出します。",
+   "caption": "申請は、加入している健康保険に書類を出します。",
+   "key_message": "申請は、加入している健康保険に書類を出します",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.007,
+   "duration": 3.452
+  },
+  {
+   "index": 8,
+   "role": "caveat",
+   "narration": "国民健康保険の人は、基本的に対象外なので注意してください。",
+   "caption": "国民健康保険の人は、基本的に対象外なので注意してください。",
+   "key_message": "国民健康保険の人は、基本的に対象外なので注意してください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "国民健康保険の人は、基本的に対象外なので注意してください。",
+   "start": 27.459,
+   "duration": 4.55
+  },
+  {
+   "index": 9,
+   "role": "cta",
+   "narration": "知っておくだけで安心できる制度。保存しておいてね。",
+   "caption": "知っておくだけで安心できる制度。保存しておいてね。",
+   "key_message": "知っておくだけで安心できる制度。保存しておいてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 32.009,
+   "duration": 3.921
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
