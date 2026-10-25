@@ -1,0 +1,190 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "会社員でも確定申告が必要になるケースがあります。",
+   "caption": "会社員でも確定申告が必要になるケースがあります。",
+   "key_message": "会社員でも確定申告が必要になるケースがあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.374
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "会社員は、基本的に年末調整で税金の手続きが終わります。",
+   "caption": "会社員は、基本的に年末調整で税金の手続きが終わります。",
+   "key_message": "会社員は、基本的に年末調整で税金の手続きが終わります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.374,
+   "duration": 4.245
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "でも、例えば副業の所得が年間20万円を超えた場合は、確定申告が必要です。",
+   "caption": "でも、例えば副業の所得が年間20万円を超えた場合は、確定申告が必要です。",
+   "key_message": "副業の所得が年20万円超",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "確定申告が必要な例",
+    "rows": [
+     {
+      "label": "副業の所得が年20万円超",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "20万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.619,
+   "duration": 6.005
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "ここでいう所得は、売上から経費を引いた金額です。",
+   "caption": "ここでいう所得は、売上から経費を引いた金額です。",
+   "key_message": "ここでいう所得は、売上から経費を引いた金額です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.624,
+   "duration": 3.436
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "給料が2000万円を超える人や、2か所以上から給料をもらっている人も対象になることがあります。",
+   "caption": "給料が2000万円を超える人や、2か所以上から給料をもらっている人も対象になることがあります。",
+   "key_message": "給与2000万円超・2か所以上",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "確定申告が必要な例",
+    "rows": [
+     {
+      "label": "給与2000万円超・2か所以上",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "2000万円",
+    "2"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.06,
+   "duration": 6.078
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "逆に、医療費控除やふるさと納税で6自治体以上に寄付した場合は、申告すると税金が戻ります。",
+   "caption": "逆に、医療費控除やふるさと納税で6自治体以上に寄付した場合は、申告すると税金が戻ります。",
+   "key_message": "医療費控除などは申告で戻る",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "確定申告が必要な例",
+    "rows": [
+     {
+      "label": "医療費控除などは申告で戻る",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [
+    "6自治体"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.138,
+   "duration": 6.642
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "申告は、スマホからでもできるようになっています。",
+   "caption": "申告は、スマホからでもできるようになっています。",
+   "key_message": "申告は、スマホからでもできるようになっています",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 29.78,
+   "duration": 3.091
+  },
+  {
+   "index": 7,
+   "role": "example",
+   "narration": "期間は、原則として毎年2月16日から3月15日までです。",
+   "caption": "期間は、原則として毎年2月16日から3月15日までです。",
+   "key_message": "期間は2月16日〜3月15日",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "確定申告が必要な例",
+    "rows": [
+     {
+      "label": "期間は2月16日〜3月15日",
+      "line": 7
+     }
+    ]
+   },
+   "emphasis": [
+    "2",
+    "16日",
+    "3",
+    "15日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 32.871,
+   "duration": 4.601
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "副業してる人は保存必須。",
+   "caption": "副業してる人は保存必須。",
+   "key_message": "副業してる人は保存必須",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 37.472,
+   "duration": 1.999
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
