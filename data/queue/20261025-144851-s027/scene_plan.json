@@ -1,0 +1,165 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "投資を始める前に、絶対に用意してほしいお金があります。",
+   "caption": "投資を始める前に、絶対に用意してほしいお金があります。",
+   "key_message": "投資を始める前に、絶対に用意してほしいお金があります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.815
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "それが、生活防衛資金です。",
+   "caption": "それが、生活防衛資金です。",
+   "key_message": "それが、生活防衛資金です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.815,
+   "duration": 2.34
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "病気や失業など、急に収入が減ったときのためのお金です。",
+   "caption": "病気や失業など、急に収入が減ったときのためのお金です。",
+   "key_message": "病気や失業など、急に収入が減ったときのためのお金です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.155,
+   "duration": 4.013
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "目安は、生活費の3か月から6か月分と言われます。",
+   "caption": "目安は、生活費の3か月から6か月分と言われます。",
+   "key_message": "最低",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "生活防衛資金の目安",
+    "rows": [
+     {
+      "label": "最低",
+      "value": 3,
+      "text": "生活費3か月分",
+      "line": 3
+     },
+     {
+      "label": "目安の上限",
+      "value": 6,
+      "text": "生活費6か月分",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "3か月",
+    "6か月"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 10.168,
+   "duration": 3.775
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "自営業やフリーランスの人は、もう少し多めにあると安心です。",
+   "caption": "自営業やフリーランスの人は、もう少し多めにあると安心です。",
+   "key_message": "自営業やフリーランスの人は、もう少し多めにあると安心です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.943,
+   "duration": 4.092
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "このお金は、すぐ引き出せる普通預金などに置いておきます。",
+   "caption": "このお金は、すぐ引き出せる普通預金などに置いておきます。",
+   "key_message": "このお金は、すぐ引き出せる普通預金などに置いておきます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.035,
+   "duration": 3.577
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "これがないまま投資をすると、急な出費のときに、値下がりした資産を売ることになりかねません。",
+   "caption": "これがないまま投資をすると、急な出費のときに、値下がりした資産を売ることになりかねません。",
+   "key_message": "これがないまま投資をすると、急な出費のときに、値下がりした資産を売ることになりかねません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.612,
+   "duration": 5.648
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "まずは守りを固めてから、増やすことを考えましょう。",
+   "caption": "まずは守りを固めてから、増やすことを考えましょう。",
+   "key_message": "まずは守りを固めてから、増やすことを考えましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.26,
+   "duration": 3.324
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "自分の生活費の何か月分あるか、計算してみて。",
+   "caption": "自分の生活費の何か月分あるか、計算してみて。",
+   "key_message": "自分の生活費の何か月分あるか、計算してみて",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.584,
+   "duration": 3.592
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
