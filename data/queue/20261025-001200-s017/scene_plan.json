@@ -1,0 +1,180 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "宅配業者から不在通知のSMS、そのリンク押さないで。",
+   "caption": "宅配業者から不在通知のSMS、そのリンク押さないで。",
+   "key_message": "宅配業者から不在通知のSMS、そのリンク押さないで",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.894
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "宅配業者や銀行を名乗る、偽のSMSが増えています。",
+   "caption": "宅配業者や銀行を名乗る、偽のSMSが増えています。",
+   "key_message": "宅配業者や銀行を名乗る、偽のSMSが増えています",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.894,
+   "duration": 3.823
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "リンクを押すと、本物そっくりの偽サイトに飛ばされます。",
+   "caption": "リンクを押すと、本物そっくりの偽サイトに飛ばされます。",
+   "key_message": "リンクを押すと、本物そっくりの偽サイトに飛ばされます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.717,
+   "duration": 3.5
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "そこでIDやパスワード、カード番号を入れると、盗まれてしまいます。",
+   "caption": "そこでIDやパスワード、カード番号を入れると、盗まれてしまいます。",
+   "key_message": "そこでIDやパスワード、カード番号を入れると、盗まれてしまいます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.217,
+   "duration": 4.544
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "対策は、SMSやメールのリンクから、ログインしないこと。",
+   "caption": "対策は、SMSやメールのリンクから、ログインしないこと。",
+   "key_message": "リンクからログインしない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "偽SMSへの対策",
+    "rows": [
+     {
+      "label": "リンクからログインしない",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 15.761,
+   "duration": 4.028
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "確認したいときは、公式アプリか、自分でブックマークしたサイトから開きましょう。",
+   "caption": "確認したいときは、公式アプリか、自分でブックマークしたサイトから開きましょう。",
+   "key_message": "公式アプリ・ブックマークから開く",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "偽SMSへの対策",
+    "rows": [
+     {
+      "label": "公式アプリ・ブックマークから開く",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 19.789,
+   "duration": 5.175
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "もし入力してしまったら、すぐにパスワードを変えて、カード会社に連絡。",
+   "caption": "もし入力してしまったら、すぐにパスワードを変えて、カード会社に連絡。",
+   "key_message": "入力したらパスワード変更",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "偽SMSへの対策",
+    "rows": [
+     {
+      "label": "入力したらパスワード変更",
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.964,
+   "duration": 4.821
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "不安なときは、警察の相談窓口、シャープ9110に電話できます。",
+   "caption": "不安なときは、警察の相談窓口、シャープ9110に電話できます。",
+   "key_message": "相談は警察の#9110",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "偽SMSへの対策",
+    "rows": [
+     {
+      "label": "相談は警察の#9110",
+      "line": 7
+     }
+    ]
+   },
+   "emphasis": [
+    "9110"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 29.785,
+   "duration": 5.116
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "親世代にもぜひ教えてあげてください。",
+   "caption": "親世代にもぜひ教えてあげてください。",
+   "key_message": "親世代にもぜひ教えてあげてください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 34.901,
+   "duration": 2.538
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
