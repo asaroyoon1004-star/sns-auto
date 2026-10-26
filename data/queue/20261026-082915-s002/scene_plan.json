@@ -1,0 +1,204 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "ふるさと納税、まだやってない人は損してるかも。",
+   "caption": "ふるさと納税、まだやってない人は損してるかも。",
+   "key_message": "ふるさと納税、まだやってない人は損してるかも",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.181
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "仕組みはシンプルで、自治体に寄付すると返礼品がもらえます。",
+   "caption": "仕組みはシンプルで、自治体に寄付すると返礼品がもらえます。",
+   "key_message": "自治体に寄付して返礼品",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の流れ",
+    "rows": [
+     {
+      "label": "自治体に寄付して返礼品",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.181,
+   "duration": 3.882
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "寄付した額から2千円を引いた分が、税金から差し引かれます。",
+   "caption": "寄付した額から2千円を引いた分が、税金から差し引かれます。",
+   "key_message": "寄付した額から2千円を引いた分が、税金から差し引かれます",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "2千円"
+   },
+   "emphasis": [
+    "2千円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.063,
+   "duration": 4.041
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "つまり実質2千円で、お米やお肉がもらえるイメージです。",
+   "caption": "つまり実質2千円で、お米やお肉がもらえるイメージです。",
+   "key_message": "実質の自己負担は2千円",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の流れ",
+    "rows": [
+     {
+      "label": "実質の自己負担は2千円",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "2千円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.104,
+   "duration": 3.662
+  },
+  {
+   "index": 4,
+   "role": "caveat",
+   "narration": "ただし、控除される上限額は年収や家族構成で変わります。",
+   "caption": "ただし、控除される上限額は年収や家族構成で変わります。",
+   "key_message": "上限額は年収などで変わる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の流れ",
+    "rows": [
+     {
+      "label": "上限額は年収などで変わる",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、控除される上限額は年収や家族構成で変わります。",
+   "start": 14.766,
+   "duration": 4.206
+  },
+  {
+   "index": 5,
+   "role": "caveat",
+   "narration": "上限を超えた分は、ただの寄付になるので注意。",
+   "caption": "上限を超えた分は、ただの寄付になるので注意。",
+   "key_message": "上限を超えた分は、ただの寄付になるので注意",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "上限を超えた分は、ただの寄付になるので注意。",
+   "start": 18.972,
+   "duration": 3.163
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "会社員で寄付先が5自治体以内なら、ワンストップ特例で確定申告は不要です。",
+   "caption": "会社員で寄付先が5自治体以内なら、ワンストップ特例で確定申告は不要です。",
+   "key_message": "会社員で寄付先が5自治体以内なら、ワンストップ特例で確定申告は不要です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "5自治体"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 22.135,
+   "duration": 5.05
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "申請書の期限は、寄付した翌年の1月10日必着。",
+   "caption": "申請書の期限は、寄付した翌年の1月10日必着。",
+   "key_message": "申請書は翌年1月10日必着",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の流れ",
+    "rows": [
+     {
+      "label": "申請書は翌年1月10日必着",
+      "line": 7
+     }
+    ]
+   },
+   "emphasis": [
+    "1",
+    "10日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.185,
+   "duration": 3.737
+  },
+  {
+   "index": 8,
+   "role": "explanation",
+   "narration": "年末はサイトが混むので、早めの計画がおすすめです。",
+   "caption": "年末はサイトが混むので、早めの計画がおすすめです。",
+   "key_message": "年末はサイトが混むので、早めの計画がおすすめです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.922,
+   "duration": 3.609
+  },
+  {
+   "index": 9,
+   "role": "cta",
+   "narration": "上限額のシミュレーションはプロフィールのリンクからどうぞ。",
+   "caption": "上限額のシミュレーションはプロフィールのリンクからどうぞ。",
+   "key_message": "上限額のシミュレーションはプロフィールのリンクからどうぞ",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 34.531,
+   "duration": 3.38
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
