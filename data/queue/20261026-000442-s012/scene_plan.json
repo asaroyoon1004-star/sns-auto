@@ -1,0 +1,203 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "新NISA、名前は聞くけど結局なに？を1分で。",
+   "caption": "新NISA、名前は聞くけど結局なに？を1分で。",
+   "key_message": "新NISA、名前は聞くけど結局なに？を1分で",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1分"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.074
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "NISAは、投資で出た利益に税金がかからない制度です。",
+   "caption": "NISAは、投資で出た利益に税金がかからない制度です。",
+   "key_message": "NISAは、投資で出た利益に税金がかからない制度です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.074,
+   "duration": 3.585
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "普通は、利益の約20パーセントが税金で引かれます。",
+   "caption": "普通は、利益の約20パーセントが税金で引かれます。",
+   "key_message": "普通は、利益の約20パーセントが税金で引かれます",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "20パーセント"
+   },
+   "emphasis": [
+    "20パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.659,
+   "duration": 3.457
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "2024年から始まった新しいNISAでは、年間360万円まで投資できます。",
+   "caption": "2024年から始まった新しいNISAでは、年間360万円まで投資できます。",
+   "key_message": "年間の合計",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "新NISAの年間投資枠",
+    "rows": [
+     {
+      "label": "年間の合計",
+      "value": 360,
+      "text": "360万円",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "2024年",
+    "360万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.116,
+   "duration": 5.837
+  },
+  {
+   "index": 4,
+   "role": "example",
+   "narration": "内訳は、つみたて投資枠が120万円、成長投資枠が240万円です。",
+   "caption": "内訳は、つみたて投資枠が120万円、成長投資枠が240万円です。",
+   "key_message": "つみたて投資枠",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "新NISAの年間投資枠",
+    "rows": [
+     {
+      "label": "つみたて投資枠",
+      "value": 120,
+      "text": "120万円",
+      "line": 4
+     },
+     {
+      "label": "成長投資枠",
+      "value": 240,
+      "text": "240万円",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "120万円",
+    "240万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.953,
+   "duration": 5.832
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "生涯で使える枠は1800万円。",
+   "caption": "生涯で使える枠は1800万円。",
+   "key_message": "生涯で使える枠は1800万円",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1800万円"
+   },
+   "emphasis": [
+    "1800万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 22.785,
+   "duration": 2.579
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "非課税の期間は無期限になりました。",
+   "caption": "非課税の期間は無期限になりました。",
+   "key_message": "非課税の期間は無期限になりました",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 25.364,
+   "duration": 2.37
+  },
+  {
+   "index": 7,
+   "role": "caveat",
+   "narration": "ただし、投資なので元本が減る可能性はあります。",
+   "caption": "ただし、投資なので元本が減る可能性はあります。",
+   "key_message": "ただし、投資なので元本が減る可能性はあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、投資なので元本が減る可能性はあります。",
+   "start": 27.734,
+   "duration": 3.35
+  },
+  {
+   "index": 8,
+   "role": "explanation",
+   "narration": "始めるには、証券会社などでNISA口座を開く必要があります。",
+   "caption": "始めるには、証券会社などでNISA口座を開く必要があります。",
+   "key_message": "始めるには、証券会社などでNISA口座を開く必要があります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 31.084,
+   "duration": 4.235
+  },
+  {
+   "index": 9,
+   "role": "cta",
+   "narration": "口座開設の比較はプロフィールのリンクにまとめてます。投資は自己判断でね。",
+   "caption": "口座開設の比較はプロフィールのリンクにまとめてます。投資は自己判断でね。",
+   "key_message": "口座開設の比較はプロフィールのリンクにまとめてます。投資は自己判断でね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 35.319,
+   "duration": 5.349
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
