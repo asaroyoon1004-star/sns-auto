@@ -1,0 +1,163 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "毎日コンビニで500円使うと、年約18万円です。",
+   "caption": "毎日コンビニで500円使うと、年約18万円です。",
+   "key_message": "毎日コンビニで500円使うと、年約18万円です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "500円",
+    "18万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.98
+  },
+  {
+   "index": 1,
+   "role": "example",
+   "narration": "毎日500円を使うと、1か月で約1万5000円。",
+   "caption": "毎日500円を使うと、1か月で約1万5000円。",
+   "key_message": "1か月",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "500円の積み重ね",
+    "rows": [
+     {
+      "label": "1か月",
+      "value": 15000,
+      "text": "約1万5000円",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "500円",
+    "1か月",
+    "1万5000円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.98,
+   "duration": 3.862
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "1年間では、約18万円になります。",
+   "caption": "1年間では、約18万円になります。",
+   "key_message": "1年",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "500円の積み重ね",
+    "rows": [
+     {
+      "label": "1年",
+      "value": 180000,
+      "text": "約18万円",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "1年",
+    "18万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.842,
+   "duration": 2.916
+  },
+  {
+   "index": 3,
+   "role": "caveat",
+   "narration": "もちろん、全部が無駄というわけではありません。",
+   "caption": "もちろん、全部が無駄というわけではありません。",
+   "key_message": "もちろん、全部が無駄というわけではありません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "もちろん、全部が無駄というわけではありません。",
+   "start": 10.758,
+   "duration": 2.811
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "でも、なんとなく買った分は、意外と多いものです。",
+   "caption": "でも、なんとなく買った分は、意外と多いものです。",
+   "key_message": "でも、なんとなく買った分は、意外と多いものです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.569,
+   "duration": 3.459
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "まず、1週間のコンビニ代を、レシートで数えてみましょう。",
+   "caption": "まず、1週間のコンビニ代を、レシートで数えてみましょう。",
+   "key_message": "まず、1週間のコンビニ代を、レシートで数えてみましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1週"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.028,
+   "duration": 4.118
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "減らすのは、「なんとなく買い」だけで十分です。",
+   "caption": "減らすのは、「なんとなく買い」だけで十分です。",
+   "key_message": "減らすのは、「なんとなく買い」だけで十分です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.146,
+   "duration": 2.828
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "今週のレシート、捨てずに見てみて。",
+   "caption": "今週のレシート、捨てずに見てみて。",
+   "key_message": "今週のレシート、捨てずに見てみて",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.974,
+   "duration": 2.485
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
