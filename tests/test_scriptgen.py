@@ -90,8 +90,9 @@ class HookRules(unittest.TestCase):
     def lint(self, hook):
         return g.lint(script(hook, self.LINES))
 
-    def test_question_without_number_is_flagged(self):
-        self.assertTrue(any("question hook without a number" in p for p in self.lint("額面と手取り、なんでこんなに違うの？")))
+    def test_question_without_number_is_allowed(self):
+        # a question hook with no number (ためたポイント、気づいたら消えてたこと、ありませんか？) was a 1,000-view hit
+        self.assertEqual(self.lint("額面と手取り、なんでこんなに違うの？"), [])
 
     def test_question_with_number_passes(self):
         self.assertEqual(self.lint("手取りは額面の約8割。残りの2割はどこへ？"), [])
