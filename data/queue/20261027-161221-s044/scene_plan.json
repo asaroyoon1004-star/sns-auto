@@ -1,0 +1,169 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "ふるさと納税、ワンストップ申請は1月10日必着です。",
+   "caption": "ふるさと納税、ワンストップ申請は1月10日必着です。",
+   "key_message": "ふるさと納税、ワンストップ申請は1月10日必着です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1",
+    "10日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.893
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "ふるさと納税は、寄付した年の12月31日までの分が、その年の対象です。",
+   "caption": "ふるさと納税は、寄付した年の12月31日までの分が、その年の対象です。",
+   "key_message": "12月31日までの寄付が対象",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の期限",
+    "rows": [
+     {
+      "label": "12月31日までの寄付が対象",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "12",
+    "31日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.893,
+   "duration": 5.641
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "確定申告をしない会社員は、ワンストップ特例が使えます。",
+   "caption": "確定申告をしない会社員は、ワンストップ特例が使えます。",
+   "key_message": "確定申告をしない会社員は、ワンストップ特例が使えます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 9.534,
+   "duration": 3.954
+  },
+  {
+   "index": 3,
+   "role": "caveat",
+   "narration": "ただし、寄付先が1年で5自治体までの場合です。",
+   "caption": "ただし、寄付先が1年で5自治体までの場合です。",
+   "key_message": "寄付先は5自治体まで",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の期限",
+    "rows": [
+     {
+      "label": "寄付先は5自治体まで",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1年",
+    "5自治体"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、寄付先が1年で5自治体までの場合です。",
+   "start": 13.488,
+   "duration": 3.365
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "申請書は、翌年の1月10日までに届く必要があります。",
+   "caption": "申請書は、翌年の1月10日までに届く必要があります。",
+   "key_message": "申請書は1月10日必着",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の期限",
+    "rows": [
+     {
+      "label": "申請書は1月10日必着",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "1",
+    "10日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.853,
+   "duration": 3.987
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "マイナンバーの確認書類も、一緒に送ります。",
+   "caption": "マイナンバーの確認書類も、一緒に送ります。",
+   "key_message": "マイナンバーの確認書類も、一緒に送ります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.84,
+   "duration": 3.056
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "申請書は寄付先ごとに必要なので、早めに準備しましょう。",
+   "caption": "申請書は寄付先ごとに必要なので、早めに準備しましょう。",
+   "key_message": "申請書は寄付先ごとに必要なので、早めに準備しましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.896,
+   "duration": 4.011
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "寄付先からのメールを、今日見返してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "寄付先からのメールを、今日見返してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "寄付先からのメールを、今日見返してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.907,
+   "duration": 6.943
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
