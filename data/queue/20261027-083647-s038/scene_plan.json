@@ -1,0 +1,160 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "年末調整で、保険料控除の書類を出し忘れないでください。",
+   "caption": "年末調整で、保険料控除の書類を出し忘れないでください。",
+   "key_message": "年末調整で、保険料控除の書類を出し忘れないでください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.097
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "年末調整は、会社が年末に税金の過不足を精算する手続きです。",
+   "caption": "年末調整は、会社が年末に税金の過不足を精算する手続きです。",
+   "key_message": "年末調整は、会社が年末に税金の過不足を精算する手続きです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.097,
+   "duration": 4.764
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "生命保険料や地震保険料を払っている人は、控除証明書を出します。",
+   "caption": "生命保険料や地震保険料を払っている人は、控除証明書を出します。",
+   "key_message": "会社に提出する",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "年末調整の流れ",
+    "rows": [
+     {
+      "label": "会社に提出する",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 8.861,
+   "duration": 4.793
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "控除証明書は、10月から11月ごろに保険会社から届きます。",
+   "caption": "控除証明書は、10月から11月ごろに保険会社から届きます。",
+   "key_message": "10〜11月に証明書が届く",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "年末調整の流れ",
+    "rows": [
+     {
+      "label": "10〜11月に証明書が届く",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "10",
+    "11"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.654,
+   "duration": 4.464
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "出し忘れても、あとから確定申告で取り戻せます。",
+   "caption": "出し忘れても、あとから確定申告で取り戻せます。",
+   "key_message": "出し忘れは確定申告で",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "年末調整の流れ",
+    "rows": [
+     {
+      "label": "出し忘れは確定申告で",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.118,
+   "duration": 3.43
+  },
+  {
+   "index": 5,
+   "role": "caveat",
+   "narration": "ただし、自分で手続きをする手間がかかります。",
+   "caption": "ただし、自分で手続きをする手間がかかります。",
+   "key_message": "ただし、自分で手続きをする手間がかかります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、自分で手続きをする手間がかかります。",
+   "start": 21.548,
+   "duration": 3.049
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "届いたはがきや封筒は、なくさず保管しましょう。",
+   "caption": "届いたはがきや封筒は、なくさず保管しましょう。",
+   "key_message": "届いたはがきや封筒は、なくさず保管しましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.597,
+   "duration": 3.129
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "書類を探す日を、今日決めてみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "書類を探す日を、今日決めてみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "書類を探す日を、今日決めてみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.726,
+   "duration": 6.689
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
