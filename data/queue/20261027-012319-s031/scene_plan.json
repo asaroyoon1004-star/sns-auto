@@ -1,0 +1,165 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "警察を名乗る電話、暗証番号は教えないでください。",
+   "caption": "警察を名乗る電話、暗証番号は教えないでください。",
+   "key_message": "警察を名乗る電話、暗証番号は教えないでください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.614
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "警察官や銀行員が、暗証番号を電話で聞くことはありません。",
+   "caption": "警察官や銀行員が、暗証番号を電話で聞くことはありません。",
+   "key_message": "暗証番号は教えない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電話詐欺への対策",
+    "rows": [
+     {
+      "label": "暗証番号は教えない",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.614,
+   "duration": 4.265
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "キャッシュカードを預かりに来ることも、ありません。",
+   "caption": "キャッシュカードを預かりに来ることも、ありません。",
+   "key_message": "カードは渡さない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電話詐欺への対策",
+    "rows": [
+     {
+      "label": "カードは渡さない",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.879,
+   "duration": 2.784
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "「口座が犯罪に使われた」と不安をあおるのが手口です。",
+   "caption": "「口座が犯罪に使われた」と不安をあおるのが手口です。",
+   "key_message": "「口座が犯罪に使われた」と不安をあおるのが手口です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 10.663,
+   "duration": 3.279
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "電話では慌てて答えず、いったん切ってください。",
+   "caption": "電話では慌てて答えず、いったん切ってください。",
+   "key_message": "いったん切る",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電話詐欺への対策",
+    "rows": [
+     {
+      "label": "いったん切る",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.942,
+   "duration": 3.01
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "そのあと、自分で調べた警察や銀行の番号にかけ直しましょう。",
+   "caption": "そのあと、自分で調べた警察や銀行の番号にかけ直しましょう。",
+   "key_message": "そのあと、自分で調べた警察や銀行の番号にかけ直しましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.952,
+   "duration": 4.304
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "迷ったら、警察の相談窓口、シャープ9110に電話できます。",
+   "caption": "迷ったら、警察の相談窓口、シャープ9110に電話できます。",
+   "key_message": "警察の#9110に相談",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電話詐欺への対策",
+    "rows": [
+     {
+      "label": "警察の#9110に相談",
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [
+    "9110"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.256,
+   "duration": 4.993
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "親や祖父母にも、この動画を送ってあげて。",
+   "caption": "親や祖父母にも、この動画を送ってあげて。",
+   "key_message": "親や祖父母にも、この動画を送ってあげて",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 26.249,
+   "duration": 2.913
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
