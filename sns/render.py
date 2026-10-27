@@ -453,6 +453,10 @@ def caption_timeline(segs, durations, spoken, cap, v4):
 def render(cfg, script, workdir):
     workdir = Path(workdir)
     workdir.mkdir(parents=True, exist_ok=True)
+    outro = cfg["video"].get("outro", "")
+    if outro:  # a closing line after the script's own call to action; script.json and the YouTube description keep the script as written
+        cta = script["cta"] if script["cta"].endswith(("。", "！", "？", "!", "?")) else script["cta"] + "。"
+        script = {**script, "cta": cta + outro}
     segs = [("hook", script["hook"])] + [("line", l) for l in script["lines"]] + [("cta", script["cta"])]
     pause = cfg["tts"].get("pause_sec", 0.25)
     min_total = cfg["phases"][cfg.get("phase", "growth")].get("min_duration_sec", 0)

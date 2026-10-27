@@ -67,20 +67,31 @@ def upload(cfg, script, video_path):
 
 
 def stats(video_ids):
-    """Return {id: {views, likes, comments}} for uploaded videos."""
+    """Return {id: {views, likes, comments, channel_id}} for uploaded videos."""
     if not video_ids:
         return {}
     token = access_token()
     out = {}
     for i in range(0, len(video_ids), 50):
-        r = requests.get(f"{API}/videos", params={"part": "statistics", "id": ",".join(video_ids[i:i + 50])},
+        r = requests.get(f"{API}/videos", params={"part": "statistics,snippet", "id": ",".join(video_ids[i:i + 50])},
                          headers={"Authorization": f"Bearer {token}"}, timeout=30)
         r.raise_for_status()
         for it in r.json().get("items", []):
             s = it["statistics"]
             out[it["id"]] = {"views": int(s.get("viewCount", 0)), "likes": int(s.get("likeCount", 0)),
-                             "comments": int(s.get("commentCount", 0))}
+                             "comments": int(s.get("commentCount", 0)), "channel_id": it.get("snippet", {}).get("channelId", "")}
     return out
+
+
+def my_channel_id():
+    """The channel this token uploads to, or None. Videos posted earlier through another account carry a different channel id."""
+    try:
+        r = requests.get(f"{API}/channels", params={"part": "id", "mine": "true"},
+                         headers={"Authorization": f"Bearer {access_token()}"}, timeout=30)
+        items = r.json().get("items") if r.ok else None
+        return items[0]["id"] if items else None
+    except Exception:
+        return None
 
 
 def channel_summary(days=7):

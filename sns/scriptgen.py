@@ -179,6 +179,7 @@ def seed_by_id(seed_id):
 
 PREAMBLE = re.compile(r"^(こんにちは|みなさん|皆さん|今日は|今回は|それでは|さて|ところで|この動画では|今から)")
 HYPE = re.compile(r"絶対|間違いなく|驚愕|衝撃|激変|最強|大損|人生が変わ|誰でも簡単|99パーセント|9割の人|ほとんどの人が知らない|99%")
+HOOK_WARN = re.compile(r"ください|ないで|危険|危な|詐欺|間違|やめ")
 HOOK_HEDGE = re.compile(r"かもしれ|知ってた|知ってる|ご存知|ご存じ")
 HOOK_DEVICE = re.compile(r"[？?]|\d|[０-９]|実は|意外|なのに|ではなく|じゃない|のに|逆|知らない|損|違い|しないで|ください|危な|危険|間違|やめ")
 PROJECTION = re.compile(r"(年利|利回り|複利).*(なります|になる|増え|貯ま|膨らみ)|(増え|貯ま|膨らみ).*(年利|利回り|複利)")
@@ -217,6 +218,17 @@ def visual_problems(script):
             if num not in said:
                 out.append(f"visual number not in the script: {num}")
     return out
+
+
+def hook_style(hook):
+    """Label a hook by how it opens (警告 / 疑問 / 数字 / 言い切り), so seed scripts, which carry no hook_type, can be compared too."""
+    if HOOK_WARN.search(hook):
+        return "警告"
+    if re.search(r"[？?]", hook):
+        return "疑問"
+    if re.search(r"\d|[０-９]", hook):
+        return "数字"
+    return "言い切り"
 
 
 def lint(script):

@@ -3,18 +3,22 @@
 The learned weights feed scriptgen.pick_category; the top hooks are shown to Claude as examples.
 """
 import csv
+import re
 import statistics
 from collections import defaultdict
 from datetime import datetime, timezone
 
 from . import upload_tiktok, upload_youtube
 from .common import DATA, ROOT, METRICS, QUEUE, WEIGHTS, read_json, write_json, log
+from .scriptgen import hook_style
 
 FIELDS = ["collected_at", "item", "platform", "video_id", "category", "hook_type", "hook", "views", "likes", "comments", "shares",
           # added for the research loop: what was tested, and how far / how well people watched
           "variant", "design", "slot_jst", "duration", "avg_view_pct", "avg_view_sec", "subs_gained", "engaged_views",
           # hours between posting and this snapshot: a video posted 2 h ago can't be compared with one that is 2 days old
-          "age_hours"]
+          "age_hours",
+          # which YouTube channel the video is on (videos posted through another account are left out of the report)
+          "channel_id"]
 
 
 def _age_hours(meta, now):
@@ -31,7 +35,7 @@ def _context(d, meta, s):
     if meta.get("created_at"):
         hour = (int(meta["created_at"][9:11]) + 9) % 24  # created_at is a UTC stamp YYYYMMDD-HHMMSS
         slot = f"{hour:02d}"
-    return dict(item=d.name, category=s.get("category"), hook_type=s.get("hook_type", ""), hook=s.get("hook"),
+    return dict(item=d.name, category=s.get("category"), hook_type=s.get("hook_type") or hook_style(s.get("hook") or ""), hook=s.get("hook"),
                 variant=s.get("variant", ""), design=meta.get("design", "v1"), slot_jst=slot, duration=meta.get("duration", ""),
                 age_hours=_age_hours(meta, datetime.now(timezone.utc)))
 
@@ -65,7 +69,8 @@ def collect():
     if upload_youtube.configured():
         ids = {u["id"]: (d, m, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
         deep = upload_youtube.analytics(list(ids))
-        write_json(DATA / "analytics_status.json", {"checked_at": now, "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
+        write_json(DATA / "analytics_status.json", {"checked_at": now, "channel_id": upload_youtube.my_channel_id(),
+                                                       "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
                                                        "channel_7d": upload_youtube.channel_summary(7),
                                                        "diagnose": upload_youtube.diagnose(list(ids))})
         for vid, st in upload_youtube.stats(list(ids)).items():
@@ -93,15 +98,26 @@ def collect():
     return rows
 
 
+def current_channel():
+    return (read_json(DATA / "analytics_status.json", None) or {}).get("channel_id")
+
+
+def channel_rows(rows, mine):
+    """Drop YouTube videos that are on another channel (e.g. posted through the wrong account). Without a known channel, keep all."""
+    if not mine:
+        return rows
+    return [r for r in rows if r.get("platform") != "youtube" or r.get("channel_id") == mine]
+
+
 def latest():
-    """Latest snapshot per (platform, video_id)."""
+    """Latest snapshot per (platform, video_id), for the channel the uploads go to."""
     if not METRICS.exists():
         return []
     snap = {}
     with open(METRICS, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             snap[(r["platform"], r["video_id"])] = r
-    return list(snap.values())
+    return channel_rows(list(snap.values()), current_channel())
 
 
 def learn(cfg):
@@ -134,6 +150,8 @@ def report(cfg):
     total = sum(int(r["views"]) for r in rows)
     lines = [f"# 週次レポート {datetime.now().strftime('%Y-%m-%d')}", "",
              f"- 計測した動画: {len(rows)} 本 / 合計再生: {total:,}", ""]
+    if current_channel():
+        lines += ["- 対象: 今のYouTubeチャンネルの動画のみ（別アカウントに投稿された動画は除外）", ""]
     st = read_json(DATA / "analytics_status.json", None)
     if st is not None and not st.get("videos_with_data"):
         why = st.get("token_error") or "; ".join(f"{q['metric']}: HTTP {q['http']} {q.get('error', '') or str(q.get('rows')) + '行'}"[:160] for q in st.get("queries", [])) or "不明"
@@ -222,7 +240,8 @@ def research_sections(rows, cfg):
         out += ["", f"※投稿から{MIN_AGE_H}時間たっていない動画 {young} 本は、以下の比較から除外しています。"]
     out += _table([r for r in rows if r.get("variant")], lambda r: r["variant"], "A/Bテスト（variant別）")
     out += _table(rows, lambda r: r.get("design"), "デザイン別（v1=旧、v2=カード+蛍光チップ、v3=ターミナル風、v3b=v3+冒頭を最初から表示）")
-    out += _table(rows, lambda r: r.get("hook_type"), "フックの型別")
+    out += _table(rows, lambda r: r.get("hook_type") or hook_style(r.get("hook") or ""), "フックの型別（警告・疑問・数字・言い切り。型を書いていない台本は冒頭の文から判定）")
+    out += _table(rows, lambda r: r.get("hook") and ("冒頭に数字あり" if re.search(r"\d|[０-９]", r["hook"]) else "冒頭に数字なし"), "冒頭の数字の有無別")
     out += _table(rows, lambda r: r.get("slot_jst") and f"{r['slot_jst']}時台", "投稿時間（日本時間）別")
     out += _table(rows, _length_bucket, "尺別")
     labels = {k: v["label"] for k, v in cfg["categories"].items()}
