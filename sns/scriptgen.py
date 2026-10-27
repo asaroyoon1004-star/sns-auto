@@ -41,7 +41,7 @@ SYSTEM_PROMPT = """あなたは日本向けの「お金・節約の豆知識」�
 
 構成（テーマと尺に合うものを選ぶ。全部を機械的に入れなくてよい）:
 HOOK → QUESTION → REVEAL → EXPLANATION → EXAMPLE → CAVEAT / PAYOFF
-- hook（0〜2秒）: 視聴者に関係する疑問、意外な事実、具体的な数字、誤解の訂正のどれかで始める。30字以内。チャンネル名・カテゴリ名・自己紹介・前置きは入れない。最初の1秒で、何の話で、見ると何が分かるかが伝わること。数字を使わない疑問形、「かもしれません」「知ってた？」などのぼかしは使わず、結果や金額を言い切る。
+- hook（0〜2秒）: 視聴者に関係する疑問、意外な事実、具体的な数字、誤解の訂正のどれかで始める。30字以内。チャンネル名・カテゴリ名・自己紹介・前置きは入れない。最初の1秒で、何の話で、見ると何が分かるかが伝わること。「かもしれません」「知ってた？」などのぼかしは使わず、身近な物や場面を具体的に言い切る。
 - QUESTION / REVEAL: hookの問いの答えを、引き延ばさず適切なタイミングで言う。必要以上に答えを隠さない。
 - EXPLANATION: なぜそうなるのかを短く。抽象論で終わらず、金額・比較・具体例を使う。
 - EXAMPLE: 数字には必ず条件を添える（例:「年利3パーセントで20年、毎月1万円積み立てた場合」）。
@@ -242,8 +242,6 @@ def lint(script):
         problems.append("hook has no question, contrast or number")
     if HOOK_HEDGE.search(hook):
         problems.append(f"hedged hook: {hook}")
-    if re.search(r"[？?]", hook) and not re.search(r"\d|[０-９]", hook):
-        problems.append(f"question hook without a number: {hook}")
     for l in [hook, *lines]:
         if PREAMBLE.search(l):
             problems.append(f"preamble: {l}")
