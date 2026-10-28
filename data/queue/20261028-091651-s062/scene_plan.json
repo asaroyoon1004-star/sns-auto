@@ -1,0 +1,148 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "ふるさと納税のポイント付与は、2025年10月から禁止です。",
+   "caption": "ふるさと納税のポイント付与は、2025年10月から禁止です。",
+   "key_message": "ふるさと納税のポイント付与は、2025年10月から禁止です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "2025年",
+    "10"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.278
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "総務省のルール改正で、ポータルサイトのポイント付与が禁止になりました。",
+   "caption": "総務省のルール改正で、ポータルサイトのポイント付与が禁止になりました。",
+   "key_message": "ポイント付与は禁止",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の今",
+    "rows": [
+     {
+      "label": "ポイント付与は禁止",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.278,
+   "duration": 4.414
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "サイトのポイント分でお得にする方法は、使えなくなっています。",
+   "caption": "サイトのポイント分でお得にする方法は、使えなくなっています。",
+   "key_message": "サイトのポイント分でお得にする方法は、使えなくなっています",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 8.692,
+   "duration": 3.962
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "でも、寄付の仕組みそのものは、変わっていません。",
+   "caption": "でも、寄付の仕組みそのものは、変わっていません。",
+   "key_message": "仕組みは変わらない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の今",
+    "rows": [
+     {
+      "label": "仕組みは変わらない",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.654,
+   "duration": 3.258
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "控除の対象になる寄付は、その年の12月31日までです。",
+   "caption": "控除の対象になる寄付は、その年の12月31日までです。",
+   "key_message": "寄付は12月31日まで",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ふるさと納税の今",
+    "rows": [
+     {
+      "label": "寄付は12月31日まで",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "12",
+    "31日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 15.912,
+   "duration": 4.304
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "返礼品は、金額だけでなく、使い切れる量かを見て選びましょう。",
+   "caption": "返礼品は、金額だけでなく、使い切れる量かを見て選びましょう。",
+   "key_message": "返礼品は、金額だけでなく、使い切れる量かを見て選びましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.216,
+   "duration": 4.518
+  },
+  {
+   "index": 6,
+   "role": "cta",
+   "narration": "寄付の上限額を、シミュレーターで確認してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "寄付の上限額を、シミュレーターで確認してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "寄付の上限額を、シミュレーターで確認してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.734,
+   "duration": 7.427
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
