@@ -1,0 +1,182 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "リボ払いの手数料は、年15パーセント前後が一般的。",
+   "caption": "リボ払いの手数料は、年15パーセント前後が一般的。",
+   "key_message": "リボ払いの手数料は、年15パーセント前後が一般的",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "15パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.828
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "リボ払いは、いくら使っても毎月の支払い額がほぼ一定になる仕組みです。",
+   "caption": "リボ払いは、いくら使っても毎月の支払い額がほぼ一定になる仕組みです。",
+   "key_message": "毎月の支払い額はほぼ一定",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "リボ払いの注意点",
+    "rows": [
+     {
+      "label": "毎月の支払い額はほぼ一定",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.828,
+   "duration": 4.612
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "便利に見えますが、この手数料が残高にずっとかかり続けます。",
+   "caption": "便利に見えますが、この手数料が残高にずっとかかり続けます。",
+   "key_message": "残高に年15パーセント前後の手数料",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "リボ払いの注意点",
+    "rows": [
+     {
+      "label": "残高に年15パーセント前後の手数料",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 8.44,
+   "duration": 3.941
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "支払いの大部分が手数料に消えて、元金がなかなか減らないこともあります。",
+   "caption": "支払いの大部分が手数料に消えて、元金がなかなか減らないこともあります。",
+   "key_message": "元金がなかなか減らない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "リボ払いの注意点",
+    "rows": [
+     {
+      "label": "元金がなかなか減らない",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.381,
+   "duration": 4.73
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "しかも、気づかないうちにリボ設定になっているカードもあります。",
+   "caption": "しかも、気づかないうちにリボ設定になっているカードもあります。",
+   "key_message": "しかも、気づかないうちにリボ設定になっているカードもあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.111,
+   "duration": 3.751
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "今すぐカード会社のアプリで、支払い方法を確認してください。",
+   "caption": "今すぐカード会社のアプリで、支払い方法を確認してください。",
+   "key_message": "支払い方法をアプリで確認",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "リボ払いの注意点",
+    "rows": [
+     {
+      "label": "支払い方法をアプリで確認",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.862,
+   "duration": 4.033
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "もしリボ残高があるなら、繰り上げ返済ができないか調べてみましょう。",
+   "caption": "もしリボ残高があるなら、繰り上げ返済ができないか調べてみましょう。",
+   "key_message": "もしリボ残高があるなら、繰り上げ返済ができないか調べてみましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.895,
+   "duration": 4.2
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "カードは、一括払いで使うのが基本です。",
+   "caption": "カードは、一括払いで使うのが基本です。",
+   "key_message": "カードは、一括払いで使うのが基本です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 29.095,
+   "duration": 2.93
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "知らずに使ってる人がいたら、この動画を送ってあげて。毎日1本、お金の話。フォローしてね。",
+   "caption": "知らずに使ってる人がいたら、この動画を送ってあげて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "知らずに使ってる人がいたら、この動画を送ってあげて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 32.025,
+   "duration": 7.738
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
