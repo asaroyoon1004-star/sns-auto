@@ -213,7 +213,7 @@ def _table(rows, key, title):
     if not groups:
         return []
     out = ["", f"## {title}", "",
-           "| グループ | 本数 | 再生(中央値) | 平均視聴率 | いいね率 | シェア率 | 登録/1000再生 |", "|---|---|---|---|---|---|---|"]
+           "| グループ | 本数 | 再生(中央値) | 平均視聴率 | いいね率 | コメント/1000再生 | シェア率 | 登録/1000再生 |", "|---|---|---|---|---|---|---|---|"]
     for k, g in sorted(groups.items(), key=lambda x: -statistics.median(int(r["views"]) for r in x[1])):
         views = [int(r["views"]) for r in g]
         tv = max(1, sum(views))
@@ -221,7 +221,7 @@ def _table(rows, key, title):
         subs = [x for x in (_num(r.get("subs_gained")) for r in g) if x is not None]
         out.append(f"| {k}{'' if len(g) >= MIN_N else ' ※少'} | {len(g)} | {statistics.median(views):,.0f} | "
                    f"{(f'{sum(pct) / len(pct):.0f}%') if pct else '-'} | "
-                   f"{sum(int(r['likes']) for r in g) / tv:.1%} | {sum(int(r.get('shares') or 0) for r in g) / tv:.2%} | "
+                   f"{sum(int(r['likes']) for r in g) / tv:.1%} | {sum(int(r.get('comments') or 0) for r in g) / tv * 1000:.1f} | {sum(int(r.get('shares') or 0) for r in g) / tv:.2%} | "
                    f"{(f'{sum(subs) / tv * 1000:.1f}') if subs else '-'} |")
     return out
 
