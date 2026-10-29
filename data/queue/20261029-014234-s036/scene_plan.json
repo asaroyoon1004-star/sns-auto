@@ -1,0 +1,142 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "スーパーに行く前に、冷蔵庫を写真に撮ってください。",
+   "caption": "スーパーに行く前に、冷蔵庫を写真に撮ってください。",
+   "key_message": "スーパーに行く前に、冷蔵庫を写真に撮ってください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.337
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "冷蔵庫の中身を忘れて、同じものを買ってしまうことがあります。",
+   "caption": "冷蔵庫の中身を忘れて、同じものを買ってしまうことがあります。",
+   "key_message": "冷蔵庫の中身を忘れて、同じものを買ってしまうことがあります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.337,
+   "duration": 4.024
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "写真を撮っておけば、売り場で中身をすぐ確認できます。",
+   "caption": "写真を撮っておけば、売り場で中身をすぐ確認できます。",
+   "key_message": "冷蔵庫の写真を撮る",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "食費が減る買い物前の習慣",
+    "rows": [
+     {
+      "label": "冷蔵庫の写真を撮る",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.361,
+   "duration": 3.586
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "買いすぎや二重買いが減って、食材を使い切りやすくなります。",
+   "caption": "買いすぎや二重買いが減って、食材を使い切りやすくなります。",
+   "key_message": "買いすぎや二重買いが減って、食材を使い切りやすくなります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 10.947,
+   "duration": 3.84
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "買い物メモには、買うものだけでなく、買わないものも書きましょう。",
+   "caption": "買い物メモには、買うものだけでなく、買わないものも書きましょう。",
+   "key_message": "買わない物も書く",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "食費が減る買い物前の習慣",
+    "rows": [
+     {
+      "label": "買わない物も書く",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 14.787,
+   "duration": 4.061
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "予算を先に決めておくのも、効果的です。",
+   "caption": "予算を先に決めておくのも、効果的です。",
+   "key_message": "予算を先に決める",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "食費が減る買い物前の習慣",
+    "rows": [
+     {
+      "label": "予算を先に決める",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.848,
+   "duration": 2.853
+  },
+  {
+   "index": 6,
+   "role": "cta",
+   "narration": "保存して、次の買い物で試してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "保存して、次の買い物で試してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "保存して、次の買い物で試してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.701,
+   "duration": 6.902
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
