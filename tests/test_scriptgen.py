@@ -104,3 +104,17 @@ class HookRules(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class OutroArms(unittest.TestCase):
+    CFG = {"video": {"outro": "フォローしてね。", "outro_comment": {"default": "コメントしてね。", "scam_guard": "届いた人はコメントしてね。"}}}
+
+    def test_follow_arm_and_no_variant_use_the_follow_outro(self):
+        from sns.render import outro_for
+        self.assertEqual(outro_for(self.CFG, {"variant": "outro:follow"}), "フォローしてね。")
+        self.assertEqual(outro_for(self.CFG, {}), "フォローしてね。")
+
+    def test_comment_arm_picks_by_category(self):
+        from sns.render import outro_for
+        self.assertEqual(outro_for(self.CFG, {"variant": "outro:comment", "category": "scam_guard"}), "届いた人はコメントしてね。")
+        self.assertEqual(outro_for(self.CFG, {"variant": "outro:comment", "category": "tax_system"}), "コメントしてね。")
