@@ -450,10 +450,19 @@ def caption_timeline(segs, durations, spoken, cap, v4):
     return items
 
 
+def outro_for(cfg, script):
+    """The closing line: the follow request by default, or a comment request for the `outro:comment` experiment arm."""
+    v = cfg["video"]
+    if script.get("variant") == "outro:comment":
+        by_cat = v.get("outro_comment") or {}
+        return by_cat.get(script.get("category"), by_cat.get("default", ""))
+    return v.get("outro", "")
+
+
 def render(cfg, script, workdir):
     workdir = Path(workdir)
     workdir.mkdir(parents=True, exist_ok=True)
-    outro = cfg["video"].get("outro", "")
+    outro = outro_for(cfg, script)
     if outro:  # a closing line after the script's own call to action; script.json and the YouTube description keep the script as written
         cta = script["cta"] if script["cta"].endswith(("。", "！", "？", "!", "?")) else script["cta"] + "。"
         script = {**script, "cta": cta + outro}

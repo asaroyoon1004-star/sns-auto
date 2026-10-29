@@ -31,7 +31,8 @@ def all_segments():
         yield "hook", s["hook"]
         for l in s["lines"]:
             yield "line", l
-        yield "cta", s["cta"] + CFG["video"].get("outro", "")
+        for outro in [CFG["video"].get("outro", ""), *CFG["video"].get("outro_comment", {}).values()]:
+            yield "cta", s["cta"] + outro
 
 
 def write_wav(path, secs, sr=16000):
