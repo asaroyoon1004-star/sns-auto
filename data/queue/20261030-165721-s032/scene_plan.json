@@ -1,0 +1,161 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "身に覚えのない請求、連絡先に電話しないでください。",
+   "caption": "身に覚えのない請求、連絡先に電話しないでください。",
+   "key_message": "身に覚えのない請求、連絡先に電話しないでください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.709
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "「本日中に支払わないと法的措置」と、急がせるのが手口です。",
+   "caption": "「本日中に支払わないと法的措置」と、急がせるのが手口です。",
+   "key_message": "急がせるのは手口",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "架空請求への対策",
+    "rows": [
+     {
+      "label": "急がせるのは手口",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.709,
+   "duration": 4.091
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "まず、請求の内容に本当に覚えがあるか、落ち着いて考えます。",
+   "caption": "まず、請求の内容に本当に覚えがあるか、落ち着いて考えます。",
+   "key_message": "まず、請求の内容に本当に覚えがあるか、落ち着いて考えます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.8,
+   "duration": 4.567
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "書かれた連絡先に連絡すると、個人情報を知られます。",
+   "caption": "書かれた連絡先に連絡すると、個人情報を知られます。",
+   "key_message": "連絡先には連絡しない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "架空請求への対策",
+    "rows": [
+     {
+      "label": "連絡先には連絡しない",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.367,
+   "duration": 3.739
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "覚えがなければ、支払わずに、無視するか相談するのが基本です。",
+   "caption": "覚えがなければ、支払わずに、無視するか相談するのが基本です。",
+   "key_message": "覚えがなければ、支払わずに、無視するか相談するのが基本です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.106,
+   "duration": 4.514
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "困ったときは、消費者ホットライン188に電話できます。",
+   "caption": "困ったときは、消費者ホットライン188に電話できます。",
+   "key_message": "188に相談",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "架空請求への対策",
+    "rows": [
+     {
+      "label": "188に相談",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [
+    "188"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.62,
+   "duration": 3.891
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "局番なしの188で、近くの消費生活センターにつながります。",
+   "caption": "局番なしの188で、近くの消費生活センターにつながります。",
+   "key_message": "局番なしの188で、近くの消費生活センターにつながります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "188"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.511,
+   "duration": 4.607
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "家族にも共有しておいて。毎日1本、お金の話。フォローしてね。",
+   "caption": "家族にも共有しておいて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "家族にも共有しておいて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 29.118,
+   "duration": 6.004
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
