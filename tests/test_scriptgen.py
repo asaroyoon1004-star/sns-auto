@@ -133,3 +133,68 @@ class ProfileLinkNeedsAffiliate(unittest.TestCase):
         from sns.common import load_config
         s = dict(g.seed_by_id("s011"), affiliate=None, cta="保存して、比較はプロフィールのリンクからどうぞ。")
         self.assertIn("points to a profile link without an affiliate", g.validate(s, load_config()))
+
+
+class TopicCooldown(unittest.TestCase):
+    def queue(self, tmp, scripts):
+        from pathlib import Path
+        for i, s in enumerate(scripts):
+            d = Path(tmp) / f"2026103{i}-000000-x{i}"
+            d.mkdir()
+            (d / "script.json").write_text(json.dumps(s, ensure_ascii=False), encoding="utf-8")
+
+    def test_recent_families_cover_only_the_last_n_videos(self):
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+        cfg = {"topic_cooldown": {"videos": 2, "families": {"ふるさと納税": ["ふるさと納税", "ワンストップ"], "NISA": ["NISA"]}}}
+        with tempfile.TemporaryDirectory() as tmp:
+            self.queue(tmp, [{"title": "新NISAの枠", "hook": "", "lines": []},
+                             {"title": "期限", "hook": "ワンストップ申請は1月10日必着", "lines": []},
+                             {"title": "冷蔵庫", "hook": "", "lines": []}])
+            with mock.patch.object(g, "QUEUE", Path(tmp)):
+                self.assertEqual(g.recent_families(cfg), {"ふるさと納税"})
+                s = {"title": "偽サイト", "hook": "年末のふるさと納税、そのサイト本物ですか？", "lines": []}
+                self.assertEqual(len(g.cooldown_problems(s, cfg)), 1)
+
+    def test_seed_on_cooldown_is_skipped(self):
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+        cfg = dict(CFG, topic_cooldown={"videos": 9, "families": {"ふるさと納税": ["ふるさと納税"]}})
+        seeds = [{"id": "a", "category": "tax_system", "title": "ふるさと納税の期限", "hook": "ふるさと納税、寄付先からのメール見てください。", "lines": ["x"] * 4, "cta": "保存して。"},
+                 {"id": "b", "category": "tax_system", "title": "年末調整", "hook": "年末調整の書類、出し忘れないでください。", "lines": ["x"] * 4, "cta": "保存して。"}]
+        with tempfile.TemporaryDirectory() as tmp:
+            self.queue(tmp, [{"title": "ふるさと納税のポイント", "hook": "", "lines": []}])
+            with mock.patch.object(g, "QUEUE", Path(tmp)), mock.patch.object(g, "read_json", side_effect=lambda p, d: {
+                    g.SEED: seeds, g.USED: []}.get(p, json.loads(Path(p).read_text(encoding="utf-8")) if Path(p).exists() else d)), \
+                    mock.patch.object(g, "write_json"):
+                self.assertEqual(g.next_seed(cfg, "tax_system")["id"], "b")
+
+    def test_seasonal_fits_the_category_and_skips_cooldown(self):
+        topics = lambda **kw: " ".join(x["topic"] for x in g.seasonal(CFG, month=11, **kw))
+        self.assertNotIn("ふるさと納税", topics(category="food_daily"))
+        self.assertIn("ふるさと納税", topics(category="tax_system"))
+        self.assertNotIn("ふるさと納税", topics(category="tax_system", blocked={"ふるさと納税"}))
+
+
+class LectureHook(unittest.TestCase):
+    def test_rule_explained_with_a_number_is_flagged(self):
+        for hook in ["新NISAの年間枠は、つみたて120万円、成長240万円。", "リボ払いの手数料は、年15パーセント前後が一般的。",
+                     "ふるさと納税のポイント付与は、2025年10月から禁止です。"]:
+            self.assertTrue(any("explaining a rule" in p for p in g.lint(script(hook, ["a"] * 4))), hook)
+
+    def test_warnings_and_scenes_pass(self):
+        for hook in ["年末調整で、保険料控除の書類を出し忘れないでください。", "毎日コンビニで500円使うと、年約18万円です。",
+                     "ふるさと納税、ワンストップ申請は1月10日必着です。"]:
+            self.assertFalse(any("explaining a rule" in p for p in g.lint(script(hook, ["a"] * 4))), hook)
+
+
+class SeedAffiliateNeedsLink(unittest.TestCase):
+    def test_seed_affiliate_is_dropped_without_a_live_link(self):
+        from unittest import mock
+        cfg = dict(CFG, affiliates={"securities": {"url": ""}}, topic_cooldown={"videos": 0})
+        seeds = [{"id": "a", "category": "invest_basic", "title": "t", "hook": "h", "lines": [], "cta": "c", "affiliate": "securities"}]
+        with mock.patch.object(g, "read_json", side_effect=lambda p, d: {g.SEED: seeds, g.USED: []}.get(p, d)), \
+                mock.patch.object(g, "write_json"):
+            self.assertIsNone(g.next_seed(cfg)["affiliate"])
