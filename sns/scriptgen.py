@@ -56,6 +56,7 @@ HOOK → QUESTION → REVEAL → EXPLANATION → EXAMPLE → CAVEAT / PAYOFF
 - 同じ説明を言い換えて繰り返さない。結論の前に要約を挟まない。
 - 「こんにちは」「今日は〜について」「それでは」のような前置きは禁止。
 - 注意書き（投資の元本割れなど）が必要なときは、短い1文（25字以内）にする。
+- hook を制度名・商品名＋数字の説明文（例:「新NISAの年間枠は〜」「リボ払いの手数料は年15パーセント」）で始めない。視聴者の行動・持ち物・場面か、してはいけない行動の警告で始め、制度の名前や数字はその後で出す。
 - lines は各40字以内、ナレーションで一息で読める話し言葉。難しい漢語より自然な言い回しにする。
 - 長さの目安は hook+lines+cta で {cmin}〜{cmax} 字。内容が足りるなら短くてよい。字数合わせの水増し（重複、言い換え、不要な注意書き）は禁止。
 - 記号や絵文字は使わない。数字は読み上げやすく書く（例: 1万2千円）。
@@ -95,16 +96,49 @@ def recent_titles(limit=60):
     return [t for t in titles if t]
 
 
-def seasonal(cfg, month=None):
+def topic_families(cfg, text):
+    """Names of the topic families (config `topic_cooldown.families`) a text touches, e.g. {"ふるさと納税"}."""
+    fams = (cfg.get("topic_cooldown") or {}).get("families", {})
+    return {name for name, keys in fams.items() if any(k in text for k in keys)}
+
+
+def script_text(s):
+    return s.get("title", "") + s.get("hook", "") + "".join(s.get("lines", []))
+
+
+def recent_families(cfg):
+    """Topic families used in the last `topic_cooldown.videos` videos. The same topic two days running
+    went from ~1,000 views to under 100 in late October 2026 (5 ふるさと納税 videos in 5 days)."""
+    n = (cfg.get("topic_cooldown") or {}).get("videos", 0)
+    if not n:
+        return set()
+    out = set()
+    for p in sorted(QUEUE.glob("*/script.json"))[-n:]:
+        out |= topic_families(cfg, script_text(read_json(p, {})))
+    return out
+
+
+def cooldown_problems(script, cfg, recent=None):
+    recent = recent_families(cfg) if recent is None else recent
+    return [f"topic used in the last {cfg['topic_cooldown']['videos']} videos: {f}"
+            for f in sorted(topic_families(cfg, script_text(script)) & recent)]
+
+
+def seasonal(cfg, month=None, category=None, blocked=()):
+    """Seasonal topics for this month; with `category`, only the ones that fit it, minus families on cooldown."""
     month = month or datetime.now(timezone.utc).month
-    return [x for x in cfg.get("seasonal", []) if month in x["months"]]
+    out = [x for x in cfg.get("seasonal", []) if month in x["months"]]
+    if category:
+        out = [x for x in out if category in x.get("categories", [category])]
+    return [x for x in out if not topic_families(cfg, x["topic"]) & set(blocked)]
 
 
-def seasonal_hint(cfg):
-    return " / ".join(x["topic"] for x in seasonal(cfg)) or "特になし"
+def seasonal_hint(cfg, category=None, blocked=()):
+    return " / ".join(x["topic"] for x in seasonal(cfg, category=category, blocked=blocked)) or "特になし"
 
 
-HOOK_TYPES = ["損失回避", "警告", "統計提示", "逆説", "疑問", "比較"]
+# warnings and everyday scenes opened the ~1,000-view videos; plain statistics and rule explanations stalled under 250
+HOOK_TYPES = {"警告": 3, "身近な場面": 2, "損失回避": 1, "逆説": 1, "疑問": 1, "比較": 1}
 
 
 def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
@@ -114,14 +148,16 @@ def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
     cat_label = cfg["categories"][category]["label"]
     affiliates = ", ".join(live_affiliates(cfg)) or "（まだ無い。必ず null）"
     avoid = "、".join(recent_titles()) or "なし"
+    blocked = recent_families(cfg)
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     hooks = "\n".join(f"- {h}" for h in (top_hooks or [])) or "- （まだデータなし）"
     import random
-    hook_type = random.choice(HOOK_TYPES)
+    hook_type = random.choices(list(HOOK_TYPES), weights=list(HOOK_TYPES.values()), k=1)[0]
     user = (
         f"hookの型: {hook_type}（hook_type にこの語をそのまま入れる）\n"
         f"カテゴリ: {cat_label}\n"
-        f"今の時期に関心が高い話題（カテゴリに合えば優先、合わなければ無視）: {seasonal_hint(cfg)}\n"
+        f"今の時期に関心が高い話題（カテゴリに合えば優先、合わなければ無視）: {seasonal_hint(cfg, category, blocked)}\n"
+        f"直近の動画で扱ったので、今回は使わない話題: {'、'.join(sorted(blocked)) or 'なし'}\n"
         f"過去に作ったタイトル（重複禁止）: {avoid}\n"
         f"これまで再生数が良かったフック（型を参考に、内容は真似しない）:\n{hooks}\n\n"
         "このカテゴリで、新しい台本を1本作ってください。"
@@ -159,8 +195,11 @@ def next_seed(cfg, category=None):
         pool = seeds
     clean = [s for s in pool if not lint(s)]
     pool = clean or pool  # lint-clean seeds first; the rest only once those run out
+    blocked = recent_families(cfg)
+    fresh = [s for s in pool if not topic_families(cfg, script_text(s)) & blocked]
+    pool = fresh or pool
     preferred = [s for s in pool if s["category"] == category]
-    keys = [k for x in seasonal(cfg) for k in x["keywords"]]
+    keys = [k for x in seasonal(cfg, blocked=blocked) for k in x["keywords"]]
     in_season = [s for s in pool if any(k in s["title"] + s["hook"] for k in keys)]
     # a seasonal seed gets ahead of the category pick half the time, so the timely topics go out while they matter
     if in_season and random.random() < 0.5:
@@ -169,6 +208,8 @@ def next_seed(cfg, category=None):
     used.add(script["id"])
     write_json(USED, sorted(used))
     script["source"] = "seed"
+    if script.get("affiliate") not in live_affiliates(cfg):
+        script["affiliate"] = None  # no PR label or disclosure while there is no link to disclose
     return script
 
 
@@ -186,6 +227,9 @@ PREAMBLE = re.compile(r"^(こんにちは|みなさん|皆さん|今日は|今�
 HYPE = re.compile(r"絶対|間違いなく|驚愕|衝撃|激変|最強|大損|人生が変わ|誰でも簡単|99パーセント|9割の人|ほとんどの人が知らない|99%")
 HOOK_WARN = re.compile(r"ください|ないで|危険|危な|詐欺|間違|やめ")
 HOOK_HEDGE = re.compile(r"かもしれ|知ってた|知ってる|ご存知|ご存じ")
+# a rule or product name explained with a number ("新NISAの年間枠は…", "リボ払いの手数料は…") stalled at 50-250 views
+HOOK_LECTURE = re.compile(r"^(新?NISA|ニーサ|イデコ|iDeCo|信託報酬|リボ払い|ふるさと納税|ワンストップ|年末調整|確定申告|"
+                          r"高額療養費|傷病手当金|控除|手数料|金利|年利)[^、。？?]{0,12}は")
 HOOK_DEVICE = re.compile(r"[？?]|\d|[０-９]|実は|意外|なのに|ではなく|じゃない|のに|逆|知らない|損|違い|しないで|ください|危な|危険|間違|やめ")
 PROJECTION = re.compile(r"(年利|利回り|複利).*(なります|になる|増え|貯ま|膨らみ)|(増え|貯ま|膨らみ).*(年利|利回り|複利)")
 ASSUMPTION = re.compile(r"仮に|たとえば|例えば|として|場合|想定|もし|のとき|なら|前提|とすると")
@@ -245,6 +289,8 @@ def lint(script):
         problems.append(f"hook {len(hook)} chars (>30)")
     if not HOOK_DEVICE.search(hook):
         problems.append("hook has no question, contrast or number")
+    if HOOK_LECTURE.search(hook) and not HOOK_WARN.search(hook):
+        problems.append(f"hook opens by explaining a rule: {hook}")
     if HOOK_HEDGE.search(hook):
         problems.append(f"hedged hook: {hook}")
     for l in [hook, *lines]:
@@ -328,11 +374,11 @@ def next_script(cfg, top_hooks=None, seed_only=False):
     if has_llm() and not seed_only:
         try:
             s = generate_with_claude(cfg, category, top_hooks)
-            bad = validate(s, cfg)
+            bad = validate(s, cfg) + cooldown_problems(s, cfg)
             if bad:
                 log("generated script failed validation, retrying once:", bad)
                 s = generate_with_claude(cfg, category, top_hooks, feedback=bad[:6])
-                bad = validate(s, cfg)
+                bad = validate(s, cfg) + cooldown_problems(s, cfg)
             if not bad:
                 return s
             log("generated script failed validation, using seed:", bad)
