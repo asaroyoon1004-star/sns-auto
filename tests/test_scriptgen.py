@@ -118,3 +118,18 @@ class OutroArms(unittest.TestCase):
         from sns.render import outro_for
         self.assertEqual(outro_for(self.CFG, {"variant": "outro:comment", "category": "scam_guard"}), "届いた人はコメントしてね。")
         self.assertEqual(outro_for(self.CFG, {"variant": "outro:comment", "category": "tax_system"}), "コメントしてね。")
+
+
+class LiveAffiliates(unittest.TestCase):
+    def test_only_affiliates_with_a_link(self):
+        from sns.scriptgen import live_affiliates
+        cfg = {"affiliates": {"card": {"url": ""}, "furusato": {"url": "https://example.com/x"}}}
+        self.assertEqual(live_affiliates(cfg), ["furusato"])
+        self.assertEqual(live_affiliates({"affiliates": {"card": {"url": ""}}}), [])
+
+
+class ProfileLinkNeedsAffiliate(unittest.TestCase):
+    def test_profile_link_without_affiliate_is_flagged(self):
+        from sns.common import load_config
+        s = dict(g.seed_by_id("s011"), affiliate=None, cta="保存して、比較はプロフィールのリンクからどうぞ。")
+        self.assertIn("points to a profile link without an affiliate", g.validate(s, load_config()))

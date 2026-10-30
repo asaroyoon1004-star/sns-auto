@@ -66,6 +66,11 @@ HOOK → QUESTION → REVEAL → EXPLANATION → EXAMPLE → CAVEAT / PAYOFF
 - fact_check_notes（動画には出さない）に、(1)根拠にした公的情報の名前、(2)計算条件・前提、(3)どの文が事実で、どれが仮定・予測かを短く書く。"""
 
 
+def live_affiliates(cfg):
+    """Affiliates that have a link on the profile page. A video must not point to a link or carry a PR label before one exists."""
+    return [k for k, a in cfg["affiliates"].items() if a.get("url")]
+
+
 def _client():
     import anthropic
 
@@ -107,7 +112,7 @@ def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
 
     client = _client()
     cat_label = cfg["categories"][category]["label"]
-    affiliates = ", ".join(cfg["affiliates"].keys())
+    affiliates = ", ".join(live_affiliates(cfg)) or "（まだ無い。必ず null）"
     avoid = "、".join(recent_titles()) or "なし"
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     hooks = "\n".join(f"- {h}" for h in (top_hooks or [])) or "- （まだデータなし）"
@@ -139,7 +144,7 @@ def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
     data["category"] = category
     data["id"] = "g" + datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
     data["source"] = "claude"
-    if data.get("affiliate") not in cfg["affiliates"]:
+    if data.get("affiliate") not in live_affiliates(cfg):
         data["affiliate"] = None
     return data
 
@@ -278,6 +283,8 @@ def validate(script, cfg):
         if banned.search(l) and not re.search(r"禁止|危険|詐欺|サイン|ブロック", l):
             problems.append(f"banned phrase: {l}")
     body = script["hook"] + "".join(script["lines"])
+    if not script.get("affiliate") and "プロフィール" in body + script.get("cta", ""):
+        problems.append("points to a profile link without an affiliate")
     if script.get("category") == "invest_basic" and not re.search(r"元本割れ|減る|下が|リスク|損", body):
         problems.append("invest script without a downside note")
     return problems + lint(script)
