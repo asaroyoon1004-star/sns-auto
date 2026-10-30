@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-10-29T23:53:23+00:00",
+  "checked_at": "2026-10-30T15:16:12+00:00",
   "channel_id": "UCjAKijIU_DMJDAJ3i-WoZYw",
   "videos_with_data": 26,
-  "ids": 37,
+  "ids": 39,
   "queries": [
     {
       "metric": "averageViewDuration",
@@ -18,11 +18,11 @@
   "channel_7d": {
     "http": 200,
     "days": 7,
-    "views": 13911,
-    "avg_view_sec": 28,
-    "avg_view_pct": 81.49,
+    "views": 11674,
+    "avg_view_sec": 26,
+    "avg_view_pct": 78.09,
     "subs_gained": 8,
-    "minutes_watched": 1912
+    "minutes_watched": 1486
   },
   "diagnose": {
     "scopes": [
@@ -76,16 +76,18 @@
         "ubFyvVlVuPw",
         "izULLNkZKZw",
         "bU6oWMQhLGI",
-        "idpLAkYxy4k"
+        "idpLAkYxy4k",
+        "7zzavXhhHEo",
+        "NJowbq8MJGI"
       ]
     },
     "windows": [
       {
         "window": "to_today",
-        "start": "2026-10-15",
-        "end": "2026-10-29",
+        "start": "2026-10-16",
+        "end": "2026-10-30",
         "http": 200,
-        "rows": 13,
+        "rows": 12,
         "last_rows": [
           [
             "2026-10-25",
@@ -106,10 +108,10 @@
       },
       {
         "window": "to_2d_ago",
-        "start": "2026-10-15",
-        "end": "2026-10-27",
+        "start": "2026-10-16",
+        "end": "2026-10-28",
         "http": 200,
-        "rows": 13,
+        "rows": 12,
         "last_rows": [
           [
             "2026-10-25",
@@ -131,7 +133,7 @@
       {
         "window": "from_2026_01",
         "start": "2026-01-01",
-        "end": "2026-10-28",
+        "end": "2026-10-29",
         "http": 200,
         "rows": 300,
         "last_rows": [
