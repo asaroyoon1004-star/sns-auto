@@ -1,28 +1,28 @@
 {
-  "checked_at": "2026-10-30T23:36:42+00:00",
+  "checked_at": "2026-10-31T23:17:00+00:00",
   "channel_id": "UCjAKijIU_DMJDAJ3i-WoZYw",
-  "videos_with_data": 29,
-  "ids": 40,
+  "videos_with_data": 32,
+  "ids": 43,
   "queries": [
     {
       "metric": "averageViewDuration",
       "http": 200,
-      "rows": 29
+      "rows": 32
     },
     {
       "metric": "engagedViews",
       "http": 200,
-      "rows": 29
+      "rows": 32
     }
   ],
   "channel_7d": {
     "http": 200,
     "days": 7,
-    "views": 12141,
-    "avg_view_sec": 26,
-    "avg_view_pct": 77.48,
-    "subs_gained": 8,
-    "minutes_watched": 1528
+    "views": 9842,
+    "avg_view_sec": 24,
+    "avg_view_pct": 71.21,
+    "subs_gained": 6,
+    "minutes_watched": 1239
   },
   "diagnose": {
     "scopes": [
@@ -79,79 +79,82 @@
         "idpLAkYxy4k",
         "7zzavXhhHEo",
         "NJowbq8MJGI",
-        "PoI1VxVhFr0"
+        "PoI1VxVhFr0",
+        "e43ucn4iMkg",
+        "H4zNe15ZD0Y",
+        "HHLX8vwrovI"
       ]
     },
     "windows": [
       {
         "window": "to_today",
-        "start": "2026-10-16",
-        "end": "2026-10-30",
+        "start": "2026-10-17",
+        "end": "2026-10-31",
         "http": 200,
         "rows": 13,
         "last_rows": [
           [
-            "2026-10-26",
-            2619,
-            348
-          ],
-          [
             "2026-10-27",
-            2642,
-            356
+            2626,
+            355
           ],
           [
             "2026-10-28",
             447,
             40
+          ],
+          [
+            "2026-10-29",
+            235,
+            16
           ]
         ]
       },
       {
         "window": "to_2d_ago",
-        "start": "2026-10-16",
-        "end": "2026-10-28",
+        "start": "2026-10-17",
+        "end": "2026-10-29",
         "http": 200,
         "rows": 13,
         "last_rows": [
           [
-            "2026-10-26",
-            2619,
-            348
-          ],
-          [
             "2026-10-27",
-            2642,
-            356
+            2626,
+            355
           ],
           [
             "2026-10-28",
             447,
             40
+          ],
+          [
+            "2026-10-29",
+            235,
+            16
           ]
         ]
       },
       {
         "window": "from_2026_01",
         "start": "2026-01-01",
-        "end": "2026-10-29",
+        "end": "2026-10-30",
         "http": 200,
-        "rows": 301,
+        "rows": 302,
         "last_rows": [
           [
-            "2026-10-26",
-            2619,
-            348
-          ],
-          [
             "2026-10-27",
-            2642,
-            356
+            2626,
+            355
           ],
           [
             "2026-10-28",
             447,
             40
+          ],
+          [
+            "2026-10-29",
+            235,
+            16
           ]
         ]
       }
