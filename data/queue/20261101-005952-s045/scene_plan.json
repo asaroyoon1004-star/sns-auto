@@ -1,0 +1,165 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "肉は、買った日に1回分ずつ小分けして冷凍してください。",
+   "caption": "肉は、買った日に1回分ずつ小分けして冷凍してください。",
+   "key_message": "肉は、買った日に1回分ずつ小分けして冷凍してください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.594
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "冷蔵庫に入れたまま、使い切れずに捨てる食材が出ます。",
+   "caption": "冷蔵庫に入れたまま、使い切れずに捨てる食材が出ます。",
+   "key_message": "冷蔵庫に入れたまま、使い切れずに捨てる食材が出ます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.594,
+   "duration": 3.598
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "買った日のうちに、1回分ずつラップで小分けにします。",
+   "caption": "買った日のうちに、1回分ずつラップで小分けにします。",
+   "key_message": "買った日に小分け",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "お肉の冷凍保存",
+    "rows": [
+     {
+      "label": "買った日に小分け",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.192,
+   "duration": 3.419
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "平らにして冷凍すると、早く凍って、解凍も早いです。",
+   "caption": "平らにして冷凍すると、早く凍って、解凍も早いです。",
+   "key_message": "平らにして冷凍",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "お肉の冷凍保存",
+    "rows": [
+     {
+      "label": "平らにして冷凍",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 10.611,
+   "duration": 4.132
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "使う分だけ取り出せるので、無駄になりません。",
+   "caption": "使う分だけ取り出せるので、無駄になりません。",
+   "key_message": "使う分だけ取り出せるので、無駄になりません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 14.743,
+   "duration": 2.846
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "冷凍の目安は、およそ1か月です。",
+   "caption": "冷凍の目安は、およそ1か月です。",
+   "key_message": "冷凍の目安は、およそ1か月です",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1か月"
+   },
+   "emphasis": [
+    "1か月"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.589,
+   "duration": 2.621
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "日付を書いておくと、食べ忘れも防げます。",
+   "caption": "日付を書いておくと、食べ忘れも防げます。",
+   "key_message": "日付を書く",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "お肉の冷凍保存",
+    "rows": [
+     {
+      "label": "日付を書く",
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.21,
+   "duration": 2.825
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "保存して、次の買い物のあとで試してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "保存して、次の買い物のあとで試してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "保存して、次の買い物のあとで試してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.035,
+   "duration": 7.199
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
