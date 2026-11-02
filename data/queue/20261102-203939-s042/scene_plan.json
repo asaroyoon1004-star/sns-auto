@@ -1,0 +1,169 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "簡単に稼げる副業、先にお金を払う前に確認してください。",
+   "caption": "簡単に稼げる副業、先にお金を払う前に確認してください。",
+   "key_message": "簡単に稼げる副業、先にお金を払う前に確認してください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.19
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "「スマホだけで月30万円」などと、誘う広告が増えています。",
+   "caption": "「スマホだけで月30万円」などと、誘う広告が増えています。",
+   "key_message": "「スマホだけで月30万円」などと、誘う広告が増えています",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "30万円"
+   },
+   "emphasis": [
+    "30万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.19,
+   "duration": 4.043
+  },
+  {
+   "index": 2,
+   "role": "caveat",
+   "narration": "最初に登録料や教材費を求められたら、注意が必要です。",
+   "caption": "最初に登録料や教材費を求められたら、注意が必要です。",
+   "key_message": "先にお金を払わせる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "副業詐欺のサイン",
+    "rows": [
+     {
+      "label": "先にお金を払わせる",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "最初に登録料や教材費を求められたら、注意が必要です。",
+   "start": 8.233,
+   "duration": 4.137
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "働く側が、先にお金を払う仕事は、ほとんどありません。",
+   "caption": "働く側が、先にお金を払う仕事は、ほとんどありません。",
+   "key_message": "働く側が、先にお金を払う仕事は、ほとんどありません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.37,
+   "duration": 4.106
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "連絡をLINEなどに誘導してくるのも、よくあるパターンです。",
+   "caption": "連絡をLINEなどに誘導してくるのも、よくあるパターンです。",
+   "key_message": "LINEに誘導する",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "副業詐欺のサイン",
+    "rows": [
+     {
+      "label": "LINEに誘導する",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.476,
+   "duration": 3.712
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "契約する前に、会社名と住所をネットで調べましょう。",
+   "caption": "契約する前に、会社名と住所をネットで調べましょう。",
+   "key_message": "会社名と住所を調べる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "副業詐欺のサイン",
+    "rows": [
+     {
+      "label": "会社名と住所を調べる",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.188,
+   "duration": 3.551
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "迷ったら、消費者ホットライン188に相談できます。",
+   "caption": "迷ったら、消費者ホットライン188に相談できます。",
+   "key_message": "188に相談",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "副業詐欺のサイン",
+    "rows": [
+     {
+      "label": "188に相談",
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [
+    "188"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.739,
+   "duration": 3.723
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "副業に興味がある友だちに送ってあげて。届いたことがある人は、コメントで教えてね。",
+   "caption": "副業に興味がある友だちに送ってあげて。届いたことがある人は、コメントで教えてね。",
+   "key_message": "副業に興味がある友だちに送ってあげて。届いたことがある人は、コメントで教えてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.462,
+   "duration": 5.981
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
