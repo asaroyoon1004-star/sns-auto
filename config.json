@@ -25,7 +25,7 @@
   "tts": {
     "engine": "auto",
     "edge_voice": "ja-JP-KeitaNeural",
-    "edge_rate": "+12%",
+    "edge_rate": "+20%",
     "pause_sec": 0.25
   },
   "video": {
