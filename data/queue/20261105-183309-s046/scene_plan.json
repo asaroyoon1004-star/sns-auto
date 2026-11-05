@@ -1,0 +1,172 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "60歳より前に使うお金は、イデコに入れないで。",
+   "caption": "60歳より前に使うお金は、イデコに入れないで。",
+   "key_message": "60歳より前に使うお金は、イデコに入れないで",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "60歳"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.261
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "イデコは、自分で積み立てる、私的年金の制度です。",
+   "caption": "イデコは、自分で積み立てる、私的年金の制度です。",
+   "key_message": "イデコは、自分で積み立てる、私的年金の制度です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.261,
+   "duration": 3.499
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "掛け金が全額、所得控除になるので、所得税と住民税が軽くなります。",
+   "caption": "掛け金が全額、所得控除になるので、所得税と住民税が軽くなります。",
+   "key_message": "掛け金は全額控除",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "イデコの注意点",
+    "rows": [
+     {
+      "label": "掛け金は全額控除",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.76,
+   "duration": 4.815
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "たとえば、掛け金が月1万円なら、年間12万円が控除の対象です。",
+   "caption": "たとえば、掛け金が月1万円なら、年間12万円が控除の対象です。",
+   "key_message": "年12万円が控除の対象",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "イデコの注意点",
+    "rows": [
+     {
+      "label": "年12万円が控除の対象",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1万円",
+    "12万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.575,
+   "duration": 4.802
+  },
+  {
+   "index": 4,
+   "role": "caveat",
+   "narration": "ただし、原則60歳になるまで、引き出せません。",
+   "caption": "ただし、原則60歳になるまで、引き出せません。",
+   "key_message": "原則60歳まで引き出せない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "イデコの注意点",
+    "rows": [
+     {
+      "label": "原則60歳まで引き出せない",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "60歳"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、原則60歳になるまで、引き出せません。",
+   "start": 16.377,
+   "duration": 3.44
+  },
+  {
+   "index": 5,
+   "role": "caveat",
+   "narration": "運用商品によっては、元本割れすることもあります。",
+   "caption": "運用商品によっては、元本割れすることもあります。",
+   "key_message": "元本割れもある",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "イデコの注意点",
+    "rows": [
+     {
+      "label": "元本割れもある",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "運用商品によっては、元本割れすることもあります。",
+   "start": 19.817,
+   "duration": 3.189
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "使う予定のないお金で、始めるのが基本です。",
+   "caption": "使う予定のないお金で、始めるのが基本です。",
+   "key_message": "使う予定のないお金で、始めるのが基本です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 23.006,
+   "duration": 2.916
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "気になる人は、保存して見返してね。毎日1本、お金の話。フォローしてね。",
+   "caption": "気になる人は、保存して見返してね。毎日1本、お金の話。フォローしてね。",
+   "key_message": "気になる人は、保存して見返してね。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 25.922,
+   "duration": 6.287
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
