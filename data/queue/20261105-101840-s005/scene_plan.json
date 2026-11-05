@@ -1,0 +1,168 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "待機電力は、家庭の電気の約5パーセント。",
+   "caption": "待機電力は、家庭の電気の約5パーセント。",
+   "key_message": "待機電力は、家庭の電気の約5パーセント",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "5パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 2.894
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "使っていない家電も、コンセントにつながっているだけで電気を使います。",
+   "caption": "使っていない家電も、コンセントにつながっているだけで電気を使います。",
+   "key_message": "使っていない家電も、コンセントにつながっているだけで電気を使います",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 2.894,
+   "duration": 3.92
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "約5パーセントなので、小さく見えるかもしれません。",
+   "caption": "約5パーセントなので、小さく見えるかもしれません。",
+   "key_message": "待機電力",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "電力消費の内訳",
+    "rows": [
+     {
+      "label": "待機電力",
+      "value": 5,
+      "text": "約5パーセント",
+      "line": 2
+     },
+     {
+      "label": "それ以外",
+      "value": 95,
+      "text": "残り",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "5パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.814,
+   "duration": 3.025
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "テレビ、レコーダー、パソコン周り、温水洗浄便座などが代表例です。",
+   "caption": "テレビ、レコーダー、パソコン周り、温水洗浄便座などが代表例です。",
+   "key_message": "テレビ、レコーダー、パソコン周り、温水洗浄便座などが代表例です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 9.839,
+   "duration": 4.663
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "長く使わない家電は、コンセントを抜くのが一番確実。",
+   "caption": "長く使わない家電は、コンセントを抜くのが一番確実。",
+   "key_message": "長く使わない家電は、コンセントを抜くのが一番確実",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 14.502,
+   "duration": 3.527
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "毎回抜くのが面倒なら、スイッチ付きの電源タップが便利です。",
+   "caption": "毎回抜くのが面倒なら、スイッチ付きの電源タップが便利です。",
+   "key_message": "毎回抜くのが面倒なら、スイッチ付きの電源タップが便利です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.029,
+   "duration": 3.751
+  },
+  {
+   "index": 6,
+   "role": "caveat",
+   "narration": "ただし、録画機やルーターなど、抜くと困るものは対象外に。",
+   "caption": "ただし、録画機やルーターなど、抜くと困るものは対象外に。",
+   "key_message": "ただし、録画機やルーターなど、抜くと困るものは対象外に",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、録画機やルーターなど、抜くと困るものは対象外に。",
+   "start": 21.78,
+   "duration": 3.907
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "小さな積み重ねですが、何もしなくても毎月かかる分なので効果は続きます。",
+   "caption": "小さな積み重ねですが、何もしなくても毎月かかる分なので効果は続きます。",
+   "key_message": "小さな積み重ねですが、何もしなくても毎月かかる分なので効果は続きます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 25.687,
+   "duration": 4.527
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "今日1つだけ、使ってない家電のコンセントを抜いてみて。やってる人は、コメントで教えてね。",
+   "caption": "今日1つだけ、使ってない家電のコンセントを抜いてみて。やってる人は、コメントで教えてね。",
+   "key_message": "今日1つだけ、使ってない家電のコンセントを抜いてみて。やってる人は、コメントで教えてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1つ"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.214,
+   "duration": 6.096
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
