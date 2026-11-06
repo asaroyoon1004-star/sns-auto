@@ -72,6 +72,7 @@ def collect():
         write_json(DATA / "analytics_status.json", {"checked_at": now, "channel_id": upload_youtube.my_channel_id(),
                                                        "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
                                                        "channel_7d": upload_youtube.channel_summary(7),
+                                                       "traffic_28d": upload_youtube.traffic_sources(28),
                                                        "diagnose": upload_youtube.diagnose(list(ids))})
         for vid, st in upload_youtube.stats(list(ids)).items():
             d, m, s = ids[vid]

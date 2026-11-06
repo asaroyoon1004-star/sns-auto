@@ -153,6 +153,32 @@ def diagnose(video_ids):
     return out
 
 
+def traffic_sources(days=28):
+    """Channel views by where they came from over the last `days` days: {"SHORTS_FEED": 1234, ...}.
+    Shows whether the ~1,000-view ceiling comes from the Shorts feed, search, or elsewhere. {} when the API is unavailable."""
+    from datetime import date, timedelta
+
+    try:
+        token = access_token()
+        end = date.today()
+        r = requests.get(ANALYTICS, headers={"Authorization": f"Bearer {token}"}, timeout=30,
+                         params={"ids": "channel==MINE", "startDate": (end - timedelta(days=days)).isoformat(),
+                                 "endDate": end.isoformat(), "metrics": "views",
+                                 "dimensions": "insightTrafficSourceType", "sort": "-views"})
+    except Exception as e:
+        print("[sns] traffic sources unavailable:", repr(e))
+        return {}
+    if r.status_code != 200:
+        print(f"[sns] traffic sources: {r.status_code} {r.text[:200]}")
+        return {}
+    return traffic_rows(r.json().get("rows", []))
+
+
+def traffic_rows(rows):
+    """Turn Analytics rows [[source, views], ...] into {source: views}."""
+    return {str(src): int(v) for src, v in rows}
+
+
 LAST_STATUS = {}  # what the last analytics() call saw; analytics.collect() saves it so a blank report can be diagnosed
 
 
