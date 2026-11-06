@@ -45,3 +45,10 @@ class ReportTables(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TrafficRows(unittest.TestCase):
+    def test_rows_become_source_totals(self):
+        from sns.upload_youtube import traffic_rows
+        self.assertEqual(traffic_rows([["SHORTS", 4321], ["YT_SEARCH", "120"]]), {"SHORTS": 4321, "YT_SEARCH": 120})
+        self.assertEqual(traffic_rows([]), {})
