@@ -1,9 +1,9 @@
 {
-  "fixed_cost": 0.836,
-  "cashless": 0.851,
-  "tax_system": 1.154,
-  "saving_habit": 1.148,
-  "invest_basic": 0.797,
-  "scam_guard": 1.092,
-  "food_daily": 1.194
+  "fixed_cost": 0.771,
+  "cashless": 0.855,
+  "tax_system": 1.16,
+  "saving_habit": 1.153,
+  "invest_basic": 0.889,
+  "scam_guard": 1.097,
+  "food_daily": 1.14
 }
