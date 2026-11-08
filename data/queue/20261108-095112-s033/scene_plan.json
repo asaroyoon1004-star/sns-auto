@@ -1,0 +1,170 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "年30万円の買い物、還元率で1,500円の差。",
+   "caption": "年30万円の買い物、還元率で1,500円の差。",
+   "key_message": "年30万円の買い物、還元率で1,500円の差",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "30万円",
+    "1,500円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.567
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "年に30万円を、カードで払うとします。",
+   "caption": "年に30万円を、カードで払うとします。",
+   "key_message": "年に30万円を、カードで払うとします",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "30万円"
+   },
+   "emphasis": [
+    "30万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.567,
+   "duration": 2.789
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "還元率が0.5パーセントなら、戻るのは1,500円。",
+   "caption": "還元率が0.5パーセントなら、戻るのは1,500円。",
+   "key_message": "還元率0.5%",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "年30万円の還元額",
+    "rows": [
+     {
+      "label": "還元率0.5%",
+      "value": 1500,
+      "text": "1500円",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "0.5パーセント",
+    "1,500円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.356,
+   "duration": 3.557
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "還元率が1パーセントなら、戻るのは3,000円です。",
+   "caption": "還元率が1パーセントなら、戻るのは3,000円です。",
+   "key_message": "還元率1%",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "年30万円の還元額",
+    "rows": [
+     {
+      "label": "還元率1%",
+      "value": 3000,
+      "text": "3000円",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1パーセント",
+    "3,000円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 9.913,
+   "duration": 3.326
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "同じ買い物でも、カードを変えるだけで差が出ます。",
+   "caption": "同じ買い物でも、カードを変えるだけで差が出ます。",
+   "key_message": "同じ買い物でも、カードを変えるだけで差が出ます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.239,
+   "duration": 2.931
+  },
+  {
+   "index": 5,
+   "role": "caveat",
+   "narration": "ただし、年会費がかかるカードは、年会費を引いて比べましょう。",
+   "caption": "ただし、年会費がかかるカードは、年会費を引いて比べましょう。",
+   "key_message": "ただし、年会費がかかるカードは、年会費を引いて比べましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、年会費がかかるカードは、年会費を引いて比べましょう。",
+   "start": 16.17,
+   "duration": 4.089
+  },
+  {
+   "index": 6,
+   "role": "example",
+   "narration": "まずは、年会費無料で還元率1パーセント以上のカードが目安です。",
+   "caption": "まずは、年会費無料で還元率1パーセント以上のカードが目安です。",
+   "key_message": "まずは、年会費無料で還元率1パーセント以上のカードが目安です",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1パーセント"
+   },
+   "emphasis": [
+    "1パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 20.259,
+   "duration": 4.191
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "今使っているカードの還元率、調べてみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "今使っているカードの還元率、調べてみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "今使っているカードの還元率、調べてみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.45,
+   "duration": 6.859
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
