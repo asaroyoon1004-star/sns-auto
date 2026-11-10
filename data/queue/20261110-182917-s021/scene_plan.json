@@ -1,0 +1,178 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "手取りは額面の約8割。残りの2割はどこへ？",
+   "caption": "手取りは額面の約8割。残りの2割はどこへ？",
+   "key_message": "手取りは額面の約8割。残りの2割はどこへ",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "8",
+    "2"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.499
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "給料から引かれているのは、大きく分けて社会保険料と税金です。",
+   "caption": "給料から引かれているのは、大きく分けて社会保険料と税金です。",
+   "key_message": "給料から引かれているのは、大きく分けて社会保険料と税金です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.499,
+   "duration": 3.945
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "社会保険料は、健康保険、厚生年金、雇用保険など。",
+   "caption": "社会保険料は、健康保険、厚生年金、雇用保険など。",
+   "key_message": "社会保険料は、健康保険、厚生年金、雇用保険など",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.444,
+   "duration": 4.404
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "税金は、所得税と住民税です。",
+   "caption": "税金は、所得税と住民税です。",
+   "key_message": "税金は、所得税と住民税です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.848,
+   "duration": 2.48
+  },
+  {
+   "index": 4,
+   "role": "example",
+   "narration": "手取りは、だいたい額面の75パーセントから85パーセントくらいになります。",
+   "caption": "手取りは、だいたい額面の75パーセントから85パーセントくらいになります。",
+   "key_message": "額面",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "額面と手取り",
+    "rows": [
+     {
+      "label": "額面",
+      "value": 100,
+      "text": "全額",
+      "line": 4
+     },
+     {
+      "label": "手取り",
+      "value": 80,
+      "text": "75〜85パーセント",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "75パーセント",
+    "85パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 14.328,
+   "duration": 4.513
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "住民税は前の年の所得で決まるので、新社会人の1年目は引かれないことが多いです。",
+   "caption": "住民税は前の年の所得で決まるので、新社会人の1年目は引かれないことが多いです。",
+   "key_message": "住民税は前の年の所得で決まるので、新社会人の1年目は引かれないことが多いです",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1年"
+   },
+   "emphasis": [
+    "1年"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.841,
+   "duration": 5.262
+  },
+  {
+   "index": 6,
+   "role": "example",
+   "narration": "2年目に手取りが減ったと感じるのは、このためです。",
+   "caption": "2年目に手取りが減ったと感じるのは、このためです。",
+   "key_message": "2年目に手取りが減ったと感じるのは、このためです",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "2年"
+   },
+   "emphasis": [
+    "2年"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.103,
+   "duration": 3.023
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "一度、自分の明細を項目ごとに見てみましょう。",
+   "caption": "一度、自分の明細を項目ごとに見てみましょう。",
+   "key_message": "一度、自分の明細を項目ごとに見てみましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 27.126,
+   "duration": 3.038
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "保存して、次の給料日にチェックしてみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "保存して、次の給料日にチェックしてみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "保存して、次の給料日にチェックしてみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 30.164,
+   "duration": 6.666
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
