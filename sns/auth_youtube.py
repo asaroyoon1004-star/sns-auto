@@ -10,8 +10,9 @@ import urllib.parse
 import requests
 
 # yt-analytics.readonly: retention / subscribers-gained per video for the weekly report
+# youtube.force-ssl: add each upload to its category playlist (series) — see upload_youtube.add_to_playlist
 SCOPES = ("https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly "
-          "https://www.googleapis.com/auth/yt-analytics.readonly")
+          "https://www.googleapis.com/auth/yt-analytics.readonly https://www.googleapis.com/auth/youtube.force-ssl")
 REDIRECT = "http://localhost:8080/"
 
 

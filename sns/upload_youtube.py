@@ -6,6 +6,8 @@ import os
 
 import requests
 
+from .common import DATA, read_json, write_json
+
 TOKEN_URL = "https://oauth2.googleapis.com/token"
 UPLOAD_URL = "https://www.googleapis.com/upload/youtube/v3/videos"
 API = "https://www.googleapis.com/youtube/v3"
@@ -27,9 +29,24 @@ def access_token():
     return r.json()["access_token"]
 
 
-def build_metadata(cfg, script):
+def subscribe_lines(cfg, script, playlists=None):
+    """Description lines that point a viewer to the channel (with the subscribe pop-up) and to the category's playlist.
+    Shorts may not make these links clickable, but the watch page (search, channel page) does."""
+    ycfg = cfg["upload"]["youtube"]
+    out = []
+    cid = ycfg.get("channel_id")
+    if cid:
+        out += [ycfg.get("subscribe_line") or "▶ チャンネル登録はこちら", f"https://www.youtube.com/channel/{cid}?sub_confirmation=1"]
+    pid = (playlists or {}).get(script.get("category"))
+    label = cfg.get("categories", {}).get(script.get("category"), {}).get("label")
+    if pid and label:
+        out += [f"▶ シリーズ「{label}」をまとめて見る", f"https://www.youtube.com/playlist?list={pid}"]
+    return out + [""] if out else []
+
+
+def build_metadata(cfg, script, playlists=None):
     tags = " ".join("#" + h for h in script["hashtags"])
-    desc = [script["hook"], "", *script["lines"], "", script["cta"], ""]
+    desc = [script["hook"], "", *script["lines"], "", script["cta"], "", *subscribe_lines(cfg, script, playlists)]
     if script.get("affiliate"):
         desc.append("※概要欄・プロフィールのリンクにはアフィリエイト広告（PR）を含みます。")
     desc += ["※この動画はAI音声・自動生成の字幕で制作しています。内容は一般的な情報で、個別の助言ではありません。", "", tags, "#Shorts"]
@@ -39,9 +56,51 @@ def build_metadata(cfg, script):
     return title, "\n".join(desc), script["hashtags"]
 
 
+PLAYLISTS = DATA / "playlists.json"  # {category: playlist id}, committed with the rest of data/
+
+
+def _playlist_for(cfg, category, token):
+    """The category's playlist id, creating a public playlist the first time. Needs the youtube.force-ssl scope."""
+    known = read_json(PLAYLISTS, {})
+    if known.get(category):
+        return known[category]
+    pcfg = cfg["upload"]["youtube"].get("playlists") or {}
+    label = cfg["categories"][category]["label"]
+    r = requests.post(f"{API}/playlists", params={"part": "snippet,status"}, timeout=30,
+                      headers={"Authorization": f"Bearer {token}"},
+                      json={"snippet": {"title": pcfg.get("title", "{label}").format(label=label),
+                                        "description": f"{label}のショート動画をまとめています。毎日1分、お金で損しない知識。",
+                                        "defaultLanguage": "ja"},
+                            "status": {"privacyStatus": "public"}})
+    r.raise_for_status()
+    known[category] = r.json()["id"]
+    write_json(PLAYLISTS, known)
+    return known[category]
+
+
+def add_to_playlist(cfg, script, video_id, token):
+    """Put the video in its category's playlist (a series), so Shorts shows the playlist under it. Never raises:
+    returns {"playlist": id} or {"playlist_error": "..."} for meta.json, and the upload itself is kept either way."""
+    pcfg = cfg["upload"]["youtube"].get("playlists") or {}
+    cat = script.get("category")
+    if not pcfg.get("enabled") or cat not in cfg.get("categories", {}):
+        return {}
+    try:
+        pid = _playlist_for(cfg, cat, token)
+        r = requests.post(f"{API}/playlistItems", params={"part": "snippet"}, timeout=30,
+                          headers={"Authorization": f"Bearer {token}"},
+                          json={"snippet": {"playlistId": pid, "resourceId": {"kind": "youtube#video", "videoId": video_id}}})
+        r.raise_for_status()
+        return {"playlist": pid}
+    except Exception as e:
+        msg = getattr(getattr(e, "response", None), "text", "") or repr(e)
+        print(f"[sns] playlist add skipped ({cat}): {msg[:200]}")
+        return {"playlist_error": msg[:300]}
+
+
 def upload(cfg, script, video_path):
     ycfg = cfg["upload"]["youtube"]
-    title, desc, tags = build_metadata(cfg, script)
+    title, desc, tags = build_metadata(cfg, script, read_json(PLAYLISTS, {}))
     token = access_token()
     body = {
         "snippet": {"title": title, "description": desc, "tags": tags, "categoryId": ycfg.get("category_id", "27"),
@@ -63,7 +122,7 @@ def upload(cfg, script, video_path):
                            headers={"Authorization": f"Bearer {token}", "Content-Type": "video/mp4"}, timeout=600)
     put.raise_for_status()
     vid = put.json()["id"]
-    return {"platform": "youtube", "id": vid, "url": f"https://youtube.com/shorts/{vid}"}
+    return {"platform": "youtube", "id": vid, "url": f"https://youtube.com/shorts/{vid}", **add_to_playlist(cfg, script, vid, token)}
 
 
 def stats(video_ids):
@@ -104,13 +163,13 @@ def channel_summary(days=7):
         end = date.today()
         r = requests.get(ANALYTICS, headers={"Authorization": f"Bearer {token}"}, timeout=30,
                          params={"ids": "channel==MINE", "startDate": (end - timedelta(days=days)).isoformat(), "endDate": end.isoformat(),
-                                 "metrics": "views,averageViewDuration,averageViewPercentage,subscribersGained,estimatedMinutesWatched"})
+                                 "metrics": "views,averageViewDuration,averageViewPercentage,subscribersGained,estimatedMinutesWatched,subscribersLost"})
         if r.status_code != 200:
             return {"http": r.status_code, "error": r.text[:300]}
         rows = r.json().get("rows") or []
         if not rows:
             return {"http": 200, "rows": 0}
-        keys = ["views", "avg_view_sec", "avg_view_pct", "subs_gained", "minutes_watched"]
+        keys = ["views", "avg_view_sec", "avg_view_pct", "subs_gained", "minutes_watched", "subs_lost"]
         return {"http": 200, "days": days, **dict(zip(keys, rows[0]))}
     except Exception as e:
         return {"error": type(e).__name__}

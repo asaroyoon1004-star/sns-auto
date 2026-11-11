@@ -31,7 +31,8 @@ def all_segments():
         yield "hook", s["hook"]
         for l in s["lines"]:
             yield "line", l
-        for outro in [CFG["video"].get("outro", ""), *CFG["video"].get("outro_comment", {}).values()]:
+        arms = [x for v in CFG["video"].get("outro_arms", {}).values() for x in (v.values() if isinstance(v, dict) else [v])]
+        for outro in [CFG["video"].get("outro", ""), *CFG["video"].get("outro_comment", {}).values(), *arms]:
             yield "cta", s["cta"] + outro
 
 
