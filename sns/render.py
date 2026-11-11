@@ -451,11 +451,19 @@ def caption_timeline(segs, durations, spoken, cap, v4):
 
 
 def outro_for(cfg, script):
-    """The closing line: the follow request by default, or a comment request for the `outro:comment` experiment arm."""
+    """The closing line: the follow request by default, the comment request for the old `outro:comment` arm, or the line set in
+    `video.outro_arms[arm]` (a string, or a dict by category with a "default") for the arm of any `outro*` experiment."""
     v = cfg["video"]
-    if script.get("variant") == "outro:comment":
-        by_cat = v.get("outro_comment") or {}
-        return by_cat.get(script.get("category"), by_cat.get("default", ""))
+    name, _, arm = (script.get("variant") or "").partition(":")
+    if name.startswith("outro") and arm:
+        if arm == "comment":
+            by_cat = v.get("outro_comment") or {}
+            return by_cat.get(script.get("category"), by_cat.get("default", ""))
+        line = (v.get("outro_arms") or {}).get(arm)
+        if isinstance(line, dict):
+            return line.get(script.get("category"), line.get("default", ""))
+        if line:
+            return line
     return v.get("outro", "")
 
 

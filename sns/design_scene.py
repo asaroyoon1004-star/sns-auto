@@ -217,7 +217,7 @@ def _diagram_c(d, st, vis, step, grow, p):
 
 # ---------------------------------------------------------------- caption layer
 
-def caption_layer(st, kind, text, scene, count_p=1.0):
+def caption_layer(st, kind, text, scene, count_p=1.0, subscribe=False):
     """Everything that fades/slides with a caption chunk: the text, the big number, the call to action."""
     c, lo, fo = st["rgb"], st["layout"], st["fonts"]
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -246,7 +246,10 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
         py = y + h + 40
         d.rounded_rectangle([x0, py, x1, py + 104], radius=18, outline=_a(c["accent"]), width=4)
         v3.Sans("Bold", 50).draw(d, x0 + 36, py + 70, "保存して、あとで見返す", _a(c["accent"]))
-        v3.Sans("SemiBold", 38).draw(d, x0, py + 104 + 56, "フォローで毎日1分、お金に強くなる", _a(c["dim"]))
+        if subscribe:  # outro_sub:sub arm: a subscribe button that matches the spoken "チャンネル登録" (YouTube's own word)
+            _subscribe_button(d, st, x0, py + 104 + 28)
+        else:
+            v3.Sans("SemiBold", 38).draw(d, x0, py + 104 + 56, "フォローで毎日1分、お金に強くなる", _a(c["dim"]))
         return layer
     if hero:
         big, unit = v3._split_hero(hero)
@@ -269,6 +272,26 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     return layer
 
 
+SUB_RED = (255, 0, 51)
+
+
+def _subscribe_button(d, st, x, y):
+    """A red pill with a play mark and "チャンネル登録". Ends above the diagram dock (diagram_top), so nothing overlaps."""
+    c = st["rgb"]
+    f = v3.Sans("Bold", 48)
+    label = "チャンネル登録"
+    w = 56 + 44 + f.getlength(label) + 44
+    d.rounded_rectangle([x, y, x + w, y + 96], radius=48, fill=(*SUB_RED, 255))
+    tx, ty = x + 40, y + 48
+    d.polygon([(tx, ty - 18), (tx, ty + 18), (tx + 30, ty)], fill=_a(c["text"]))
+    f.draw(d, x + 96, y + 66, label, (255, 255, 255, 255))
+
+
+def is_subscribe_arm(script):
+    name, _, arm = (script.get("variant") or "").partition(":")
+    return name.startswith("outro") and arm == "sub"
+
+
 def draw_frame(st, script, kind, text, scene, ctx, progress, grow=(), p=1.0, count_p=1.0, fade=1.0, slide=0):
     c, lo = st["rgb"], st["layout"]
     img = Image.new("RGBA", (W, H), _a(c["bg"]))
@@ -279,7 +302,7 @@ def draw_frame(st, script, kind, text, scene, ctx, progress, grow=(), p=1.0, cou
     vis = ctx.get("visual")
     if vis:
         (_diagram_b if st["design"] == "sb" else _diagram_c)(d, st, vis, ctx["step"], grow, p)
-    layer = caption_layer(st, kind, text, scene, count_p)
+    layer = caption_layer(st, kind, text, scene, count_p, subscribe=kind == "cta" and is_subscribe_arm(script))
     if fade < 1.0 or slide:
         a = layer.getchannel("A").point(lambda v, k=fade: int(v * k))
         layer.putalpha(a)

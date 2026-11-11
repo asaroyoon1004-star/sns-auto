@@ -69,11 +69,13 @@ def collect():
     if upload_youtube.configured():
         ids = {u["id"]: (d, m, s) for d, m, s in items for u in m.get("uploads", []) if u["platform"] == "youtube"}
         deep = upload_youtube.analytics(list(ids))
-        write_json(DATA / "analytics_status.json", {"checked_at": now, "channel_id": upload_youtube.my_channel_id(),
-                                                       "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
-                                                       "channel_7d": upload_youtube.channel_summary(7),
-                                                       "traffic_28d": upload_youtube.traffic_sources(28),
-                                                       "diagnose": upload_youtube.diagnose(list(ids))})
+        status = {"checked_at": now, "channel_id": upload_youtube.my_channel_id(),
+                  "videos_with_data": len(deep), **upload_youtube.LAST_STATUS,
+                  "channel_7d": upload_youtube.channel_summary(7),
+                  "traffic_28d": upload_youtube.traffic_sources(28),
+                  "diagnose": upload_youtube.diagnose(list(ids))}
+        write_json(DATA / "analytics_status.json", status)
+        log_channel_day(status, items)
         for vid, st in upload_youtube.stats(list(ids)).items():
             d, m, s = ids[vid]
             rows.append(dict(collected_at=now, platform="youtube", video_id=vid, **_context(d, m, s),
@@ -97,6 +99,75 @@ def collect():
             w.writerows(rows)
     log(f"collected {len(rows)} stat rows")
     return rows
+
+
+CHANNEL_DAILY = DATA / "channel_daily.csv"
+DAILY_FIELDS = ["date", "views_7d", "subs_gained_7d", "subs_lost_7d", "subs_per_1000_7d", "avg_view_pct_7d",
+                "playlist_views_28d", "channel_page_views_28d", "videos_in_playlists", "playlist_error"]
+
+
+def channel_day_row(status, items, date):
+    """One row per day for the subscriber trend: channel-wide 7-day numbers, how many views come from playlists and the
+    channel page (the paths a series opens), and whether the playlist step is working."""
+    ch = status.get("channel_7d") or {}
+    tr = status.get("traffic_28d") or {}
+    ups = [u for _, m, _ in items for u in m.get("uploads", []) if u.get("platform") == "youtube"]
+    errs = [u["playlist_error"] for u in ups if u.get("playlist_error")]
+    views, subs = _num(ch.get("views")), _num(ch.get("subs_gained"))
+    return {"date": date, "views_7d": ch.get("views", ""), "subs_gained_7d": ch.get("subs_gained", ""),
+            "subs_lost_7d": ch.get("subs_lost", ""),
+            "subs_per_1000_7d": f"{subs / views * 1000:.2f}" if views and subs is not None else "",
+            "avg_view_pct_7d": ch.get("avg_view_pct", ""), "playlist_views_28d": tr.get("PLAYLIST", 0),
+            "channel_page_views_28d": tr.get("YT_CHANNEL", 0), "videos_in_playlists": sum(1 for u in ups if u.get("playlist")),
+            "playlist_error": ("権限なし" if "insufficient" in errs[-1].lower() or "403" in errs[-1] else errs[-1][:80]) if errs else ""}
+
+
+def log_channel_day(status, items):
+    """Append today's row to data/channel_daily.csv (a second run on the same day replaces it)."""
+    row = channel_day_row(status, items, status["checked_at"][:10])
+    old = []
+    if CHANNEL_DAILY.exists():
+        with open(CHANNEL_DAILY, encoding="utf-8") as f:
+            old = [r for r in csv.DictReader(f) if r.get("date") != row["date"]]
+    with open(CHANNEL_DAILY, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=DAILY_FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(old + [row])
+
+
+def subscriber_sections(rows, cfg, days=None):
+    """The subscriber section of the report: the daily trend and the running experiment judged on subs per 1,000 views."""
+    out = ["", "## チャンネル登録の推移（毎日記録）", "",
+           "目標: 1,000再生あたりの登録を 0.6人（11/11までの全動画）から 1.5人以上へ。", ""]
+    if days is None:
+        days = []
+        if CHANNEL_DAILY.exists():
+            with open(CHANNEL_DAILY, encoding="utf-8") as f:
+                days = list(csv.DictReader(f))
+    if days:
+        out += ["| 日付 | 7日の再生 | 7日の登録 | 解除 | 登録/1000再生 | 再生リスト経由(28日) | チャンネルページ経由(28日) | 再生リスト入り | 再生リストの状態 |",
+                "|---|---|---|---|---|---|---|---|---|"]
+        for d in days[-10:]:
+            out.append(f"| {d['date']} | {d['views_7d']} | +{d['subs_gained_7d']} | {d['subs_lost_7d'] or '-'} | {d['subs_per_1000_7d'] or '-'} | "
+                       f"{d['playlist_views_28d']} | {d['channel_page_views_28d']} | {d['videos_in_playlists']}本 | {d['playlist_error'] or 'OK'} |")
+    else:
+        out.append("- まだ記録がありません（次の分析から毎日1行ずつ増えます）")
+    exp = cfg.get("experiment") or {}
+    arms = exp.get("arms") or []
+    if len(arms) > 1:
+        out += ["", f"### 実験 {exp['name']}（判定は登録/1000再生。投稿から{MIN_AGE_H}時間以上の動画）", "",
+                "| 群 | 本数 | 合計再生 | 登録 | 登録/1000再生 |", "|---|---|---|---|---|"]
+        res = {}
+        for a in arms:
+            g = [r for r in mature(rows) if r.get("variant") == f"{exp['name']}:{a}"]
+            tv = sum(int(r["views"]) for r in g)
+            subs = sum(_num(r.get("subs_gained")) or 0 for r in g)
+            res[a] = (len(g), tv, subs)
+            out.append(f"| {a} | {len(g)} | {tv:,} | {subs:.0f} | {(f'{subs / tv * 1000:.2f}') if tv else '-'} |")
+        ready = all(n >= 20 and tv >= 5000 for n, tv, _ in res.values())
+        out += ["", "- 判定: " + ("各群が20本・5,000再生に届いた。1.5倍以上の差がある群を採用する" if ready else
+                                "まだ判定しない（各群20本以上・5,000再生以上になってから）")]
+    return out
 
 
 def current_channel():
@@ -167,6 +238,7 @@ def report(cfg):
     if w:
         lines += ["", "## 次の投稿配分（カテゴリ重み）", ""]
         lines += [f"- {cfg['categories'][c]['label']}: {v}" for c, v in sorted(w.items(), key=lambda x: -x[1])]
+    lines += subscriber_sections(rows, cfg)
     lines += research_sections(rows, cfg)
     out = DATA / "report.md"
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
