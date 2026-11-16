@@ -1,0 +1,142 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "カードの引き落とし日、給料日の前だと危ないです。",
+   "caption": "カードの引き落とし日、給料日の前だと危ないです。",
+   "key_message": "カードの引き落とし日、給料日の前だと危ないです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.222
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "口座にお金が足りないと、引き落としができません。",
+   "caption": "口座にお金が足りないと、引き落としができません。",
+   "key_message": "口座にお金が足りないと、引き落としができません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.222,
+   "duration": 2.919
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "給料日の前に引き落としがあると、残高不足になりやすいです。",
+   "caption": "給料日の前に引き落としがあると、残高不足になりやすいです。",
+   "key_message": "給料日の前は残高不足に注意",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "引き落とし日の確認",
+    "rows": [
+     {
+      "label": "給料日の前は残高不足に注意",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.141,
+   "duration": 3.615
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "遅れると、遅延損害金がかかったり、信用情報に影響が出たりすることがあります。",
+   "caption": "遅れると、遅延損害金がかかったり、信用情報に影響が出たりすることがあります。",
+   "key_message": "遅れると遅延損害金",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "引き落とし日の確認",
+    "rows": [
+     {
+      "label": "遅れると遅延損害金",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 9.756,
+   "duration": 5.267
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "カード会社のサイトで、引き落とし日を変えられる場合があります。",
+   "caption": "カード会社のサイトで、引き落とし日を変えられる場合があります。",
+   "key_message": "引き落とし日は変えられる場合も",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "引き落とし日の確認",
+    "rows": [
+     {
+      "label": "引き落とし日は変えられる場合も",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 15.023,
+   "duration": 3.573
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "変更できるかは、締め日と支払日を見て確認しましょう。",
+   "caption": "変更できるかは、締め日と支払日を見て確認しましょう。",
+   "key_message": "変更できるかは、締め日と支払日を見て確認しましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.596,
+   "duration": 3.41
+  },
+  {
+   "index": 6,
+   "role": "cta",
+   "narration": "引き落とし日、今日確認してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "引き落とし日、今日確認してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "引き落とし日、今日確認してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 22.006,
+   "duration": 6.257
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
