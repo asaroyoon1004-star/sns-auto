@@ -1,0 +1,163 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "ほしい物は、カートに入れて24時間待ってください。",
+   "caption": "ほしい物は、カートに入れて24時間待ってください。",
+   "key_message": "ほしい物は、カートに入れて24時間待ってください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "24時間"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.229
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "衝動買いの多くは、その場の気分で決まります。",
+   "caption": "衝動買いの多くは、その場の気分で決まります。",
+   "key_message": "衝動買いの多くは、その場の気分で決まります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.229,
+   "duration": 3.19
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "ほしい物は、カートに入れたまま、いったん閉じます。",
+   "caption": "ほしい物は、カートに入れたまま、いったん閉じます。",
+   "key_message": "カートに入れて閉じる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "衝動買いを防ぐ手順",
+    "rows": [
+     {
+      "label": "カートに入れて閉じる",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.419,
+   "duration": 3.43
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "24時間たっても、まだほしいかを確認します。",
+   "caption": "24時間たっても、まだほしいかを確認します。",
+   "key_message": "24時間待つ",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "衝動買いを防ぐ手順",
+    "rows": [
+     {
+      "label": "24時間待つ",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "24時間"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 9.849,
+   "duration": 3.26
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "翌日には、いらなくなっていることも多いです。",
+   "caption": "翌日には、いらなくなっていることも多いです。",
+   "key_message": "翌日には、いらなくなっていることも多いです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.109,
+   "duration": 2.95
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "本当に必要な物だけが、残ります。",
+   "caption": "本当に必要な物だけが、残ります。",
+   "key_message": "まだほしければ買う",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "衝動買いを防ぐ手順",
+    "rows": [
+     {
+      "label": "まだほしければ買う",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.059,
+   "duration": 2.651
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "高い物は、3日待つルールにするのもおすすめです。",
+   "caption": "高い物は、3日待つルールにするのもおすすめです。",
+   "key_message": "高い物は、3日待つルールにするのもおすすめです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "3日"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.71,
+   "duration": 3.228
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "次の買い物で、試してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "次の買い物で、試してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "次の買い物で、試してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.938,
+   "duration": 6.405
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
