@@ -1,0 +1,183 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "月5,000円の固定費削減は、年間6万円の節約です。",
+   "caption": "月5,000円の固定費削減は、年間6万円の節約です。",
+   "key_message": "月5,000円の固定費削減は、年間6万円の節約です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "5,000円",
+    "6万円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.082
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "支出には、固定費と変動費があります。",
+   "caption": "支出には、固定費と変動費があります。",
+   "key_message": "固定費と変動費がある",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "見直しの順番",
+    "rows": [
+     {
+      "label": "固定費と変動費がある",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.082,
+   "duration": 2.688
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "固定費は、家賃や通信費、保険料など、毎月ほぼ同じ額の支出。",
+   "caption": "固定費は、家賃や通信費、保険料など、毎月ほぼ同じ額の支出。",
+   "key_message": "固定費は、家賃や通信費、保険料など、毎月ほぼ同じ額の支出",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 6.77,
+   "duration": 5.281
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "変動費は、食費や日用品など、月によって変わる支出です。",
+   "caption": "変動費は、食費や日用品など、月によって変わる支出です。",
+   "key_message": "変動費は、食費や日用品など、月によって変わる支出です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.051,
+   "duration": 4.358
+  },
+  {
+   "index": 4,
+   "role": "example",
+   "narration": "多くの人は、食費から削ろうとしてストレスがたまります。",
+   "caption": "多くの人は、食費から削ろうとしてストレスがたまります。",
+   "key_message": "多くの人は、食費から削ろうとしてストレスがたまります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.409,
+   "duration": 3.538
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "でも、先に見直すべきは固定費。",
+   "caption": "でも、先に見直すべきは固定費。",
+   "key_message": "先に固定費を見直す",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "見直しの順番",
+    "rows": [
+     {
+      "label": "先に固定費を見直す",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 19.947,
+   "duration": 2.44
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "一度見直せば、何もしなくても毎月ずっと効果が続くからです。",
+   "caption": "一度見直せば、何もしなくても毎月ずっと効果が続くからです。",
+   "key_message": "効果は毎月ずっと続く",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "見直しの順番",
+    "rows": [
+     {
+      "label": "効果は毎月ずっと続く",
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 22.387,
+   "duration": 4.12
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "おすすめの順番は、通信費、保険、サブスク、電気、そして住居費です。",
+   "caption": "おすすめの順番は、通信費、保険、サブスク、電気、そして住居費です。",
+   "key_message": "通信費→保険→サブスク→電気→住居費",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "見直しの順番",
+    "rows": [
+     {
+      "label": "通信費→保険→サブスク→電気→住居費",
+      "line": 7
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 26.507,
+   "duration": 6.03
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "どれから見直すか、コメントで宣言してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "どれから見直すか、コメントで宣言してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "どれから見直すか、コメントで宣言してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 32.537,
+   "duration": 7.078
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
