@@ -4,6 +4,8 @@
                                 chunky diagram under the caption
   lg  LIQUID GLASS              pure black with drifting colour glows, translucent glass panels behind the caption, a bright
                                 rim, stronger motion (longer fades, bigger slides, animated bars and counters)
+  cr  CRAFT                     near-black with a faint grain, one warm amber accent, no glows or gradients, a thin-bordered
+                                panel, drawn-in underlines and an offset layout that reads as made by hand
   sc  DATA STORYTELLING         navy, cyan + amber, the diagram is the stage: caption on top, a large chart or flow below,
                                 the active row highlighted, big number counter
 
@@ -39,6 +41,16 @@ PRESETS = {
         "layout": {"margin": 64, "right": 140, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
                    "diagram_top": 920, "row_pitch": 150},
         "anim": {"fade_sec": 0.4, "slide_px": 44, "visual_sec": 1.1, "count_sec": 1.0, "stagger": 0.3},
+        "caption": {"max_chars": 14, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
+        "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
+    },
+    "cr": {
+        "colors": {"bg": "#0B0B0C", "text": "#FFFFFF", "accent": "#F5B94A", "hi": "#F5B94A", "pos": "#34D399", "neg": "#F87171",
+                   "dim": "#8A8A8F", "track": "#1C1C1E", "surface": "#141416", "edge": "#2A2A2E", "past": "#D1D5DB"},
+        "fonts": {"hook": 104, "caption": 92, "caption_min": 66, "hero": 260, "hero_caption": 70, "label": 46, "value": 54},
+        "layout": {"margin": 96, "right": 120, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
+                   "diagram_top": 920, "row_pitch": 150},
+        "anim": {"fade_sec": 0.3, "slide_px": 36, "visual_sec": 0.9, "count_sec": 0.9, "stagger": 0.25},
         "caption": {"max_chars": 14, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
         "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
     },
@@ -250,6 +262,17 @@ def _glass(img, st, progress):
     img.alpha_composite(panel)
 
 
+def _craft(img, st, progress):
+    """A faint grain over the black, and a thin-bordered panel behind the caption, offset from the left margin."""
+    lo, c = st["layout"], st["rgb"]
+    grain = Image.effect_noise((W, H), 6).convert("L").point(lambda v: 10 if v > 128 else 0)
+    img.alpha_composite(Image.merge("RGBA", (grain, grain, grain, grain)))
+    d = ImageDraw.Draw(img)
+    x0, x1 = lo["margin"] - 36, W - lo["right"] + 12
+    top, bot = lo["text_top"] - 24, lo["text_bottom"] + 20
+    d.rounded_rectangle([x0, top, x1, bot], radius=10, outline=_a(c["edge"]), width=2)
+
+
 def caption_layer(st, kind, text, scene, count_p=1.0):
     """Everything that fades/slides with a caption chunk: the text, the big number, the call to action."""
     c, lo, fo = st["rgb"], st["layout"], st["fonts"]
@@ -307,6 +330,8 @@ def draw_frame(st, script, kind, text, scene, ctx, progress, grow=(), p=1.0, cou
     img = Image.new("RGBA", (W, H), _a(c["bg"]))
     if st["design"] == "lg":
         _glass(img, st, progress)
+    elif st["design"] == "cr":
+        _craft(img, st, progress)
     d = ImageDraw.Draw(img)
     x0, x1 = lo["margin"], W - lo["right"] - 4
     d.rectangle([x0, 168, x1, 173], fill=_a(c["track"]))
