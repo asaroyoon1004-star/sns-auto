@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 
 from . import analytics, landing, upload_tiktok, upload_youtube
 from .common import DATA, QUEUE, load_config, read_json, write_json, log
-from .scriptgen import assign_design, assign_variant, next_script, seed_by_id
+from .scriptgen import HOOK_ARMS, assign_design, assign_variant, next_script, seed_by_id
 
 
 def make(cfg, count, seed_only=False, seed_id=None):
@@ -21,9 +21,10 @@ def make(cfg, count, seed_only=False, seed_id=None):
     made = []
     top_hooks = read_json(DATA / "top_hooks.json", [])
     for _ in range(count):
-        s = seed_by_id(seed_id) if seed_id else next_script(cfg, top_hooks=top_hooks, seed_only=seed_only)
-        s["variant"] = assign_variant(cfg)
-        s["episode"] = len(read_json(DATA / "used_ids.json", []))
+        arm = assign_variant(cfg)
+        s = seed_by_id(seed_id) if seed_id else next_script(cfg, top_hooks=top_hooks, seed_only=seed_only,
+                                                             hook_type=HOOK_ARMS.get(arm))
+        s["variant"] = arm if s.get("hook_type") else ""
         cfg["video"]["design"] = assign_design(cfg)  # may differ per video when video.design_arms is set
         stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
         d = QUEUE / f"{stamp}-{s['id']}"

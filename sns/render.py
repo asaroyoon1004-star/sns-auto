@@ -456,8 +456,6 @@ def outro_for(cfg, script):
     if script.get("variant") == "outro:comment":
         by_cat = v.get("outro_comment") or {}
         return by_cat.get(script.get("category"), by_cat.get("default", ""))
-    if script.get("variant") == "series:next":
-        return v.get("outro_next", v.get("outro", ""))
     return v.get("outro", "")
 
 

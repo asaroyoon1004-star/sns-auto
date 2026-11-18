@@ -138,10 +138,11 @@ def seasonal_hint(cfg, category=None, blocked=()):
 
 
 # warnings and everyday scenes opened the ~1,000-view videos; plain statistics and rule explanations stalled under 250
+HOOK_ARMS = {"hook:statement": "言い切り", "hook:question": "疑問"}
 HOOK_TYPES = {"警告": 3, "身近な場面": 2, "損失回避": 1, "逆説": 1, "疑問": 1, "比較": 1}
 
 
-def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
+def generate_with_claude(cfg, category, top_hooks=None, feedback=None, hook_type=None):
     import json
 
     client = _client()
@@ -152,7 +153,7 @@ def generate_with_claude(cfg, category, top_hooks=None, feedback=None):
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     hooks = "\n".join(f"- {h}" for h in (top_hooks or [])) or "- （まだデータなし）"
     import random
-    hook_type = random.choices(list(HOOK_TYPES), weights=list(HOOK_TYPES.values()), k=1)[0]
+    hook_type = hook_type or random.choices(list(HOOK_TYPES), weights=list(HOOK_TYPES.values()), k=1)[0]
     user = (
         f"hookの型: {hook_type}（hook_type にこの語をそのまま入れる）\n"
         f"カテゴリ: {cat_label}\n"
@@ -369,15 +370,15 @@ def assign_design(cfg):
     return random.choice([a for a, c in counts.items() if c == low])
 
 
-def next_script(cfg, top_hooks=None, seed_only=False):
+def next_script(cfg, top_hooks=None, seed_only=False, hook_type=None):
     category = pick_category(cfg)
     if has_llm() and not seed_only:
         try:
-            s = generate_with_claude(cfg, category, top_hooks)
+            s = generate_with_claude(cfg, category, top_hooks, hook_type=hook_type)
             bad = validate(s, cfg) + cooldown_problems(s, cfg)
             if bad:
                 log("generated script failed validation, retrying once:", bad)
-                s = generate_with_claude(cfg, category, top_hooks, feedback=bad[:6])
+                s = generate_with_claude(cfg, category, top_hooks, feedback=bad[:6], hook_type=hook_type)
                 bad = validate(s, cfg) + cooldown_problems(s, cfg)
             if not bad:
                 return s

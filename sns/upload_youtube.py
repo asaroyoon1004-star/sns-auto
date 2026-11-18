@@ -36,8 +36,6 @@ def build_metadata(cfg, script):
     title = f"{script['title']}｜{script['hook']}"
     if len(title) > 95:
         title = script["title"]
-    if script.get("variant") == "series:numbered" and script.get("episode"):
-        title = f"第{script['episode']}回 {title}"[:100]
     return title, "\n".join(desc), script["hashtags"]
 
 
