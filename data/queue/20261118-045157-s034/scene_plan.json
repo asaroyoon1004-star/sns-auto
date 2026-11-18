@@ -1,0 +1,181 @@
+{
+ "design": "cr",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "暖房を1度下げると、電気代は約10パーセント減る目安です。",
+   "caption": "暖房を1度下げると、電気代は約10パーセント減る目安です。",
+   "key_message": "暖房を1度下げると、電気代は約10パーセント減る目安です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1",
+    "10パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.392
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "冬の電気代で大きいのは、エアコンの暖房です。",
+   "caption": "冬の電気代で大きいのは、エアコンの暖房です。",
+   "key_message": "冬の電気代で大きいのは、エアコンの暖房です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.392,
+   "duration": 3.25
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "環境省は、暖房時の室温20度を目安にしています。",
+   "caption": "環境省は、暖房時の室温20度を目安にしています。",
+   "key_message": "室温20度が目安",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "暖房の節電手順",
+    "rows": [
+     {
+      "label": "室温20度が目安",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "20"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.642,
+   "duration": 3.814
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "設定温度と室温は、同じではありません。",
+   "caption": "設定温度と室温は、同じではありません。",
+   "key_message": "設定温度と室温は、同じではありません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.456,
+   "duration": 2.979
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "温度計で室温をはかって、20度に近づけましょう。",
+   "caption": "温度計で室温をはかって、20度に近づけましょう。",
+   "key_message": "温度計で室温をはかる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "暖房の節電手順",
+    "rows": [
+     {
+      "label": "温度計で室温をはかる",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "20"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 14.435,
+   "duration": 3.592
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "寒いときは、設定を上げる前に、重ね着や加湿を試します。",
+   "caption": "寒いときは、設定を上げる前に、重ね着や加湿を試します。",
+   "key_message": "重ね着や加湿が先",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "暖房の節電手順",
+    "rows": [
+     {
+      "label": "重ね着や加湿が先",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.027,
+   "duration": 4.628
+  },
+  {
+   "index": 6,
+   "role": "caveat",
+   "narration": "ただし、体調を崩さない範囲で、無理はしないでください。",
+   "caption": "ただし、体調を崩さない範囲で、無理はしないでください。",
+   "key_message": "ただし、体調を崩さない範囲で、無理はしないでください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、体調を崩さない範囲で、無理はしないでください。",
+   "start": 22.655,
+   "duration": 4.194
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "温度計がない人は、100円ショップで探してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "温度計がない人は、100円ショップで探してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "温度計がない人は、100円ショップで探してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "100円",
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 26.849,
+   "duration": 6.871
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=7.6s '環境省は、暖房時の': marks in the right zone (490 px)",
+   "t=9.2s '室温20度を目安にしています。': marks in the right zone (490 px)",
+   "t=11.5s '設定温度と室温は、': marks in the right zone (371 px)",
+   "t=13.0s '同じではありません。': marks in the right zone (371 px)",
+   "t=14.4s '温度計で室温をはかって、': marks in the right zone (861 px)",
+   "t=16.2s '20度に近づけましょう。': marks in the right zone (861 px)",
+   "t=18.0s '寒いときは、': marks in the right zone (1232 px)",
+   "t=18.9s '設定を上げる前に、': marks in the right zone (1232 px)",
+   "t=20.5s '重ね着や加湿を試します。': marks in the right zone (1232 px)",
+   "t=22.7s 'ただし、体調を崩さない範囲で、': marks in the right zone (1113 px)",
+   "t=25.1s '無理はしないでください。': marks in the right zone (1113 px)",
+   "t=26.8s '温度計がない人は、': marks in the right zone (1113 px)",
+   "t=28.4s '100円ショップで探してみて。': marks in the right zone (1113 px)",
+   "t=30.5s '毎日1本、お金の話。': marks in the right zone (1113 px)",
+   "t=32.4s 'フォローしてね。': marks in the right zone (1113 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
