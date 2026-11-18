@@ -23,6 +23,7 @@ def make(cfg, count, seed_only=False, seed_id=None):
     for _ in range(count):
         s = seed_by_id(seed_id) if seed_id else next_script(cfg, top_hooks=top_hooks, seed_only=seed_only)
         s["variant"] = assign_variant(cfg)
+        s["episode"] = len(read_json(DATA / "used_ids.json", []))
         cfg["video"]["design"] = assign_design(cfg)  # may differ per video when video.design_arms is set
         stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
         d = QUEUE / f"{stamp}-{s['id']}"
