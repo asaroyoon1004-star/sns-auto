@@ -111,6 +111,8 @@ LATIN = re.compile(r"([A-Za-z0-9 .,%&/\-]+)")
 
 @lru_cache(maxsize=64)
 def _plex(weight, size):
+    if weight == "Black":  # Zen Kaku Gothic New Black (OFL): the heavy face for the wh design
+        return ImageFont.truetype(str(FONTS / "ZenKakuGothicNew-Black.ttf"), size)
     return ImageFont.truetype(str(FONTS / f"IBMPlexSansJP-{weight}.ttf"), size)
 
 

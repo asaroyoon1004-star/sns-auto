@@ -6,6 +6,8 @@
                                 rim, stronger motion (longer fades, bigger slides, animated bars and counters)
   cr  CRAFT                     near-black with a faint grain, one warm amber accent, no glows or gradients, a thin-bordered
                                 panel, drawn-in underlines and an offset layout that reads as made by hand
+  wh  WHITE PAPER              pure white with near-black type, one vermilion accent, the largest numbers and captions, hard cuts,
+                                a light grey diagram under the caption (the visual contrast with sb and cr is the point)
   sc  DATA STORYTELLING         navy, cyan + amber, the diagram is the stage: caption on top, a large chart or flow below,
                                 the active row highlighted, big number counter
 
@@ -52,6 +54,16 @@ PRESETS = {
                    "diagram_top": 920, "row_pitch": 150},
         "anim": {"fade_sec": 0.3, "slide_px": 36, "visual_sec": 0.9, "count_sec": 0.9, "stagger": 0.25},
         "caption": {"max_chars": 14, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
+        "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
+    },
+    "wh": {
+        "colors": {"bg": "#FFFFFF", "text": "#111111", "accent": "#E8452C", "hi": "#E8452C", "pos": "#0F9D58", "neg": "#E8452C",
+                   "dim": "#6B7280", "track": "#E5E7EB", "surface": "#F3F4F6", "edge": "#D1D5DB", "past": "#374151"},
+        "fonts": {"hook": 120, "caption": 100, "caption_min": 72, "hero": 320, "hero_caption": 80, "label": 48, "value": 56},
+        "layout": {"margin": 64, "right": 140, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
+                   "diagram_top": 920, "row_pitch": 130},
+        "anim": {"fade_sec": 0.3, "slide_px": 56, "visual_sec": 0.6, "count_sec": 0.8, "stagger": 0.22},
+        "caption": {"max_chars": 13, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
         "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
     },
     "sc": {
@@ -214,8 +226,12 @@ def _diagram_c(d, st, vis, step, grow, p):
             y = y0 + i * pitch
             on, cur = r["line"] <= step, r["line"] == step
             rp = _row_p(p, i, n, an["stagger"]) if i in grow else 1.0
-            lab.draw(d, x0, y + int(pitch * 0.26), r["label"], _a(c["hi"] if cur else c["text"] if on else c["dim"]))
-            by0, by1 = y + int(pitch * 0.34), y + int(pitch * 0.34) + int(pitch * 0.4)
+            if st["design"] == "wh":  # label on its own line above a full-width bar, so the text never sits on a bar
+                lab.draw(d, x0, y, r["label"], _a(c["hi"] if cur else c["text"] if on else c["dim"]))
+                by0, by1 = y + int(pitch * 0.4), y + int(pitch * 0.4) + int(pitch * 0.36)
+            else:
+                lab.draw(d, x0, y + int(pitch * 0.26), r["label"], _a(c["hi"] if cur else c["text"] if on else c["dim"]))
+                by0, by1 = y + int(pitch * 0.34), y + int(pitch * 0.34) + int(pitch * 0.4)
             d.rectangle([bx0, by0, bx1, by1], fill=_a(c["surface"]), outline=_a(c["edge"]), width=2)
             if on:
                 w = max(8, int((bx1 - bx0) * r["value"] / mx * rp))
@@ -281,6 +297,7 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     x0, x1 = lo["margin"], W - lo["right"] - 4
     width = x1 - x0
     sb = st["design"] == "sb"
+    hw = "Black" if st["design"] == "wh" else "Bold"  # the wh design sets its headlines in the heavy face
     hero = None
     if kind == "line":
         m = v3.HERO_RE.search(text)
@@ -288,7 +305,7 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     top, bot = lo["text_top"], lo["text_bottom"]
     tone = _tone(text, c)
     if kind == "hook":
-        font, size, rows = _fit(text, fo["hook"], fo["caption_min"], width, 4 if sb else 3)
+        font, size, rows = _fit(text, fo["hook"], fo["caption_min"], width, 4 if sb else 3, weight=hw)
         h = int(size * 1.25) * len(rows)
         y = top + (bot - top - h) // 2 if sb else top + (bot - top - h) // 2
         d.rectangle([x0, y - 36, x0 + 96, y - 28], fill=_a(c["accent"]))
@@ -307,14 +324,14 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     if hero:
         big, unit = v3._split_hero(hero)
         hs = fo["hero"]
-        while v3.Sans("Bold", hs).getlength(big) + 24 + (v3.Sans("Bold", int(hs * 0.3)).getlength(unit) if unit else 0) > width and hs > 120:
+        while v3.Sans(hw, hs).getlength(big) + 24 + (v3.Sans(hw, int(hs * 0.3)).getlength(unit) if unit else 0) > width and hs > 120:
             hs -= 10
         shown = v3._count_text(big, count_p) if big.replace(",", "").replace("，", "").isdigit() else big
-        fb = v3.Sans("Bold", hs)
+        fb = v3.Sans(hw, hs)
         base = top + int(hs * 0.88) + (0 if not sb else 20)
         fb.draw(d, x0, base, shown, _a(tone))
         if unit:
-            v3.Sans("Bold", int(hs * 0.3)).draw(d, x0 + fb.getlength(big) + 24, base, unit, _a(c["dim"]))
+            v3.Sans(hw, int(hs * 0.3)).draw(d, x0 + fb.getlength(big) + 24, base, unit, _a(c["dim"]))
         font, size, rows = _fit(text, fo["hero_caption"], fo["caption_min"] - 12, width, 3)
         _rich(d, x0, base + 50, rows, text, font, size, _a(c["text"]), _a(tone))
         return layer
