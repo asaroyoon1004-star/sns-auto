@@ -6,6 +6,8 @@
                                 rim, stronger motion (longer fades, bigger slides, animated bars and counters)
   cr  CRAFT                     near-black with a faint grain, one warm amber accent, no glows or gradients, a thin-bordered
                                 panel, drawn-in underlines and an offset layout that reads as made by hand
+  wh  WHITE PAPER              pure white with near-black type, one vermilion accent, the largest numbers and captions, hard cuts,
+                                a light grey diagram under the caption (the visual contrast with sb and cr is the point)
   sc  DATA STORYTELLING         navy, cyan + amber, the diagram is the stage: caption on top, a large chart or flow below,
                                 the active row highlighted, big number counter
 
@@ -52,6 +54,16 @@ PRESETS = {
                    "diagram_top": 920, "row_pitch": 150},
         "anim": {"fade_sec": 0.3, "slide_px": 36, "visual_sec": 0.9, "count_sec": 0.9, "stagger": 0.25},
         "caption": {"max_chars": 14, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
+        "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
+    },
+    "wh": {
+        "colors": {"bg": "#FFFFFF", "text": "#111111", "accent": "#E8452C", "hi": "#E8452C", "pos": "#0F9D58", "neg": "#E8452C",
+                   "dim": "#6B7280", "track": "#E5E7EB", "surface": "#F3F4F6", "edge": "#D1D5DB", "past": "#374151"},
+        "fonts": {"hook": 120, "caption": 100, "caption_min": 72, "hero": 320, "hero_caption": 80, "label": 48, "value": 56},
+        "layout": {"margin": 64, "right": 140, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
+                   "diagram_top": 920, "row_pitch": 130},
+        "anim": {"fade_sec": 0.12, "slide_px": 0, "visual_sec": 0.5, "count_sec": 0.6, "stagger": 0.18},
+        "caption": {"max_chars": 13, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
         "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
     },
     "sc": {
