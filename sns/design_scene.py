@@ -2,6 +2,8 @@
 
   sb  HIGH-RETENTION EXPLAINER  pure black, white + yellow, no cards, very large caption, hook straight on screen, hard cuts,
                                 chunky diagram under the caption
+  lg  LIQUID GLASS              pure black with drifting colour glows, translucent glass panels behind the caption, a bright
+                                rim, stronger motion (longer fades, bigger slides, animated bars and counters)
   sc  DATA STORYTELLING         navy, cyan + amber, the diagram is the stage: caption on top, a large chart or flow below,
                                 the active row highlighted, big number counter
 
@@ -12,7 +14,7 @@ All sizes, colours and timings are in PRESETS and can be overridden in config.js
 import copy
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 from . import design_v3 as v3, scenes as scene_mod
 
@@ -26,6 +28,17 @@ PRESETS = {
         "layout": {"margin": 64, "right": 140, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
                    "diagram_top": 920, "row_pitch": 124},
         "anim": {"fade_sec": 0.18, "slide_px": 28, "visual_sec": 0.7, "count_sec": 0.7, "stagger": 0.22},
+        "caption": {"max_chars": 14, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
+        "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
+    },
+    "lg": {
+        "colors": {"bg": "#000000", "text": "#FFFFFF", "accent": "#7DD3FC", "hi": "#FDE68A", "pos": "#34D399", "neg": "#F87171",
+                   "dim": "#8E8E93", "track": "#1C1C1E", "surface": "#1C1C1E", "edge": "#3A3A3F", "past": "#D1D5DB"},
+        "glow": ["#1E3A8A", "#7C3AED", "#0E7490"],
+        "fonts": {"hook": 104, "caption": 92, "caption_min": 66, "hero": 260, "hero_caption": 70, "label": 46, "value": 54},
+        "layout": {"margin": 64, "right": 140, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
+                   "diagram_top": 920, "row_pitch": 150},
+        "anim": {"fade_sec": 0.4, "slide_px": 44, "visual_sec": 1.1, "count_sec": 1.0, "stagger": 0.3},
         "caption": {"max_chars": 14, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
         "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
     },
@@ -217,6 +230,26 @@ def _diagram_c(d, st, vis, step, grow, p):
 
 # ---------------------------------------------------------------- caption layer
 
+def _glass(img, st, progress):
+    """Background glows that drift with the clip, then a translucent panel behind the caption with a bright top rim."""
+    lo, glows = st["layout"], st["glow"]
+    glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    for i, col in enumerate(glows):
+        cx = int(W * (0.2 + 0.6 * ((progress * (0.6 + 0.2 * i) + 0.33 * i) % 1.0)))
+        cy = int(H * (0.25 + 0.5 * ((i + 1) / (len(glows) + 1))))
+        r = 360
+        gd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=tuple(v3._rgb(col)) + (120,))
+    img.alpha_composite(glow.filter(ImageFilter.GaussianBlur(140)))
+    panel = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    pd = ImageDraw.Draw(panel)
+    x0, x1 = lo["margin"] - 28, W - lo["right"] + 24
+    top, bot = lo["text_top"] - 28, lo["text_bottom"] + 4
+    pd.rounded_rectangle([x0, top, x1, bot], radius=48, fill=(255, 255, 255, 26), outline=(255, 255, 255, 70), width=2)
+    pd.line([x0 + 48, top + 3, x1 - 48, top + 3], fill=(255, 255, 255, 150), width=3)
+    img.alpha_composite(panel)
+
+
 def caption_layer(st, kind, text, scene, count_p=1.0):
     """Everything that fades/slides with a caption chunk: the text, the big number, the call to action."""
     c, lo, fo = st["rgb"], st["layout"], st["fonts"]
@@ -272,6 +305,8 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
 def draw_frame(st, script, kind, text, scene, ctx, progress, grow=(), p=1.0, count_p=1.0, fade=1.0, slide=0):
     c, lo = st["rgb"], st["layout"]
     img = Image.new("RGBA", (W, H), _a(c["bg"]))
+    if st["design"] == "lg":
+        _glass(img, st, progress)
     d = ImageDraw.Draw(img)
     x0, x1 = lo["margin"], W - lo["right"] - 4
     d.rectangle([x0, 168, x1, 173], fill=_a(c["track"]))
