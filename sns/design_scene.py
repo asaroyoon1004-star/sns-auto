@@ -226,8 +226,12 @@ def _diagram_c(d, st, vis, step, grow, p):
             y = y0 + i * pitch
             on, cur = r["line"] <= step, r["line"] == step
             rp = _row_p(p, i, n, an["stagger"]) if i in grow else 1.0
-            lab.draw(d, x0, y + int(pitch * 0.26), r["label"], _a(c["hi"] if cur else c["text"] if on else c["dim"]))
-            by0, by1 = y + int(pitch * 0.34), y + int(pitch * 0.34) + int(pitch * 0.4)
+            if st["design"] == "wh":  # label on its own line above a full-width bar, so the text never sits on a bar
+                lab.draw(d, x0, y, r["label"], _a(c["hi"] if cur else c["text"] if on else c["dim"]))
+                by0, by1 = y + int(pitch * 0.4), y + int(pitch * 0.4) + int(pitch * 0.36)
+            else:
+                lab.draw(d, x0, y + int(pitch * 0.26), r["label"], _a(c["hi"] if cur else c["text"] if on else c["dim"]))
+                by0, by1 = y + int(pitch * 0.34), y + int(pitch * 0.34) + int(pitch * 0.4)
             d.rectangle([bx0, by0, bx1, by1], fill=_a(c["surface"]), outline=_a(c["edge"]), width=2)
             if on:
                 w = max(8, int((bx1 - bx0) * r["value"] / mx * rp))
