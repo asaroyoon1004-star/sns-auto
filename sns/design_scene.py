@@ -62,7 +62,7 @@ PRESETS = {
         "fonts": {"hook": 120, "caption": 100, "caption_min": 72, "hero": 320, "hero_caption": 80, "label": 48, "value": 56},
         "layout": {"margin": 64, "right": 140, "top": 150, "bottom": 420, "text_top": 230, "text_bottom": 900,
                    "diagram_top": 920, "row_pitch": 130},
-        "anim": {"fade_sec": 0.12, "slide_px": 0, "visual_sec": 0.5, "count_sec": 0.6, "stagger": 0.18},
+        "anim": {"fade_sec": 0.3, "slide_px": 56, "visual_sec": 0.6, "count_sec": 0.8, "stagger": 0.22},
         "caption": {"max_chars": 13, "min_chars": 5, "lead_sec": 0.1, "weight": "mora"},
         "pause": {"sec": 0.2, "after_hook": 0.35, "after_question": 0.35},
     },
@@ -293,6 +293,7 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     x0, x1 = lo["margin"], W - lo["right"] - 4
     width = x1 - x0
     sb = st["design"] == "sb"
+    hw = "Black" if st["design"] == "wh" else "Bold"  # the wh design sets its headlines in the heavy face
     hero = None
     if kind == "line":
         m = v3.HERO_RE.search(text)
@@ -300,7 +301,7 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     top, bot = lo["text_top"], lo["text_bottom"]
     tone = _tone(text, c)
     if kind == "hook":
-        font, size, rows = _fit(text, fo["hook"], fo["caption_min"], width, 4 if sb else 3)
+        font, size, rows = _fit(text, fo["hook"], fo["caption_min"], width, 4 if sb else 3, weight=hw)
         h = int(size * 1.25) * len(rows)
         y = top + (bot - top - h) // 2 if sb else top + (bot - top - h) // 2
         d.rectangle([x0, y - 36, x0 + 96, y - 28], fill=_a(c["accent"]))
@@ -319,14 +320,14 @@ def caption_layer(st, kind, text, scene, count_p=1.0):
     if hero:
         big, unit = v3._split_hero(hero)
         hs = fo["hero"]
-        while v3.Sans("Bold", hs).getlength(big) + 24 + (v3.Sans("Bold", int(hs * 0.3)).getlength(unit) if unit else 0) > width and hs > 120:
+        while v3.Sans(hw, hs).getlength(big) + 24 + (v3.Sans(hw, int(hs * 0.3)).getlength(unit) if unit else 0) > width and hs > 120:
             hs -= 10
         shown = v3._count_text(big, count_p) if big.replace(",", "").replace("，", "").isdigit() else big
-        fb = v3.Sans("Bold", hs)
+        fb = v3.Sans(hw, hs)
         base = top + int(hs * 0.88) + (0 if not sb else 20)
         fb.draw(d, x0, base, shown, _a(tone))
         if unit:
-            v3.Sans("Bold", int(hs * 0.3)).draw(d, x0 + fb.getlength(big) + 24, base, unit, _a(c["dim"]))
+            v3.Sans(hw, int(hs * 0.3)).draw(d, x0 + fb.getlength(big) + 24, base, unit, _a(c["dim"]))
         font, size, rows = _fit(text, fo["hero_caption"], fo["caption_min"] - 12, width, 3)
         _rich(d, x0, base + 50, rows, text, font, size, _a(c["text"]), _a(tone))
         return layer
