@@ -1,0 +1,267 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "大みそかのふるさと納税、振込が1月なら来年分です。",
+   "caption": "大みそかのふるさと納税、振込が1月なら来年分です。",
+   "key_message": "大みそかのふるさと納税、振込が1月なら来年分です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.896
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "今年の控除枠に入るのは、12月31日までに払い終えた寄付です。",
+   "caption": "今年の控除枠に入るのは、12月31日までに払い終えた寄付です。",
+   "key_message": "12月31日までに支払い 今年分",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "寄付の年は支払日で決まる",
+    "rows": [
+     {
+      "label": "12月31日までに支払い 今年分",
+      "text": "",
+      "value": 0,
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "12",
+    "31日"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 3.896,
+   "duration": 4.775
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "銀行振込やコンビニ払いだと、支払いが年明けになりがちです。",
+   "caption": "銀行振込やコンビニ払いだと、支払いが年明けになりがちです。",
+   "key_message": "銀行振込やコンビニ払いだと、支払いが年明けになりがちです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 8.671,
+   "duration": 4.139
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "たとえば31日に申し込み、1月5日に振り込んだ場合。",
+   "caption": "たとえば31日に申し込み、1月5日に振り込んだ場合。",
+   "key_message": "たとえば31日に申し込み、1月5日に振り込んだ場合",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "31日",
+    "1",
+    "5日"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 12.81,
+   "duration": 3.994
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "その寄付は翌年分になり、今年の枠には入りません。",
+   "caption": "その寄付は翌年分になり、今年の枠には入りません。",
+   "key_message": "1月5日に振込 翌年分",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "寄付の年は支払日で決まる",
+    "rows": [
+     {
+      "label": "1月5日に振込 翌年分",
+      "text": "",
+      "value": 0,
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 16.804,
+   "duration": 3.485
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "カード払いなら、決済した日が寄付日になるのが一般的です。",
+   "caption": "カード払いなら、決済した日が寄付日になるのが一般的です。",
+   "key_message": "カードは決済日が寄付日",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "寄付の年は支払日で決まる",
+    "rows": [
+     {
+      "label": "カードは決済日が寄付日",
+      "text": "",
+      "value": 0,
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 20.289,
+   "duration": 3.807
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "年の区切りは、申込日ではなく支払日で決まります。",
+   "caption": "年の区切りは、申込日ではなく支払日で決まります。",
+   "key_message": "年の区切りは、申込日ではなく支払日で決まります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 24.096,
+   "duration": 3.517
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "年末に寄付する人は、保存しておいてください。毎日1本、お金の話。フォローしてね。",
+   "caption": "年末に寄付する人は、保存しておいてください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "年末に寄付する人は、保存しておいてください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省ふるさと納税ポータルサイト、国税庁の寄附金控除の説明(寄附金控除はその年の1月1日から12月31日までに支出した寄附金が対象)。寄附日は申込日ではなく支払い(入金・決済)が完了した日を基準とするのが基本で、具体的な扱いは自治体・決済方法により異なるため、カード払いは一般的と表現。(2)前提: 12月31日に申し込み、1月5日に銀行振込したという仮の例。(3)事実: 控除はその年の12月31日までに支払った寄付が対象、支払いが翌年なら翌年分扱い。仮定: 1月5日振込の例。一般論: カード決済日が寄付日となる扱い、振込やコンビニ払いが年明けになりやすい点。",
+   "caveat": "",
+   "start": 27.613,
+   "duration": 7.315
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '大みそかのふるさと納税、': marks in the top zone (162000 px)",
+   "t=0.0s '大みそかのふるさと納税、': marks in the bottom zone (453600 px)",
+   "t=0.0s '大みそかのふるさと納税、': marks in the right zone (142800 px)",
+   "t=0.0s '大みそかのふるさと納税、': marks in the left zone (76800 px)",
+   "t=1.5s '振込が1月なら来年分です。': marks in the top zone (162000 px)",
+   "t=1.5s '振込が1月なら来年分です。': marks in the bottom zone (453600 px)",
+   "t=1.5s '振込が1月なら来年分です。': marks in the right zone (142800 px)",
+   "t=1.5s '振込が1月なら来年分です。': marks in the left zone (76800 px)",
+   "t=3.9s '今年の控除枠に入るのは、': marks in the top zone (162000 px)",
+   "t=3.9s '今年の控除枠に入るのは、': marks in the bottom zone (453600 px)",
+   "t=3.9s '今年の控除枠に入るのは、': marks in the right zone (142800 px)",
+   "t=3.9s '今年の控除枠に入るのは、': marks in the left zone (76800 px)",
+   "t=5.6s '12月31日までに払い': marks in the top zone (162000 px)",
+   "t=5.6s '12月31日までに払い': marks in the bottom zone (453600 px)",
+   "t=5.6s '12月31日までに払い': marks in the right zone (142800 px)",
+   "t=5.6s '12月31日までに払い': marks in the left zone (76800 px)",
+   "t=7.7s '終えた寄付です。': marks in the top zone (162000 px)",
+   "t=7.7s '終えた寄付です。': marks in the bottom zone (453600 px)",
+   "t=7.7s '終えた寄付です。': marks in the right zone (142800 px)",
+   "t=7.7s '終えた寄付です。': marks in the left zone (76800 px)",
+   "t=8.7s '銀行振込やコンビニ払いだと、': marks in the top zone (162000 px)",
+   "t=8.7s '銀行振込やコンビニ払いだと、': marks in the bottom zone (453600 px)",
+   "t=8.7s '銀行振込やコンビニ払いだと、': marks in the right zone (142800 px)",
+   "t=8.7s '銀行振込やコンビニ払いだと、': marks in the left zone (76800 px)",
+   "t=10.8s '支払いが': marks in the top zone (162000 px)",
+   "t=10.8s '支払いが': marks in the bottom zone (453600 px)",
+   "t=10.8s '支払いが': marks in the right zone (142800 px)",
+   "t=10.8s '支払いが': marks in the left zone (76800 px)",
+   "t=11.3s '年明けになりがちです。': marks in the top zone (162000 px)",
+   "t=11.3s '年明けになりがちです。': marks in the bottom zone (453600 px)",
+   "t=11.3s '年明けになりがちです。': marks in the right zone (142800 px)",
+   "t=11.3s '年明けになりがちです。': marks in the left zone (76800 px)",
+   "t=12.8s 'たとえば31日に申し込み、': marks in the top zone (162000 px)",
+   "t=12.8s 'たとえば31日に申し込み、': marks in the bottom zone (453600 px)",
+   "t=12.8s 'たとえば31日に申し込み、': marks in the right zone (142800 px)",
+   "t=12.8s 'たとえば31日に申し込み、': marks in the left zone (76800 px)",
+   "t=14.9s '1月5日に振り込んだ場合。': marks in the top zone (162000 px)",
+   "t=14.9s '1月5日に振り込んだ場合。': marks in the bottom zone (453600 px)",
+   "t=14.9s '1月5日に振り込んだ場合。': marks in the right zone (142800 px)",
+   "t=14.9s '1月5日に振り込んだ場合。': marks in the left zone (76800 px)",
+   "t=16.8s 'その寄付は翌年分になり、': marks in the top zone (162000 px)",
+   "t=16.8s 'その寄付は翌年分になり、': marks in the bottom zone (453600 px)",
+   "t=16.8s 'その寄付は翌年分になり、': marks in the right zone (142800 px)",
+   "t=16.8s 'その寄付は翌年分になり、': marks in the left zone (76800 px)",
+   "t=18.5s '今年の枠には入りません。': marks in the top zone (162000 px)",
+   "t=18.5s '今年の枠には入りません。': marks in the bottom zone (453600 px)",
+   "t=18.5s '今年の枠には入りません。': marks in the right zone (142800 px)",
+   "t=18.5s '今年の枠には入りません。': marks in the left zone (76800 px)",
+   "t=20.3s 'カード払いなら、': marks in the top zone (162000 px)",
+   "t=20.3s 'カード払いなら、': marks in the bottom zone (453600 px)",
+   "t=20.3s 'カード払いなら、': marks in the right zone (142800 px)",
+   "t=20.3s 'カード払いなら、': marks in the left zone (76800 px)",
+   "t=21.2s '決済した日が': marks in the top zone (162000 px)",
+   "t=21.2s '決済した日が': marks in the bottom zone (453600 px)",
+   "t=21.2s '決済した日が': marks in the right zone (142800 px)",
+   "t=21.2s '決済した日が': marks in the left zone (76800 px)",
+   "t=22.1s '寄付日になるのが': marks in the top zone (162000 px)",
+   "t=22.1s '寄付日になるのが': marks in the bottom zone (453600 px)",
+   "t=22.1s '寄付日になるのが': marks in the right zone (142800 px)",
+   "t=22.1s '寄付日になるのが': marks in the left zone (76800 px)",
+   "t=23.0s '一般的です。': marks in the top zone (162000 px)",
+   "t=23.0s '一般的です。': marks in the bottom zone (453600 px)",
+   "t=23.0s '一般的です。': marks in the right zone (142800 px)",
+   "t=23.0s '一般的です。': marks in the left zone (76800 px)",
+   "t=24.1s '年の区切りは、': marks in the top zone (162000 px)",
+   "t=24.1s '年の区切りは、': marks in the bottom zone (453600 px)",
+   "t=24.1s '年の区切りは、': marks in the right zone (142800 px)",
+   "t=24.1s '年の区切りは、': marks in the left zone (76800 px)",
+   "t=25.0s '申込日ではなく': marks in the top zone (162000 px)",
+   "t=25.0s '申込日ではなく': marks in the bottom zone (453600 px)",
+   "t=25.0s '申込日ではなく': marks in the right zone (142800 px)",
+   "t=25.0s '申込日ではなく': marks in the left zone (76800 px)",
+   "t=26.1s '支払日で決まります。': marks in the top zone (162000 px)",
+   "t=26.1s '支払日で決まります。': marks in the bottom zone (453600 px)",
+   "t=26.1s '支払日で決まります。': marks in the right zone (142800 px)",
+   "t=26.1s '支払日で決まります。': marks in the left zone (76800 px)",
+   "t=27.6s '年末に寄付する人は、': marks in the top zone (162000 px)",
+   "t=27.6s '年末に寄付する人は、': marks in the bottom zone (453600 px)",
+   "t=27.6s '年末に寄付する人は、': marks in the right zone (142800 px)",
+   "t=27.6s '年末に寄付する人は、': marks in the left zone (76800 px)",
+   "t=29.5s '保存しておいてください。': marks in the top zone (162000 px)",
+   "t=29.5s '保存しておいてください。': marks in the bottom zone (453600 px)",
+   "t=29.5s '保存しておいてください。': marks in the right zone (142800 px)",
+   "t=29.5s '保存しておいてください。': marks in the left zone (76800 px)",
+   "t=31.3s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=31.3s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=31.3s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=31.3s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=33.5s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=33.5s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=33.5s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=33.5s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": [
+   "row '1月5日に振込 翌年分': number 5 is not said on line 4"
+  ]
+ }
+}
