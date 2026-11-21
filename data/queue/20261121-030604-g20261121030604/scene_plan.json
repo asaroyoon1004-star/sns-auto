@@ -1,0 +1,268 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "コンビニで電子マネーを買って番号を送れと言われたら？",
+   "caption": "コンビニで電子マネーを買って番号を送れと言われたら？",
+   "key_message": "コンビニで電子マネーを買って番号を送れと言われたら",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.188
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "その時点で、詐欺を疑ってください。",
+   "caption": "その時点で、詐欺を疑ってください。",
+   "key_message": "その時点で、詐欺を疑ってください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 3.188,
+   "duration": 2.51
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "未払いのサイト料金がある、と急がせる連絡がよくある手口です。",
+   "caption": "未払いのサイト料金がある、と急がせる連絡がよくある手口です。",
+   "key_message": "未払い料金と言って急がせる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電子マネー詐欺の流れ",
+    "rows": [
+     {
+      "label": "未払い料金と言って急がせる",
+      "text": "",
+      "value": 0,
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 5.698,
+   "duration": 4.138
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "そしてコンビニで、電子マネーのカードを買わせます。",
+   "caption": "そしてコンビニで、電子マネーのカードを買わせます。",
+   "key_message": "電子マネーを買わせる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電子マネー詐欺の流れ",
+    "rows": [
+     {
+      "label": "電子マネーを買わせる",
+      "text": "",
+      "value": 0,
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 9.836,
+   "duration": 3.224
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "裏の番号を伝えた時点で、お金は使われてしまいます。",
+   "caption": "裏の番号を伝えた時点で、お金は使われてしまいます。",
+   "key_message": "裏の番号を聞き出す",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電子マネー詐欺の流れ",
+    "rows": [
+     {
+      "label": "裏の番号を聞き出す",
+      "text": "",
+      "value": 0,
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 13.06,
+   "duration": 3.63
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "まっとうな会社が、電子マネーの番号で支払いを求めることはありません。",
+   "caption": "まっとうな会社が、電子マネーの番号で支払いを求めることはありません。",
+   "key_message": "まっとうな会社が、電子マネーの番号で支払いを求めることはありません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 16.69,
+   "duration": 4.408
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "番号は誰にも教えず、消費者ホットライン188番へ相談を。",
+   "caption": "番号は誰にも教えず、消費者ホットライン188番へ相談を。",
+   "key_message": "教えずに188番へ相談",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "電子マネー詐欺の流れ",
+    "rows": [
+     {
+      "label": "教えずに188番へ相談",
+      "text": "",
+      "value": 0,
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [
+    "188"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 21.098,
+   "duration": 4.45
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "家族にも、このまま送ってあげてください。毎日1本、お金の話。フォローしてね。",
+   "caption": "家族にも、このまま送ってあげてください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "家族にも、このまま送ってあげてください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 消費者庁・国民生活センターの架空請求に関する注意喚起、警察庁の特殊詐欺対策ページ（電子マネー型の架空料金請求詐欺）、消費者ホットライン188（消費者庁）。(2)計算条件なし。金額は扱っていない。(3)事実: 未払いのサイト料金名目で電子マネーを買わせ番号を聞き出す手口があること、番号を伝えると使われてしまうこと、電子マネーの番号で支払いを求めるのは詐欺の典型と公的機関が注意喚起していること、188番が消費者ホットラインであること。仮定・予測: なし。冒頭の『詐欺を疑って』は行動の勧め。",
+   "caveat": "",
+   "start": 25.548,
+   "duration": 6.915
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s 'コンビニで電子マネーを': marks in the top zone (162000 px)",
+   "t=0.0s 'コンビニで電子マネーを': marks in the bottom zone (453600 px)",
+   "t=0.0s 'コンビニで電子マネーを': marks in the right zone (142800 px)",
+   "t=0.0s 'コンビニで電子マネーを': marks in the left zone (76800 px)",
+   "t=1.1s '買って番号を送れと': marks in the top zone (162000 px)",
+   "t=1.1s '買って番号を送れと': marks in the bottom zone (453600 px)",
+   "t=1.1s '買って番号を送れと': marks in the right zone (142800 px)",
+   "t=1.1s '買って番号を送れと': marks in the left zone (76800 px)",
+   "t=2.3s '言われたら？': marks in the top zone (162000 px)",
+   "t=2.3s '言われたら？': marks in the bottom zone (453600 px)",
+   "t=2.3s '言われたら？': marks in the right zone (142800 px)",
+   "t=2.3s '言われたら？': marks in the left zone (76800 px)",
+   "t=3.2s 'その時点で、': marks in the top zone (162000 px)",
+   "t=3.2s 'その時点で、': marks in the bottom zone (453600 px)",
+   "t=3.2s 'その時点で、': marks in the right zone (142800 px)",
+   "t=3.2s 'その時点で、': marks in the left zone (76800 px)",
+   "t=4.0s '詐欺を疑ってください。': marks in the top zone (162000 px)",
+   "t=4.0s '詐欺を疑ってください。': marks in the bottom zone (453600 px)",
+   "t=4.0s '詐欺を疑ってください。': marks in the right zone (142800 px)",
+   "t=4.0s '詐欺を疑ってください。': marks in the left zone (76800 px)",
+   "t=5.7s '未払いのサイト料金がある、': marks in the top zone (162000 px)",
+   "t=5.7s '未払いのサイト料金がある、': marks in the bottom zone (453600 px)",
+   "t=5.7s '未払いのサイト料金がある、': marks in the right zone (142800 px)",
+   "t=5.7s '未払いのサイト料金がある、': marks in the left zone (76800 px)",
+   "t=7.5s 'と急がせる': marks in the top zone (162000 px)",
+   "t=7.5s 'と急がせる': marks in the bottom zone (453600 px)",
+   "t=7.5s 'と急がせる': marks in the right zone (142800 px)",
+   "t=7.5s 'と急がせる': marks in the left zone (76800 px)",
+   "t=8.1s '連絡がよくある': marks in the top zone (162000 px)",
+   "t=8.1s '連絡がよくある': marks in the bottom zone (453600 px)",
+   "t=8.1s '連絡がよくある': marks in the right zone (142800 px)",
+   "t=8.1s '連絡がよくある': marks in the left zone (76800 px)",
+   "t=9.1s '手口です。': marks in the top zone (162000 px)",
+   "t=9.1s '手口です。': marks in the bottom zone (453600 px)",
+   "t=9.1s '手口です。': marks in the right zone (142800 px)",
+   "t=9.1s '手口です。': marks in the left zone (76800 px)",
+   "t=9.8s 'そしてコンビニで、': marks in the top zone (162000 px)",
+   "t=9.8s 'そしてコンビニで、': marks in the bottom zone (453600 px)",
+   "t=9.8s 'そしてコンビニで、': marks in the right zone (142800 px)",
+   "t=9.8s 'そしてコンビニで、': marks in the left zone (76800 px)",
+   "t=10.9s '電子マネーのカードを': marks in the top zone (162000 px)",
+   "t=10.9s '電子マネーのカードを': marks in the bottom zone (453600 px)",
+   "t=10.9s '電子マネーのカードを': marks in the right zone (142800 px)",
+   "t=10.9s '電子マネーのカードを': marks in the left zone (76800 px)",
+   "t=12.2s '買わせます。': marks in the top zone (162000 px)",
+   "t=12.2s '買わせます。': marks in the bottom zone (453600 px)",
+   "t=12.2s '買わせます。': marks in the right zone (142800 px)",
+   "t=12.2s '買わせます。': marks in the left zone (76800 px)",
+   "t=13.1s '裏の番号を伝えた時点で、': marks in the top zone (162000 px)",
+   "t=13.1s '裏の番号を伝えた時点で、': marks in the bottom zone (453600 px)",
+   "t=13.1s '裏の番号を伝えた時点で、': marks in the right zone (142800 px)",
+   "t=13.1s '裏の番号を伝えた時点で、': marks in the left zone (76800 px)",
+   "t=14.9s 'お金は使われてしまいます。': marks in the top zone (162000 px)",
+   "t=14.9s 'お金は使われてしまいます。': marks in the bottom zone (453600 px)",
+   "t=14.9s 'お金は使われてしまいます。': marks in the right zone (142800 px)",
+   "t=14.9s 'お金は使われてしまいます。': marks in the left zone (76800 px)",
+   "t=16.7s 'まっとうな会社が、': marks in the top zone (162000 px)",
+   "t=16.7s 'まっとうな会社が、': marks in the bottom zone (453600 px)",
+   "t=16.7s 'まっとうな会社が、': marks in the right zone (142800 px)",
+   "t=16.7s 'まっとうな会社が、': marks in the left zone (76800 px)",
+   "t=17.8s '電子マネーの番号で支払いを': marks in the top zone (162000 px)",
+   "t=17.8s '電子マネーの番号で支払いを': marks in the bottom zone (453600 px)",
+   "t=17.8s '電子マネーの番号で支払いを': marks in the right zone (142800 px)",
+   "t=17.8s '電子マネーの番号で支払いを': marks in the left zone (76800 px)",
+   "t=19.6s '求めることはありません。': marks in the top zone (162000 px)",
+   "t=19.6s '求めることはありません。': marks in the bottom zone (453600 px)",
+   "t=19.6s '求めることはありません。': marks in the right zone (142800 px)",
+   "t=19.6s '求めることはありません。': marks in the left zone (76800 px)",
+   "t=21.1s '番号は誰にも教えず、': marks in the top zone (162000 px)",
+   "t=21.1s '番号は誰にも教えず、': marks in the bottom zone (453600 px)",
+   "t=21.1s '番号は誰にも教えず、': marks in the right zone (142800 px)",
+   "t=21.1s '番号は誰にも教えず、': marks in the left zone (76800 px)",
+   "t=22.4s '消費者ホットライン188番へ相談を。': marks in the top zone (162000 px)",
+   "t=22.4s '消費者ホットライン188番へ相談を。': marks in the bottom zone (453600 px)",
+   "t=22.4s '消費者ホットライン188番へ相談を。': marks in the right zone (142800 px)",
+   "t=22.4s '消費者ホットライン188番へ相談を。': marks in the left zone (76800 px)",
+   "t=25.5s '家族にも、このまま': marks in the top zone (162000 px)",
+   "t=25.5s '家族にも、このまま': marks in the bottom zone (453600 px)",
+   "t=25.5s '家族にも、このまま': marks in the right zone (142800 px)",
+   "t=25.5s '家族にも、このまま': marks in the left zone (76800 px)",
+   "t=27.0s '送ってあげてください。': marks in the top zone (162000 px)",
+   "t=27.0s '送ってあげてください。': marks in the bottom zone (453600 px)",
+   "t=27.0s '送ってあげてください。': marks in the right zone (142800 px)",
+   "t=27.0s '送ってあげてください。': marks in the left zone (76800 px)",
+   "t=28.7s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=28.7s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=28.7s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=28.7s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=31.0s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=31.0s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=31.0s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=31.0s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
