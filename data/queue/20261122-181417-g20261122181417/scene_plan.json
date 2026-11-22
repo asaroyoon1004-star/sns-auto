@@ -1,0 +1,264 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "テレビの受信料、2か月ごとに払っていませんか？",
+   "caption": "テレビの受信料、2か月ごとに払っていませんか？",
+   "key_message": "テレビの受信料、2か月ごとに払っていませんか",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "2か月"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.255
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "実は、1年分をまとめて前払いするだけで安くなります。",
+   "caption": "実は、1年分をまとめて前払いするだけで安くなります。",
+   "key_message": "実は、1年分をまとめて前払いするだけで安くなります",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1年"
+   },
+   "emphasis": [
+    "1年"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 3.255,
+   "duration": 3.8
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "地上契約を口座かカードで払う場合、2か月払いは2200円。",
+   "caption": "地上契約を口座かカードで払う場合、2か月払いは2200円。",
+   "key_message": "地上契約を口座かカードで払う場合、2か月払いは2200円",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "2か月"
+   },
+   "emphasis": [
+    "2か月",
+    "2200円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 7.055,
+   "duration": 4.438
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "これを1年続けると、1万3200円です。",
+   "caption": "これを1年続けると、1万3200円です。",
+   "key_message": "2か月払い",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "受信料の年間支払額",
+    "rows": [
+     {
+      "label": "2か月払い",
+      "text": "1万3200円",
+      "value": 13200,
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1年",
+    "1万3200円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 11.493,
+   "duration": 3.399
+  },
+  {
+   "index": 4,
+   "role": "example",
+   "narration": "12か月前払いにすると、1万2276円になります。",
+   "caption": "12か月前払いにすると、1万2276円になります。",
+   "key_message": "12か月前払い",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "受信料の年間支払額",
+    "rows": [
+     {
+      "label": "12か月前払い",
+      "text": "1万2276円",
+      "value": 12276,
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "12か月",
+    "1万2276円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 14.892,
+   "duration": 4.508
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "差は1年で924円。手続きは一度だけです。",
+   "caption": "差は1年で924円。手続きは一度だけです。",
+   "key_message": "差は1年で924円。手続きは一度だけです",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1年"
+   },
+   "emphasis": [
+    "1年",
+    "924円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 19.4,
+   "duration": 4.101
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "毎年払うと決まっている固定費は、まとめ払いを確認しましょう。",
+   "caption": "毎年払うと決まっている固定費は、まとめ払いを確認しましょう。",
+   "key_message": "毎年払うと決まっている固定費は、まとめ払いを確認しましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 23.501,
+   "duration": 4.136
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "保存して、支払い方法を見直すときに使ってください。毎日1本、お金の話。フォローしてね。",
+   "caption": "保存して、支払い方法を見直すときに使ってください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "保存して、支払い方法を見直すときに使ってください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠はNHK公式サイトの受信料額表(2023年10月改定後)。地上契約で口座振替・クレジットカード払いの場合、2か月払い2200円、12か月前払い1万2276円。公的機関ではなくNHKの公表情報のため、公開前に最新額を再確認すること。(2)計算条件は、2か月払い2200円を6回払うと年1万3200円、12か月前払いとの差は924円。衛星契約や継続振込などの払い方では金額が異なる。(3)料金額と差額は事実。最後の一文はほかの固定費についての一般的な行動提案で、具体的な割引額は示していない。",
+   "caveat": "",
+   "start": 27.637,
+   "duration": 7.741
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s 'テレビの受信料、': marks in the top zone (162000 px)",
+   "t=0.0s 'テレビの受信料、': marks in the bottom zone (453600 px)",
+   "t=0.0s 'テレビの受信料、': marks in the right zone (142800 px)",
+   "t=0.0s 'テレビの受信料、': marks in the left zone (76800 px)",
+   "t=1.2s '2か月ごとに': marks in the top zone (162000 px)",
+   "t=1.2s '2か月ごとに': marks in the bottom zone (453600 px)",
+   "t=1.2s '2か月ごとに': marks in the right zone (142800 px)",
+   "t=1.2s '2か月ごとに': marks in the left zone (76800 px)",
+   "t=1.9s '払っていませんか？': marks in the top zone (162000 px)",
+   "t=1.9s '払っていませんか？': marks in the bottom zone (453600 px)",
+   "t=1.9s '払っていませんか？': marks in the right zone (142800 px)",
+   "t=1.9s '払っていませんか？': marks in the left zone (76800 px)",
+   "t=3.3s '実は、1年分をまとめて': marks in the top zone (162000 px)",
+   "t=3.3s '実は、1年分をまとめて': marks in the bottom zone (453600 px)",
+   "t=3.3s '実は、1年分をまとめて': marks in the right zone (142800 px)",
+   "t=3.3s '実は、1年分をまとめて': marks in the left zone (76800 px)",
+   "t=4.9s '前払いするだけで': marks in the top zone (162000 px)",
+   "t=4.9s '前払いするだけで': marks in the bottom zone (453600 px)",
+   "t=4.9s '前払いするだけで': marks in the right zone (142800 px)",
+   "t=4.9s '前払いするだけで': marks in the left zone (76800 px)",
+   "t=6.0s '安くなります。': marks in the top zone (162000 px)",
+   "t=6.0s '安くなります。': marks in the bottom zone (453600 px)",
+   "t=6.0s '安くなります。': marks in the right zone (142800 px)",
+   "t=6.0s '安くなります。': marks in the left zone (76800 px)",
+   "t=7.1s '地上契約を口座か': marks in the top zone (162000 px)",
+   "t=7.1s '地上契約を口座か': marks in the bottom zone (453600 px)",
+   "t=7.1s '地上契約を口座か': marks in the right zone (142800 px)",
+   "t=7.1s '地上契約を口座か': marks in the left zone (76800 px)",
+   "t=8.4s 'カードで払う場合、': marks in the top zone (162000 px)",
+   "t=8.4s 'カードで払う場合、': marks in the bottom zone (453600 px)",
+   "t=8.4s 'カードで払う場合、': marks in the right zone (142800 px)",
+   "t=8.4s 'カードで払う場合、': marks in the left zone (76800 px)",
+   "t=9.5s '2か月払いは2200円。': marks in the top zone (162000 px)",
+   "t=9.5s '2か月払いは2200円。': marks in the bottom zone (453600 px)",
+   "t=9.5s '2か月払いは2200円。': marks in the right zone (142800 px)",
+   "t=9.5s '2か月払いは2200円。': marks in the left zone (76800 px)",
+   "t=11.5s 'これを1年続けると、': marks in the top zone (162000 px)",
+   "t=11.5s 'これを1年続けると、': marks in the bottom zone (453600 px)",
+   "t=11.5s 'これを1年続けると、': marks in the right zone (142800 px)",
+   "t=11.5s 'これを1年続けると、': marks in the left zone (76800 px)",
+   "t=12.9s '1万3200円です。': marks in the top zone (162000 px)",
+   "t=12.9s '1万3200円です。': marks in the bottom zone (453600 px)",
+   "t=12.9s '1万3200円です。': marks in the right zone (142800 px)",
+   "t=12.9s '1万3200円です。': marks in the left zone (76800 px)",
+   "t=14.9s '12か月前払いにすると、': marks in the top zone (162000 px)",
+   "t=14.9s '12か月前払いにすると、': marks in the bottom zone (453600 px)",
+   "t=14.9s '12か月前払いにすると、': marks in the right zone (142800 px)",
+   "t=14.9s '12か月前払いにすると、': marks in the left zone (76800 px)",
+   "t=16.6s '1万2276円になります。': marks in the top zone (162000 px)",
+   "t=16.6s '1万2276円になります。': marks in the bottom zone (453600 px)",
+   "t=16.6s '1万2276円になります。': marks in the right zone (142800 px)",
+   "t=16.6s '1万2276円になります。': marks in the left zone (76800 px)",
+   "t=19.4s '差は1年で924円。': marks in the top zone (162000 px)",
+   "t=19.4s '差は1年で924円。': marks in the bottom zone (453600 px)",
+   "t=19.4s '差は1年で924円。': marks in the right zone (142800 px)",
+   "t=19.4s '差は1年で924円。': marks in the left zone (76800 px)",
+   "t=21.8s '手続きは一度だけです。': marks in the top zone (162000 px)",
+   "t=21.8s '手続きは一度だけです。': marks in the bottom zone (453600 px)",
+   "t=21.8s '手続きは一度だけです。': marks in the right zone (142800 px)",
+   "t=21.8s '手続きは一度だけです。': marks in the left zone (76800 px)",
+   "t=23.5s '毎年払うと': marks in the top zone (162000 px)",
+   "t=23.5s '毎年払うと': marks in the bottom zone (453600 px)",
+   "t=23.5s '毎年払うと': marks in the right zone (142800 px)",
+   "t=23.5s '毎年払うと': marks in the left zone (76800 px)",
+   "t=24.4s '決まっている固定費は、': marks in the top zone (162000 px)",
+   "t=24.4s '決まっている固定費は、': marks in the bottom zone (453600 px)",
+   "t=24.4s '決まっている固定費は、': marks in the right zone (142800 px)",
+   "t=24.4s '決まっている固定費は、': marks in the left zone (76800 px)",
+   "t=25.6s 'まとめ払いを確認しましょう。': marks in the top zone (162000 px)",
+   "t=25.6s 'まとめ払いを確認しましょう。': marks in the bottom zone (453600 px)",
+   "t=25.6s 'まとめ払いを確認しましょう。': marks in the right zone (142800 px)",
+   "t=25.6s 'まとめ払いを確認しましょう。': marks in the left zone (76800 px)",
+   "t=27.6s '保存して、支払い方法を': marks in the top zone (162000 px)",
+   "t=27.6s '保存して、支払い方法を': marks in the bottom zone (453600 px)",
+   "t=27.6s '保存して、支払い方法を': marks in the right zone (142800 px)",
+   "t=27.6s '保存して、支払い方法を': marks in the left zone (76800 px)",
+   "t=29.7s '見直すときに使ってください。': marks in the top zone (162000 px)",
+   "t=29.7s '見直すときに使ってください。': marks in the bottom zone (453600 px)",
+   "t=29.7s '見直すときに使ってください。': marks in the right zone (142800 px)",
+   "t=29.7s '見直すときに使ってください。': marks in the left zone (76800 px)",
+   "t=31.8s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=31.8s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=31.8s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=31.8s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=34.0s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=34.0s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=34.0s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=34.0s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
