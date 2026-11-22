@@ -1,0 +1,258 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "暖房を1度下げると、電気代は約10パーセント減る目安です。",
+   "caption": "暖房を1度下げると、電気代は約10パーセント減る目安です。",
+   "key_message": "暖房を1度下げると、電気代は約10パーセント減る目安です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1",
+    "10パーセント"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.157
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "冬の電気代で大きいのは、エアコンの暖房です。",
+   "caption": "冬の電気代で大きいのは、エアコンの暖房です。",
+   "key_message": "冬の電気代で大きいのは、エアコンの暖房です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.157,
+   "duration": 3.24
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "環境省は、暖房時の室温20度を目安にしています。",
+   "caption": "環境省は、暖房時の室温20度を目安にしています。",
+   "key_message": "室温20度が目安",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "暖房の節電手順",
+    "rows": [
+     {
+      "label": "室温20度が目安",
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "20"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 7.397,
+   "duration": 3.693
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "設定温度と室温は、同じではありません。",
+   "caption": "設定温度と室温は、同じではありません。",
+   "key_message": "設定温度と室温は、同じではありません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 11.09,
+   "duration": 2.873
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "温度計で室温をはかって、20度に近づけましょう。",
+   "caption": "温度計で室温をはかって、20度に近づけましょう。",
+   "key_message": "温度計で室温をはかる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "暖房の節電手順",
+    "rows": [
+     {
+      "label": "温度計で室温をはかる",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "20"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 13.963,
+   "duration": 3.409
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "寒いときは、設定を上げる前に、重ね着や加湿を試します。",
+   "caption": "寒いときは、設定を上げる前に、重ね着や加湿を試します。",
+   "key_message": "重ね着や加湿が先",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "暖房の節電手順",
+    "rows": [
+     {
+      "label": "重ね着や加湿が先",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 17.372,
+   "duration": 4.259
+  },
+  {
+   "index": 6,
+   "role": "caveat",
+   "narration": "ただし、体調を崩さない範囲で、無理はしないでください。",
+   "caption": "ただし、体調を崩さない範囲で、無理はしないでください。",
+   "key_message": "ただし、体調を崩さない範囲で、無理はしないでください",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、体調を崩さない範囲で、無理はしないでください。",
+   "start": 21.631,
+   "duration": 3.885
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "温度計がない人は、100円ショップで探してみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "温度計がない人は、100円ショップで探してみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "温度計がない人は、100円ショップで探してみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "100円",
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 25.516,
+   "duration": 7.39
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '暖房を1度下げると、': marks in the top zone (162000 px)",
+   "t=0.0s '暖房を1度下げると、': marks in the bottom zone (453600 px)",
+   "t=0.0s '暖房を1度下げると、': marks in the right zone (142800 px)",
+   "t=0.0s '暖房を1度下げると、': marks in the left zone (76800 px)",
+   "t=1.3s '電気代は': marks in the top zone (162000 px)",
+   "t=1.3s '電気代は': marks in the bottom zone (453600 px)",
+   "t=1.3s '電気代は': marks in the right zone (142800 px)",
+   "t=1.3s '電気代は': marks in the left zone (76800 px)",
+   "t=1.9s '約10パーセント減る': marks in the top zone (162000 px)",
+   "t=1.9s '約10パーセント減る': marks in the bottom zone (453600 px)",
+   "t=1.9s '約10パーセント減る': marks in the right zone (142800 px)",
+   "t=1.9s '約10パーセント減る': marks in the left zone (76800 px)",
+   "t=3.3s '目安です。': marks in the top zone (162000 px)",
+   "t=3.3s '目安です。': marks in the bottom zone (453600 px)",
+   "t=3.3s '目安です。': marks in the right zone (142800 px)",
+   "t=3.3s '目安です。': marks in the left zone (76800 px)",
+   "t=4.2s '冬の電気代で大きいのは、': marks in the top zone (162000 px)",
+   "t=4.2s '冬の電気代で大きいのは、': marks in the bottom zone (453600 px)",
+   "t=4.2s '冬の電気代で大きいのは、': marks in the right zone (142800 px)",
+   "t=4.2s '冬の電気代で大きいのは、': marks in the left zone (76800 px)",
+   "t=5.9s 'エアコンの暖房です。': marks in the top zone (162000 px)",
+   "t=5.9s 'エアコンの暖房です。': marks in the bottom zone (453600 px)",
+   "t=5.9s 'エアコンの暖房です。': marks in the right zone (142800 px)",
+   "t=5.9s 'エアコンの暖房です。': marks in the left zone (76800 px)",
+   "t=7.4s '環境省は、暖房時の': marks in the top zone (162000 px)",
+   "t=7.4s '環境省は、暖房時の': marks in the bottom zone (453600 px)",
+   "t=7.4s '環境省は、暖房時の': marks in the right zone (142800 px)",
+   "t=7.4s '環境省は、暖房時の': marks in the left zone (76800 px)",
+   "t=8.9s '室温20度を': marks in the top zone (162000 px)",
+   "t=8.9s '室温20度を': marks in the bottom zone (453600 px)",
+   "t=8.9s '室温20度を': marks in the right zone (142800 px)",
+   "t=8.9s '室温20度を': marks in the left zone (76800 px)",
+   "t=9.9s '目安にしています。': marks in the top zone (162000 px)",
+   "t=9.9s '目安にしています。': marks in the bottom zone (453600 px)",
+   "t=9.9s '目安にしています。': marks in the right zone (142800 px)",
+   "t=9.9s '目安にしています。': marks in the left zone (76800 px)",
+   "t=11.1s '設定温度と室温は、': marks in the top zone (162000 px)",
+   "t=11.1s '設定温度と室温は、': marks in the bottom zone (453600 px)",
+   "t=11.1s '設定温度と室温は、': marks in the right zone (142800 px)",
+   "t=11.1s '設定温度と室温は、': marks in the left zone (76800 px)",
+   "t=12.6s '同じではありません。': marks in the top zone (162000 px)",
+   "t=12.6s '同じではありません。': marks in the bottom zone (453600 px)",
+   "t=12.6s '同じではありません。': marks in the right zone (142800 px)",
+   "t=12.6s '同じではありません。': marks in the left zone (76800 px)",
+   "t=14.0s '温度計で室温をはかって、': marks in the top zone (162000 px)",
+   "t=14.0s '温度計で室温をはかって、': marks in the bottom zone (453600 px)",
+   "t=14.0s '温度計で室温をはかって、': marks in the right zone (142800 px)",
+   "t=14.0s '温度計で室温をはかって、': marks in the left zone (76800 px)",
+   "t=15.6s '20度に近づけましょう。': marks in the top zone (162000 px)",
+   "t=15.6s '20度に近づけましょう。': marks in the bottom zone (453600 px)",
+   "t=15.6s '20度に近づけましょう。': marks in the right zone (142800 px)",
+   "t=15.6s '20度に近づけましょう。': marks in the left zone (76800 px)",
+   "t=17.4s '寒いときは、': marks in the top zone (162000 px)",
+   "t=17.4s '寒いときは、': marks in the bottom zone (453600 px)",
+   "t=17.4s '寒いときは、': marks in the right zone (142800 px)",
+   "t=17.4s '寒いときは、': marks in the left zone (76800 px)",
+   "t=18.2s '設定を上げる前に、': marks in the top zone (162000 px)",
+   "t=18.2s '設定を上げる前に、': marks in the bottom zone (453600 px)",
+   "t=18.2s '設定を上げる前に、': marks in the right zone (142800 px)",
+   "t=18.2s '設定を上げる前に、': marks in the left zone (76800 px)",
+   "t=19.6s '重ね着や加湿を試します。': marks in the top zone (162000 px)",
+   "t=19.6s '重ね着や加湿を試します。': marks in the bottom zone (453600 px)",
+   "t=19.6s '重ね着や加湿を試します。': marks in the right zone (142800 px)",
+   "t=19.6s '重ね着や加湿を試します。': marks in the left zone (76800 px)",
+   "t=21.6s 'ただし、体調を': marks in the top zone (162000 px)",
+   "t=21.6s 'ただし、体調を': marks in the bottom zone (453600 px)",
+   "t=21.6s 'ただし、体調を': marks in the right zone (142800 px)",
+   "t=21.6s 'ただし、体調を': marks in the left zone (76800 px)",
+   "t=22.7s '崩さない範囲で、': marks in the top zone (162000 px)",
+   "t=22.7s '崩さない範囲で、': marks in the bottom zone (453600 px)",
+   "t=22.7s '崩さない範囲で、': marks in the right zone (142800 px)",
+   "t=22.7s '崩さない範囲で、': marks in the left zone (76800 px)",
+   "t=23.9s '無理はしないでください。': marks in the top zone (162000 px)",
+   "t=23.9s '無理はしないでください。': marks in the bottom zone (453600 px)",
+   "t=23.9s '無理はしないでください。': marks in the right zone (142800 px)",
+   "t=23.9s '無理はしないでください。': marks in the left zone (76800 px)",
+   "t=25.5s '温度計がない人は、': marks in the top zone (162000 px)",
+   "t=25.5s '温度計がない人は、': marks in the bottom zone (453600 px)",
+   "t=25.5s '温度計がない人は、': marks in the right zone (142800 px)",
+   "t=25.5s '温度計がない人は、': marks in the left zone (76800 px)",
+   "t=27.2s '100円ショップで': marks in the top zone (162000 px)",
+   "t=27.2s '100円ショップで': marks in the bottom zone (453600 px)",
+   "t=27.2s '100円ショップで': marks in the right zone (142800 px)",
+   "t=27.2s '100円ショップで': marks in the left zone (76800 px)",
+   "t=28.6s '探してみて。毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=28.6s '探してみて。毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=28.6s '探してみて。毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=28.6s '探してみて。毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=31.6s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=31.6s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=31.6s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=31.6s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
