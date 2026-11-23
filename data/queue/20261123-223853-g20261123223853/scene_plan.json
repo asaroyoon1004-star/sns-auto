@@ -1,0 +1,281 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "1千万円を超える貯金は、1つの銀行に置かない。",
+   "caption": "1千万円を超える貯金は、1つの銀行に置かない。",
+   "key_message": "1千万円を超える貯金は、1つの銀行に置かない",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1千万円",
+    "1つ"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.561
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "銀行が破綻しても守られる預金は、1つの銀行ごとに元本1千万円と利息まで。",
+   "caption": "銀行が破綻しても守られる預金は、1つの銀行ごとに元本1千万円と利息まで。",
+   "key_message": "守られる元本",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "1銀行に預けた場合",
+    "rows": [
+     {
+      "label": "守られる元本",
+      "text": "1千万円",
+      "value": 1000,
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "1つ",
+    "1千万円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 3.561,
+   "duration": 5.465
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "たとえば、1つの銀行に1千5百万円を預けていた場合。",
+   "caption": "たとえば、1つの銀行に1千5百万円を預けていた場合。",
+   "key_message": "預けた額",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "1銀行に預けた場合",
+    "rows": [
+     {
+      "label": "預けた額",
+      "text": "1千5百万円",
+      "value": 1500,
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "1つ",
+    "1千5百万円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 9.026,
+   "duration": 3.977
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "1千万円を超える5百万円は、一部しか戻らない可能性があります。",
+   "caption": "1千万円を超える5百万円は、一部しか戻らない可能性があります。",
+   "key_message": "保護の対象外",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "1銀行に預けた場合",
+    "rows": [
+     {
+      "label": "保護の対象外",
+      "text": "5百万円",
+      "value": 500,
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1千万円",
+    "5百万円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 13.003,
+   "duration": 4.558
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "同じ銀行なら、支店を分けても合算されます。",
+   "caption": "同じ銀行なら、支店を分けても合算されます。",
+   "key_message": "同じ銀行なら、支店を分けても合算されます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 17.561,
+   "duration": 3.189
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "別の銀行に分ければ、それぞれ1千万円まで対象です。",
+   "caption": "別の銀行に分ければ、それぞれ1千万円まで対象です。",
+   "key_message": "別の銀行に分ければ、それぞれ1千万円まで対象です",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1千万円"
+   },
+   "emphasis": [
+    "1千万円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 20.75,
+   "duration": 3.862
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "1つの銀行には1千万円までを目安にしましょう。",
+   "caption": "1つの銀行には1千万円までを目安にしましょう。",
+   "key_message": "1つの銀行には1千万円までを目安にしましょう",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "1千万円"
+   },
+   "emphasis": [
+    "1つ",
+    "1千万円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 24.612,
+   "duration": 3.304
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "貯金が増えてきた人は、保存して見返してください。毎日1本、お金の話。フォローしてね。",
+   "caption": "貯金が増えてきた人は、保存して見返してください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "貯金が増えてきた人は、保存して見返してください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 預金保険機構および金融庁の預金保険制度（ペイオフ）の解説。一般預金等は1金融機関ごとに預金者1人あたり元本1千万円までとその利息等が保護。超える部分は破綻金融機関の財産状況に応じて支払われるため、一部カットされる可能性がある。同一金融機関の複数支店の預金は名寄せで合算。(2)前提: 1千5百万円の例は仮定の金額で、全額が一般預金（定期・普通預金等）の場合。利息のつかない決済用預金は全額保護だが、メッセージを1つに絞るため割愛。(3)事実: 保護範囲、支店合算、別銀行ならそれぞれ対象となる点。仮定: 1千5百万円を預けて破綻した場合の例。結論の1千万円までの目安は制度に基づく提案。",
+   "caveat": "",
+   "start": 27.916,
+   "duration": 7.47
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '1千万円を超える貯金は、': marks in the top zone (162000 px)",
+   "t=0.0s '1千万円を超える貯金は、': marks in the bottom zone (453600 px)",
+   "t=0.0s '1千万円を超える貯金は、': marks in the right zone (142800 px)",
+   "t=0.0s '1千万円を超える貯金は、': marks in the left zone (76800 px)",
+   "t=1.8s '1つの銀行に置かない。': marks in the top zone (162000 px)",
+   "t=1.8s '1つの銀行に置かない。': marks in the bottom zone (453600 px)",
+   "t=1.8s '1つの銀行に置かない。': marks in the right zone (142800 px)",
+   "t=1.8s '1つの銀行に置かない。': marks in the left zone (76800 px)",
+   "t=3.6s '銀行が破綻しても': marks in the top zone (162000 px)",
+   "t=3.6s '銀行が破綻しても': marks in the bottom zone (453600 px)",
+   "t=3.6s '銀行が破綻しても': marks in the right zone (142800 px)",
+   "t=3.6s '銀行が破綻しても': marks in the left zone (76800 px)",
+   "t=4.7s '守られる預金は、': marks in the top zone (162000 px)",
+   "t=4.7s '守られる預金は、': marks in the bottom zone (453600 px)",
+   "t=4.7s '守られる預金は、': marks in the right zone (142800 px)",
+   "t=4.7s '守られる預金は、': marks in the left zone (76800 px)",
+   "t=5.7s '1つの銀行ごとに': marks in the top zone (162000 px)",
+   "t=5.7s '1つの銀行ごとに': marks in the bottom zone (453600 px)",
+   "t=5.7s '1つの銀行ごとに': marks in the right zone (142800 px)",
+   "t=5.7s '1つの銀行ごとに': marks in the left zone (76800 px)",
+   "t=6.9s '元本1千万円と利息まで。': marks in the top zone (162000 px)",
+   "t=6.9s '元本1千万円と利息まで。': marks in the bottom zone (453600 px)",
+   "t=6.9s '元本1千万円と利息まで。': marks in the right zone (142800 px)",
+   "t=6.9s '元本1千万円と利息まで。': marks in the left zone (76800 px)",
+   "t=9.0s 'たとえば、1つの銀行に': marks in the top zone (162000 px)",
+   "t=9.0s 'たとえば、1つの銀行に': marks in the bottom zone (453600 px)",
+   "t=9.0s 'たとえば、1つの銀行に': marks in the right zone (142800 px)",
+   "t=9.0s 'たとえば、1つの銀行に': marks in the left zone (76800 px)",
+   "t=10.4s '1千5百万円を預けていた場合。': marks in the top zone (162000 px)",
+   "t=10.4s '1千5百万円を預けていた場合。': marks in the bottom zone (453600 px)",
+   "t=10.4s '1千5百万円を預けていた場合。': marks in the right zone (142800 px)",
+   "t=10.4s '1千5百万円を預けていた場合。': marks in the left zone (76800 px)",
+   "t=13.0s '1千万円を超える5百万円は、': marks in the top zone (162000 px)",
+   "t=13.0s '1千万円を超える5百万円は、': marks in the bottom zone (453600 px)",
+   "t=13.0s '1千万円を超える5百万円は、': marks in the right zone (142800 px)",
+   "t=13.0s '1千万円を超える5百万円は、': marks in the left zone (76800 px)",
+   "t=15.2s '一部しか戻らない': marks in the top zone (162000 px)",
+   "t=15.2s '一部しか戻らない': marks in the bottom zone (453600 px)",
+   "t=15.2s '一部しか戻らない': marks in the right zone (142800 px)",
+   "t=15.2s '一部しか戻らない': marks in the left zone (76800 px)",
+   "t=16.3s '可能性があります。': marks in the top zone (162000 px)",
+   "t=16.3s '可能性があります。': marks in the bottom zone (453600 px)",
+   "t=16.3s '可能性があります。': marks in the right zone (142800 px)",
+   "t=16.3s '可能性があります。': marks in the left zone (76800 px)",
+   "t=17.6s '同じ銀行なら、': marks in the top zone (162000 px)",
+   "t=17.6s '同じ銀行なら、': marks in the bottom zone (453600 px)",
+   "t=17.6s '同じ銀行なら、': marks in the right zone (142800 px)",
+   "t=17.6s '同じ銀行なら、': marks in the left zone (76800 px)",
+   "t=18.7s '支店を分けても合算されます。': marks in the top zone (162000 px)",
+   "t=18.7s '支店を分けても合算されます。': marks in the bottom zone (453600 px)",
+   "t=18.7s '支店を分けても合算されます。': marks in the right zone (142800 px)",
+   "t=18.7s '支店を分けても合算されます。': marks in the left zone (76800 px)",
+   "t=20.7s '別の銀行に分ければ、': marks in the top zone (162000 px)",
+   "t=20.7s '別の銀行に分ければ、': marks in the bottom zone (453600 px)",
+   "t=20.7s '別の銀行に分ければ、': marks in the right zone (142800 px)",
+   "t=20.7s '別の銀行に分ければ、': marks in the left zone (76800 px)",
+   "t=22.1s 'それぞれ': marks in the top zone (162000 px)",
+   "t=22.1s 'それぞれ': marks in the bottom zone (453600 px)",
+   "t=22.1s 'それぞれ': marks in the right zone (142800 px)",
+   "t=22.1s 'それぞれ': marks in the left zone (76800 px)",
+   "t=22.5s '1千万円まで': marks in the top zone (162000 px)",
+   "t=22.5s '1千万円まで': marks in the bottom zone (453600 px)",
+   "t=22.5s '1千万円まで': marks in the right zone (142800 px)",
+   "t=22.5s '1千万円まで': marks in the left zone (76800 px)",
+   "t=23.6s '対象です。': marks in the top zone (162000 px)",
+   "t=23.6s '対象です。': marks in the bottom zone (453600 px)",
+   "t=23.6s '対象です。': marks in the right zone (142800 px)",
+   "t=23.6s '対象です。': marks in the left zone (76800 px)",
+   "t=24.6s '1つの銀行には': marks in the top zone (162000 px)",
+   "t=24.6s '1つの銀行には': marks in the bottom zone (453600 px)",
+   "t=24.6s '1つの銀行には': marks in the right zone (142800 px)",
+   "t=24.6s '1つの銀行には': marks in the left zone (76800 px)",
+   "t=25.6s '1千万円までを': marks in the top zone (162000 px)",
+   "t=25.6s '1千万円までを': marks in the bottom zone (453600 px)",
+   "t=25.6s '1千万円までを': marks in the right zone (142800 px)",
+   "t=25.6s '1千万円までを': marks in the left zone (76800 px)",
+   "t=26.7s '目安にしましょう。': marks in the top zone (162000 px)",
+   "t=26.7s '目安にしましょう。': marks in the bottom zone (453600 px)",
+   "t=26.7s '目安にしましょう。': marks in the right zone (142800 px)",
+   "t=26.7s '目安にしましょう。': marks in the left zone (76800 px)",
+   "t=27.9s '貯金が増えてきた人は、': marks in the top zone (162000 px)",
+   "t=27.9s '貯金が増えてきた人は、': marks in the bottom zone (453600 px)",
+   "t=27.9s '貯金が増えてきた人は、': marks in the right zone (142800 px)",
+   "t=27.9s '貯金が増えてきた人は、': marks in the left zone (76800 px)",
+   "t=29.9s '保存して見返してください。': marks in the top zone (162000 px)",
+   "t=29.9s '保存して見返してください。': marks in the bottom zone (453600 px)",
+   "t=29.9s '保存して見返してください。': marks in the right zone (142800 px)",
+   "t=29.9s '保存して見返してください。': marks in the left zone (76800 px)",
+   "t=31.9s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=31.9s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=31.9s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=31.9s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=34.0s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=34.0s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=34.0s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=34.0s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
