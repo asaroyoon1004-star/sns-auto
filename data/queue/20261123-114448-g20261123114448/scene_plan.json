@@ -1,0 +1,303 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "家計簿は、1円単位でつけなくて大丈夫です。",
+   "caption": "家計簿は、1円単位でつけなくて大丈夫です。",
+   "key_message": "家計簿は、1円単位でつけなくて大丈夫です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1円"
+   ],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.096
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "細かく書くほど手間が増えて、続かなくなりがちです。",
+   "caption": "細かく書くほど手間が増えて、続かなくなりがちです。",
+   "key_message": "細かく書くほど手間が増えて、続かなくなりがちです",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 3.096,
+   "duration": 3.313
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "見たいのは、何にいくら使ったかの傾向です。",
+   "caption": "見たいのは、何にいくら使ったかの傾向です。",
+   "key_message": "見たいのは、何にいくら使ったかの傾向です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 6.409,
+   "duration": 2.942
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "やり方は、週に1回、カードや電子マネーの明細を見るだけ。",
+   "caption": "やり方は、週に1回、カードや電子マネーの明細を見るだけ。",
+   "key_message": "週1回 明細を見る",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "続く家計簿のコツ",
+    "rows": [
+     {
+      "label": "週1回 明細を見る",
+      "text": "",
+      "value": 0,
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 9.351,
+   "duration": 4.284
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "食費、日用品、娯楽など、3つから5つの項目に分けます。",
+   "caption": "食費、日用品、娯楽など、3つから5つの項目に分けます。",
+   "key_message": "3から5項目に分ける",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "続く家計簿のコツ",
+    "rows": [
+     {
+      "label": "3から5項目に分ける",
+      "text": "",
+      "value": 0,
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "3つ",
+    "5つ"
+   ],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 13.635,
+   "duration": 4.779
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "金額は千円単位で十分です。",
+   "caption": "金額は千円単位で十分です。",
+   "key_message": "千円単位で書く",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "続く家計簿のコツ",
+    "rows": [
+     {
+      "label": "千円単位で書く",
+      "text": "",
+      "value": 0,
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 18.414,
+   "duration": 2.157
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "月末に先月と比べて、増えた項目を1つだけ見直します。",
+   "caption": "月末に先月と比べて、増えた項目を1つだけ見直します。",
+   "key_message": "増えた1項目を見直す",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "続く家計簿のコツ",
+    "rows": [
+     {
+      "label": "増えた1項目を見直す",
+      "text": "",
+      "value": 0,
+      "line": 6
+     }
+    ]
+   },
+   "emphasis": [
+    "1つ"
+   ],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 20.571,
+   "duration": 4.149
+  },
+  {
+   "index": 7,
+   "role": "explanation",
+   "narration": "正確さより、毎月続けることのほうが大切です。",
+   "caption": "正確さより、毎月続けることのほうが大切です。",
+   "key_message": "正確さより、毎月続けることのほうが大切です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 24.72,
+   "duration": 3.402
+  },
+  {
+   "index": 8,
+   "role": "cta",
+   "narration": "家計簿が続かない人は、保存して週1回から試してみてください。毎日1本、お金の話。フォローしてね。",
+   "caption": "家計簿が続かない人は、保存して週1回から試してみてください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "家計簿が続かない人は、保存して週1回から試してみてください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1",
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)特定の公的統計や制度には依拠していない。家計管理の一般的な習慣の提案で、金融庁などが示す家計の見直しで収支を把握するという一般的考え方と矛盾しない内容。(2)計算や金額の試算はなし。項目数3から5、千円単位、週1回はあくまで提案する目安。(3)事実に近い一般論は、細かい記録は手間が増えるという点のみ。続かなくなりがち、という部分は断定せず傾向として表現。やり方や項目数、頻度はすべて提案であり、効果を保証するものではない。",
+   "caveat": "",
+   "start": 28.122,
+   "duration": 8.406
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '家計簿は、': marks in the top zone (162000 px)",
+   "t=0.0s '家計簿は、': marks in the bottom zone (453600 px)",
+   "t=0.0s '家計簿は、': marks in the right zone (142800 px)",
+   "t=0.0s '家計簿は、': marks in the left zone (76800 px)",
+   "t=0.5s '1円単位でつけなくて': marks in the top zone (162000 px)",
+   "t=0.5s '1円単位でつけなくて': marks in the bottom zone (453600 px)",
+   "t=0.5s '1円単位でつけなくて': marks in the right zone (142800 px)",
+   "t=0.5s '1円単位でつけなくて': marks in the left zone (76800 px)",
+   "t=1.9s '大丈夫です。': marks in the top zone (162000 px)",
+   "t=1.9s '大丈夫です。': marks in the bottom zone (453600 px)",
+   "t=1.9s '大丈夫です。': marks in the right zone (142800 px)",
+   "t=1.9s '大丈夫です。': marks in the left zone (76800 px)",
+   "t=3.1s '細かく書くほど手間が増えて、': marks in the top zone (162000 px)",
+   "t=3.1s '細かく書くほど手間が増えて、': marks in the bottom zone (453600 px)",
+   "t=3.1s '細かく書くほど手間が増えて、': marks in the right zone (142800 px)",
+   "t=3.1s '細かく書くほど手間が増えて、': marks in the left zone (76800 px)",
+   "t=4.8s '続かなくなりがちです。': marks in the top zone (162000 px)",
+   "t=4.8s '続かなくなりがちです。': marks in the bottom zone (453600 px)",
+   "t=4.8s '続かなくなりがちです。': marks in the right zone (142800 px)",
+   "t=4.8s '続かなくなりがちです。': marks in the left zone (76800 px)",
+   "t=6.4s '見たいのは、': marks in the top zone (162000 px)",
+   "t=6.4s '見たいのは、': marks in the bottom zone (453600 px)",
+   "t=6.4s '見たいのは、': marks in the right zone (142800 px)",
+   "t=6.4s '見たいのは、': marks in the left zone (76800 px)",
+   "t=7.0s '何にいくら': marks in the top zone (162000 px)",
+   "t=7.0s '何にいくら': marks in the bottom zone (453600 px)",
+   "t=7.0s '何にいくら': marks in the right zone (142800 px)",
+   "t=7.0s '何にいくら': marks in the left zone (76800 px)",
+   "t=7.7s '使ったかの傾向です。': marks in the top zone (162000 px)",
+   "t=7.7s '使ったかの傾向です。': marks in the bottom zone (453600 px)",
+   "t=7.7s '使ったかの傾向です。': marks in the right zone (142800 px)",
+   "t=7.7s '使ったかの傾向です。': marks in the left zone (76800 px)",
+   "t=9.4s 'やり方は、週に1回、': marks in the top zone (162000 px)",
+   "t=9.4s 'やり方は、週に1回、': marks in the bottom zone (453600 px)",
+   "t=9.4s 'やり方は、週に1回、': marks in the right zone (142800 px)",
+   "t=9.4s 'やり方は、週に1回、': marks in the left zone (76800 px)",
+   "t=11.0s 'カードや電子マネーの': marks in the top zone (162000 px)",
+   "t=11.0s 'カードや電子マネーの': marks in the bottom zone (453600 px)",
+   "t=11.0s 'カードや電子マネーの': marks in the right zone (142800 px)",
+   "t=11.0s 'カードや電子マネーの': marks in the left zone (76800 px)",
+   "t=12.3s '明細を見るだけ。': marks in the top zone (162000 px)",
+   "t=12.3s '明細を見るだけ。': marks in the bottom zone (453600 px)",
+   "t=12.3s '明細を見るだけ。': marks in the right zone (142800 px)",
+   "t=12.3s '明細を見るだけ。': marks in the left zone (76800 px)",
+   "t=13.6s '食費、日用品、娯楽など、': marks in the top zone (162000 px)",
+   "t=13.6s '食費、日用品、娯楽など、': marks in the bottom zone (453600 px)",
+   "t=13.6s '食費、日用品、娯楽など、': marks in the right zone (142800 px)",
+   "t=13.6s '食費、日用品、娯楽など、': marks in the left zone (76800 px)",
+   "t=15.7s '3つから5つの': marks in the top zone (162000 px)",
+   "t=15.7s '3つから5つの': marks in the bottom zone (453600 px)",
+   "t=15.7s '3つから5つの': marks in the right zone (142800 px)",
+   "t=15.7s '3つから5つの': marks in the left zone (76800 px)",
+   "t=16.9s '項目に分けます。': marks in the top zone (162000 px)",
+   "t=16.9s '項目に分けます。': marks in the bottom zone (453600 px)",
+   "t=16.9s '項目に分けます。': marks in the right zone (142800 px)",
+   "t=16.9s '項目に分けます。': marks in the left zone (76800 px)",
+   "t=18.4s '金額は千円単位で十分です。': marks in the top zone (162000 px)",
+   "t=18.4s '金額は千円単位で十分です。': marks in the bottom zone (453600 px)",
+   "t=18.4s '金額は千円単位で十分です。': marks in the right zone (142800 px)",
+   "t=18.4s '金額は千円単位で十分です。': marks in the left zone (76800 px)",
+   "t=20.6s '月末に先月と比べて、': marks in the top zone (162000 px)",
+   "t=20.6s '月末に先月と比べて、': marks in the bottom zone (453600 px)",
+   "t=20.6s '月末に先月と比べて、': marks in the right zone (142800 px)",
+   "t=20.6s '月末に先月と比べて、': marks in the left zone (76800 px)",
+   "t=22.3s '増えた項目を1つだけ': marks in the top zone (162000 px)",
+   "t=22.3s '増えた項目を1つだけ': marks in the bottom zone (453600 px)",
+   "t=22.3s '増えた項目を1つだけ': marks in the right zone (142800 px)",
+   "t=22.3s '増えた項目を1つだけ': marks in the left zone (76800 px)",
+   "t=23.8s '見直します。': marks in the top zone (162000 px)",
+   "t=23.8s '見直します。': marks in the bottom zone (453600 px)",
+   "t=23.8s '見直します。': marks in the right zone (142800 px)",
+   "t=23.8s '見直します。': marks in the left zone (76800 px)",
+   "t=24.7s '正確さより、': marks in the top zone (162000 px)",
+   "t=24.7s '正確さより、': marks in the bottom zone (453600 px)",
+   "t=24.7s '正確さより、': marks in the right zone (142800 px)",
+   "t=24.7s '正確さより、': marks in the left zone (76800 px)",
+   "t=25.6s '毎月続けることのほうが': marks in the top zone (162000 px)",
+   "t=25.6s '毎月続けることのほうが': marks in the bottom zone (453600 px)",
+   "t=25.6s '毎月続けることのほうが': marks in the right zone (142800 px)",
+   "t=25.6s '毎月続けることのほうが': marks in the left zone (76800 px)",
+   "t=27.2s '大切です。': marks in the top zone (162000 px)",
+   "t=27.2s '大切です。': marks in the bottom zone (453600 px)",
+   "t=27.2s '大切です。': marks in the right zone (142800 px)",
+   "t=27.2s '大切です。': marks in the left zone (76800 px)",
+   "t=28.1s '家計簿が続かない人は、': marks in the top zone (162000 px)",
+   "t=28.1s '家計簿が続かない人は、': marks in the bottom zone (453600 px)",
+   "t=28.1s '家計簿が続かない人は、': marks in the right zone (142800 px)",
+   "t=28.1s '家計簿が続かない人は、': marks in the left zone (76800 px)",
+   "t=30.0s '保存して週1回から': marks in the top zone (162000 px)",
+   "t=30.0s '保存して週1回から': marks in the bottom zone (453600 px)",
+   "t=30.0s '保存して週1回から': marks in the right zone (142800 px)",
+   "t=30.0s '保存して週1回から': marks in the left zone (76800 px)",
+   "t=31.8s '試してみてください。': marks in the top zone (162000 px)",
+   "t=31.8s '試してみてください。': marks in the bottom zone (453600 px)",
+   "t=31.8s '試してみてください。': marks in the right zone (142800 px)",
+   "t=31.8s '試してみてください。': marks in the left zone (76800 px)",
+   "t=33.2s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=33.2s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=33.2s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=33.2s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=35.2s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=35.2s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=35.2s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=35.2s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
