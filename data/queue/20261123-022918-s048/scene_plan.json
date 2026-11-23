@@ -1,0 +1,181 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "ATM時間外の220円、月3回で年約8,000円です。",
+   "caption": "ATM時間外の220円、月3回で年約8,000円です。",
+   "key_message": "ATM時間外の220円、月3回で年約8,000円です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "220円",
+    "3",
+    "8,000円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 4.448
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "夜間や休日のATMは、手数料が220円になる銀行が多いです。",
+   "caption": "夜間や休日のATMは、手数料が220円になる銀行が多いです。",
+   "key_message": "夜間・休日は220円が多い",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ATM手数料を減らす",
+    "rows": [
+     {
+      "label": "夜間・休日は220円が多い",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "220円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 4.448,
+   "duration": 4.919
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "平日の昼間は、110円という例もあります。",
+   "caption": "平日の昼間は、110円という例もあります。",
+   "key_message": "平日の昼間は、110円という例もあります",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "110円"
+   },
+   "emphasis": [
+    "110円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 9.367,
+   "duration": 3.147
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "月に3回、220円でおろすと、年に約8,000円です。",
+   "caption": "月に3回、220円でおろすと、年に約8,000円です。",
+   "key_message": "月3回で年約8000円",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ATM手数料を減らす",
+    "rows": [
+     {
+      "label": "月3回で年約8000円",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "3",
+    "220円",
+    "8,000円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 12.514,
+   "duration": 4.347
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "コンビニATMが無料になる銀行や、回数で無料になる口座もあります。",
+   "caption": "コンビニATMが無料になる銀行や、回数で無料になる口座もあります。",
+   "key_message": "無料になる口座もある",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ATM手数料を減らす",
+    "rows": [
+     {
+      "label": "無料になる口座もある",
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 16.861,
+   "duration": 4.571
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "まず、普段使う口座の手数料を確認しましょう。",
+   "caption": "まず、普段使う口座の手数料を確認しましょう。",
+   "key_message": "普段の口座を確認",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ATM手数料を減らす",
+    "rows": [
+     {
+      "label": "普段の口座を確認",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 21.432,
+   "duration": 3.42
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "おろす回数を月1回に減らすのも、効果的です。",
+   "caption": "おろす回数を月1回に減らすのも、効果的です。",
+   "key_message": "おろす回数を月1回に減らすのも、効果的です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 24.852,
+   "duration": 3.34
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "今使ってる口座の手数料、調べてみて。毎日1本、お金の話。フォローしてね。",
+   "caption": "今使ってる口座の手数料、調べてみて。毎日1本、お金の話。フォローしてね。",
+   "key_message": "今使ってる口座の手数料、調べてみて。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 28.192,
+   "duration": 7.119
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
