@@ -1,39 +1,39 @@
 {
-  "checked_at": "2026-11-23T00:44:04+00:00",
+  "checked_at": "2026-11-24T04:41:10+00:00",
   "channel_id": "UCjAKijIU_DMJDAJ3i-WoZYw",
-  "videos_with_data": 98,
-  "ids": 110,
+  "videos_with_data": 101,
+  "ids": 113,
   "queries": [
     {
       "metric": "averageViewDuration",
       "http": 200,
-      "rows": 98
+      "rows": 101
     },
     {
       "metric": "engagedViews",
       "http": 200,
-      "rows": 98
+      "rows": 101
     }
   ],
   "channel_7d": {
     "http": 200,
     "days": 7,
-    "views": 6504,
-    "avg_view_sec": 26,
-    "avg_view_pct": 74.12,
-    "subs_gained": 5,
-    "minutes_watched": 839
+    "views": 6734,
+    "avg_view_sec": 24,
+    "avg_view_pct": 71.37,
+    "subs_gained": 7,
+    "minutes_watched": 810
   },
   "traffic_28d": {
-    "SHORTS": 36155,
-    "YT_SEARCH": 1112,
-    "YT_OTHER_PAGE": 329,
-    "YT_CHANNEL": 104,
-    "SUBSCRIBER": 11,
-    "PLAYLIST": 8,
+    "SHORTS": 35796,
+    "YT_SEARCH": 1085,
+    "YT_OTHER_PAGE": 306,
+    "YT_CHANNEL": 103,
+    "PLAYLIST": 10,
+    "SUBSCRIBER": 9,
     "EXT_URL": 5,
     "HASHTAGS": 5,
-    "NO_LINK_OTHER": 3,
+    "NO_LINK_OTHER": 4,
     "SOUND_PAGE": 2
   },
   "diagnose": {
@@ -107,73 +107,73 @@
     "windows": [
       {
         "window": "to_today",
-        "start": "2026-11-09",
-        "end": "2026-11-23",
+        "start": "2026-11-10",
+        "end": "2026-11-24",
         "http": 200,
         "rows": 12,
         "last_rows": [
           [
-            "2026-11-18",
-            462,
-            32
-          ],
-          [
             "2026-11-19",
-            781,
+            769,
             98
           ],
           [
             "2026-11-20",
             1485,
             130
+          ],
+          [
+            "2026-11-21",
+            2200,
+            237
           ]
         ]
       },
       {
         "window": "to_2d_ago",
-        "start": "2026-11-09",
-        "end": "2026-11-21",
+        "start": "2026-11-10",
+        "end": "2026-11-22",
         "http": 200,
         "rows": 12,
         "last_rows": [
           [
-            "2026-11-18",
-            462,
-            32
-          ],
-          [
             "2026-11-19",
-            781,
+            769,
             98
           ],
           [
             "2026-11-20",
             1485,
             130
+          ],
+          [
+            "2026-11-21",
+            2200,
+            237
           ]
         ]
       },
       {
         "window": "from_2026_01",
         "start": "2026-01-01",
-        "end": "2026-11-22",
+        "end": "2026-11-23",
         "http": 200,
-        "rows": 324,
+        "rows": 325,
         "last_rows": [
           [
-            "2026-11-18",
-            462,
-            32
-          ],
-          [
             "2026-11-19",
-            781,
+            769,
             98
           ],
           [
             "2026-11-20",
             1485,
             130
+          ],
+          [
+            "2026-11-21",
+            2200,
+            237
           ]
         ]
       }
