@@ -1,0 +1,146 @@
+{
+ "design": "sb",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "投資信託は、月100円から積み立てできる会社があります。",
+   "caption": "投資信託は、月100円から積み立てできる会社があります。",
+   "key_message": "投資信託は、月100円から積み立てできる会社があります",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "100円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.872
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "証券会社によっては、100円から、投資信託を積み立てられます。",
+   "caption": "証券会社によっては、100円から、投資信託を積み立てられます。",
+   "key_message": "100円から積立できる会社もある",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "少額から始める",
+    "rows": [
+     {
+      "label": "100円から積立できる会社もある",
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "100円"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 3.872,
+   "duration": 4.541
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "少ない金額で、まず仕組みを体験できます。",
+   "caption": "少ない金額で、まず仕組みを体験できます。",
+   "key_message": "少ない金額で、まず仕組みを体験できます",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 8.413,
+   "duration": 3.051
+  },
+  {
+   "index": 3,
+   "role": "caveat",
+   "narration": "ただし、投資なので、元本割れすることもあります。",
+   "caption": "ただし、投資なので、元本割れすることもあります。",
+   "key_message": "元本割れすることもある",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "少額から始める",
+    "rows": [
+     {
+      "label": "元本割れすることもある",
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "ただし、投資なので、元本割れすることもあります。",
+   "start": 11.464,
+   "duration": 3.551
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "少額でも、値動きによって、増えたり減ったりします。",
+   "caption": "少額でも、値動きによって、増えたり減ったりします。",
+   "key_message": "少額でも、値動きによって、増えたり減ったりします",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 15.015,
+   "duration": 3.706
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "生活費や、すぐ使うお金は、投資に回さないでください。",
+   "caption": "生活費や、すぐ使うお金は、投資に回さないでください。",
+   "key_message": "生活費は投資に回さない",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "少額から始める",
+    "rows": [
+     {
+      "label": "生活費は投資に回さない",
+      "line": 5
+     }
+    ]
+   },
+   "emphasis": [],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 18.721,
+   "duration": 4.073
+  },
+  {
+   "index": 6,
+   "role": "cta",
+   "narration": "気になる人は、保存して見返してね。毎日1本、お金の話。フォローしてね。",
+   "caption": "気になる人は、保存して見返してね。毎日1本、お金の話。フォローしてね。",
+   "key_message": "気になる人は、保存して見返してね。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "",
+   "caveat": "",
+   "start": 22.794,
+   "duration": 6.702
+  }
+ ],
+ "qa": {
+  "frames": [],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
