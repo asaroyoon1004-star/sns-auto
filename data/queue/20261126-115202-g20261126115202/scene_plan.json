@@ -1,0 +1,293 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "100万円を1社の株に全部入れるのは、やめましょう。",
+   "caption": "100万円を1社の株に全部入れるのは、やめましょう。",
+   "key_message": "100万円を1社の株に全部入れるのは、やめましょう",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "100万円",
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.412
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "1社の株だと、その会社が倒産したとき、株の価値はほぼゼロになります。",
+   "caption": "1社の株だと、その会社が倒産したとき、株の価値はほぼゼロになります。",
+   "key_message": "1社に全額",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "1社倒産したときの損",
+    "rows": [
+     {
+      "label": "1社に全額",
+      "text": "約100万円",
+      "value": 100,
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 3.412,
+   "duration": 4.938
+  },
+  {
+   "index": 2,
+   "role": "example",
+   "narration": "仮に100万円を1社に全部入れていたら、ほぼ全額を失います。",
+   "caption": "仮に100万円を1社に全部入れていたら、ほぼ全額を失います。",
+   "key_message": "10社に分散",
+   "visual_type": "bars",
+   "visual_data": {
+    "title": "1社倒産したときの損",
+    "rows": [
+     {
+      "label": "10社に分散",
+      "text": "10万円",
+      "value": 10,
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "100万円",
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 8.35,
+   "duration": 4.201
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "たとえば10社に10万円ずつ分けた場合、1社が倒産しても損は10万円です。",
+   "caption": "たとえば10社に10万円ずつ分けた場合、1社が倒産しても損は10万円です。",
+   "key_message": "たとえば10社に10万円ずつ分けた場合、1社が倒産しても損は10万円です",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "10万円"
+   },
+   "emphasis": [
+    "10",
+    "10万円",
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 12.551,
+   "duration": 5.074
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "残りの90万円分は、その倒産の影響を直接は受けません。",
+   "caption": "残りの90万円分は、その倒産の影響を直接は受けません。",
+   "key_message": "残りの90万円分は、その倒産の影響を直接は受けません",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "90万円"
+   },
+   "emphasis": [
+    "90万円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 17.625,
+   "duration": 4.287
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "ただ、相場全体が下がれば、分けていてもまとめて値下がりします。",
+   "caption": "ただ、相場全体が下がれば、分けていてもまとめて値下がりします。",
+   "key_message": "ただ、相場全体が下がれば、分けていてもまとめて値下がりします",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 21.912,
+   "duration": 4.393
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "分散は損をなくす方法ではなく、1回の失敗で全部を失わないための方法です。",
+   "caption": "分散は損をなくす方法ではなく、1回の失敗で全部を失わないための方法です。",
+   "key_message": "分散は損をなくす方法ではなく、1回の失敗で全部を失わないための方法です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 26.305,
+   "duration": 5.452
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "投資を始める前に見返せるよう、保存しておいてください。毎日1本、お金の話。フォローしてね。",
+   "caption": "投資を始める前に見返せるよう、保存しておいてください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "投資を始める前に見返せるよう、保存しておいてください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 金融庁の投資の基礎に関する解説（長期・積立・分散の考え方、株式は元本保証がないこと）、日本証券業協会の投資の基礎知識。(2)前提: 投資額100万円は仮定。10社に10万円ずつ均等に分け、そのうち1社だけが倒産し株価がほぼゼロになる場合を想定。他の9社の値動きはこの計算に含めていない。(3)事実: 株式は元本保証がなく、発行会社が倒産すると株の価値はほぼゼロになり得ること、相場全体が下がると分散しても値下がりすること。仮定: 100万円、10社、1社倒産の例とその損失額。予測は含まない。",
+   "caveat": "",
+   "start": 31.757,
+   "duration": 7.876
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '100万円を1社の株に': marks in the top zone (162000 px)",
+   "t=0.0s '100万円を1社の株に': marks in the bottom zone (453600 px)",
+   "t=0.0s '100万円を1社の株に': marks in the right zone (142800 px)",
+   "t=0.0s '100万円を1社の株に': marks in the left zone (76800 px)",
+   "t=1.6s '全部入れるのは、': marks in the top zone (162000 px)",
+   "t=1.6s '全部入れるのは、': marks in the bottom zone (453600 px)",
+   "t=1.6s '全部入れるのは、': marks in the right zone (142800 px)",
+   "t=1.6s '全部入れるのは、': marks in the left zone (76800 px)",
+   "t=2.4s 'やめましょう。': marks in the top zone (162000 px)",
+   "t=2.4s 'やめましょう。': marks in the bottom zone (453600 px)",
+   "t=2.4s 'やめましょう。': marks in the right zone (142800 px)",
+   "t=2.4s 'やめましょう。': marks in the left zone (76800 px)",
+   "t=3.4s '1社の株だと、': marks in the top zone (162000 px)",
+   "t=3.4s '1社の株だと、': marks in the bottom zone (453600 px)",
+   "t=3.4s '1社の株だと、': marks in the right zone (142800 px)",
+   "t=3.4s '1社の株だと、': marks in the left zone (76800 px)",
+   "t=4.5s 'その会社が倒産したとき、': marks in the top zone (162000 px)",
+   "t=4.5s 'その会社が倒産したとき、': marks in the bottom zone (453600 px)",
+   "t=4.5s 'その会社が倒産したとき、': marks in the right zone (142800 px)",
+   "t=4.5s 'その会社が倒産したとき、': marks in the left zone (76800 px)",
+   "t=6.3s '株の価値はほぼ': marks in the top zone (162000 px)",
+   "t=6.3s '株の価値はほぼ': marks in the bottom zone (453600 px)",
+   "t=6.3s '株の価値はほぼ': marks in the right zone (142800 px)",
+   "t=6.3s '株の価値はほぼ': marks in the left zone (76800 px)",
+   "t=7.3s 'ゼロになります。': marks in the top zone (162000 px)",
+   "t=7.3s 'ゼロになります。': marks in the bottom zone (453600 px)",
+   "t=7.3s 'ゼロになります。': marks in the right zone (142800 px)",
+   "t=7.3s 'ゼロになります。': marks in the left zone (76800 px)",
+   "t=8.3s '仮に100万円を1社に': marks in the top zone (162000 px)",
+   "t=8.3s '仮に100万円を1社に': marks in the bottom zone (453600 px)",
+   "t=8.3s '仮に100万円を1社に': marks in the right zone (142800 px)",
+   "t=8.3s '仮に100万円を1社に': marks in the left zone (76800 px)",
+   "t=10.0s '全部入れていたら、': marks in the top zone (162000 px)",
+   "t=10.0s '全部入れていたら、': marks in the bottom zone (453600 px)",
+   "t=10.0s '全部入れていたら、': marks in the right zone (142800 px)",
+   "t=10.0s '全部入れていたら、': marks in the left zone (76800 px)",
+   "t=11.0s 'ほぼ全額を失います。': marks in the top zone (162000 px)",
+   "t=11.0s 'ほぼ全額を失います。': marks in the bottom zone (453600 px)",
+   "t=11.0s 'ほぼ全額を失います。': marks in the right zone (142800 px)",
+   "t=11.0s 'ほぼ全額を失います。': marks in the left zone (76800 px)",
+   "t=12.6s 'たとえば10社に': marks in the top zone (162000 px)",
+   "t=12.6s 'たとえば10社に': marks in the bottom zone (453600 px)",
+   "t=12.6s 'たとえば10社に': marks in the right zone (142800 px)",
+   "t=12.6s 'たとえば10社に': marks in the left zone (76800 px)",
+   "t=13.5s '10万円ずつ分けた場合、': marks in the top zone (162000 px)",
+   "t=13.5s '10万円ずつ分けた場合、': marks in the bottom zone (453600 px)",
+   "t=13.5s '10万円ずつ分けた場合、': marks in the right zone (142800 px)",
+   "t=13.5s '10万円ずつ分けた場合、': marks in the left zone (76800 px)",
+   "t=15.0s '1社が倒産しても損は': marks in the top zone (162000 px)",
+   "t=15.0s '1社が倒産しても損は': marks in the bottom zone (453600 px)",
+   "t=15.0s '1社が倒産しても損は': marks in the right zone (142800 px)",
+   "t=15.0s '1社が倒産しても損は': marks in the left zone (76800 px)",
+   "t=16.5s '10万円です。': marks in the top zone (162000 px)",
+   "t=16.5s '10万円です。': marks in the bottom zone (453600 px)",
+   "t=16.5s '10万円です。': marks in the right zone (142800 px)",
+   "t=16.5s '10万円です。': marks in the left zone (76800 px)",
+   "t=17.6s '残りの90万円分は、': marks in the top zone (162000 px)",
+   "t=17.6s '残りの90万円分は、': marks in the bottom zone (453600 px)",
+   "t=17.6s '残りの90万円分は、': marks in the right zone (142800 px)",
+   "t=17.6s '残りの90万円分は、': marks in the left zone (76800 px)",
+   "t=19.3s 'その倒産の影響を': marks in the top zone (162000 px)",
+   "t=19.3s 'その倒産の影響を': marks in the bottom zone (453600 px)",
+   "t=19.3s 'その倒産の影響を': marks in the right zone (142800 px)",
+   "t=19.3s 'その倒産の影響を': marks in the left zone (76800 px)",
+   "t=20.6s '直接は受けません。': marks in the top zone (162000 px)",
+   "t=20.6s '直接は受けません。': marks in the bottom zone (453600 px)",
+   "t=20.6s '直接は受けません。': marks in the right zone (142800 px)",
+   "t=20.6s '直接は受けません。': marks in the left zone (76800 px)",
+   "t=21.9s 'ただ、相場全体が下がれば、': marks in the top zone (162000 px)",
+   "t=21.9s 'ただ、相場全体が下がれば、': marks in the bottom zone (453600 px)",
+   "t=21.9s 'ただ、相場全体が下がれば、': marks in the right zone (142800 px)",
+   "t=21.9s 'ただ、相場全体が下がれば、': marks in the left zone (76800 px)",
+   "t=23.8s '分けていてもまとめて': marks in the top zone (162000 px)",
+   "t=23.8s '分けていてもまとめて': marks in the bottom zone (453600 px)",
+   "t=23.8s '分けていてもまとめて': marks in the right zone (142800 px)",
+   "t=23.8s '分けていてもまとめて': marks in the left zone (76800 px)",
+   "t=25.1s '値下がりします。': marks in the top zone (162000 px)",
+   "t=25.1s '値下がりします。': marks in the bottom zone (453600 px)",
+   "t=25.1s '値下がりします。': marks in the right zone (142800 px)",
+   "t=25.1s '値下がりします。': marks in the left zone (76800 px)",
+   "t=26.3s '分散は損をなくす': marks in the top zone (162000 px)",
+   "t=26.3s '分散は損をなくす': marks in the bottom zone (453600 px)",
+   "t=26.3s '分散は損をなくす': marks in the right zone (142800 px)",
+   "t=26.3s '分散は損をなくす': marks in the left zone (76800 px)",
+   "t=27.5s '方法ではなく、': marks in the top zone (162000 px)",
+   "t=27.5s '方法ではなく、': marks in the bottom zone (453600 px)",
+   "t=27.5s '方法ではなく、': marks in the right zone (142800 px)",
+   "t=27.5s '方法ではなく、': marks in the left zone (76800 px)",
+   "t=28.4s '1回の失敗で全部を': marks in the top zone (162000 px)",
+   "t=28.4s '1回の失敗で全部を': marks in the bottom zone (453600 px)",
+   "t=28.4s '1回の失敗で全部を': marks in the right zone (142800 px)",
+   "t=28.4s '1回の失敗で全部を': marks in the left zone (76800 px)",
+   "t=29.9s '失わないための方法です。': marks in the top zone (162000 px)",
+   "t=29.9s '失わないための方法です。': marks in the bottom zone (453600 px)",
+   "t=29.9s '失わないための方法です。': marks in the right zone (142800 px)",
+   "t=29.9s '失わないための方法です。': marks in the left zone (76800 px)",
+   "t=31.8s '投資を始める前に': marks in the top zone (162000 px)",
+   "t=31.8s '投資を始める前に': marks in the bottom zone (453600 px)",
+   "t=31.8s '投資を始める前に': marks in the right zone (142800 px)",
+   "t=31.8s '投資を始める前に': marks in the left zone (76800 px)",
+   "t=33.3s '見返せるよう、': marks in the top zone (162000 px)",
+   "t=33.3s '見返せるよう、': marks in the bottom zone (453600 px)",
+   "t=33.3s '見返せるよう、': marks in the right zone (142800 px)",
+   "t=33.3s '見返せるよう、': marks in the left zone (76800 px)",
+   "t=34.4s '保存しておいてください。': marks in the top zone (162000 px)",
+   "t=34.4s '保存しておいてください。': marks in the bottom zone (453600 px)",
+   "t=34.4s '保存しておいてください。': marks in the right zone (142800 px)",
+   "t=34.4s '保存しておいてください。': marks in the left zone (76800 px)",
+   "t=36.1s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=36.1s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=36.1s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=36.1s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=38.3s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=38.3s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=38.3s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=38.3s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": [
+   "row '10社に分散': number 10 is not said on line 2",
+   "row '10社に分散': number 10 is not said on line 2"
+  ]
+ }
+}
