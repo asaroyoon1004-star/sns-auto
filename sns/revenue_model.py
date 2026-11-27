@@ -20,7 +20,7 @@ COMMON = dict(
     crp_min_followers=10_000,    # TikTok Creator Rewards: 10k followers, 100k views/30d, videos > 1 min
     crp_qualified_share=0.7,     # share of views that count as qualified
     ypp_subs=1_000, ypp_shorts_views_90d=10_000_000,
-    yt_rpm=30,                   # JPY per 1k Shorts views once in YPP (finance niche, estimate)
+    yt_rpm=7,                    # JPY per 1k Shorts views once in YPP. Japanese estimates 3-10 (0.003-0.01 JPY/view); see REVENUE_MODEL.md
 )
 
 

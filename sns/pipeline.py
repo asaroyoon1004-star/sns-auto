@@ -6,6 +6,8 @@ python -m sns.pipeline daily [--count N]                # make + publish (what t
 python -m sns.pipeline daily --seed-id s011             # re-make one seed script and publish it
 python -m sns.pipeline analyze                          # collect stats -> learn weights -> report
 python -m sns.pipeline landing                          # rebuild the link-in-bio page
+python -m sns.pipeline stock [--count 24]               # top up the Claude script stock (data/stock/scripts.json)
+python -m sns.pipeline sample                           # render one stock script to data/sample/ (never uploaded)
 """
 import argparse
 import os
@@ -13,7 +15,7 @@ from datetime import datetime, timezone
 
 from . import analytics, landing, upload_tiktok, upload_youtube
 from .common import DATA, QUEUE, load_config, read_json, write_json, log
-from .scriptgen import HOOK_ARMS, assign_design, assign_variant, next_script, seed_by_id
+from .scriptgen import HOOK_ARMS, assign_design, assign_variant, next_script, refill_stock, seed_by_id
 
 
 def make(cfg, count, seed_only=False, seed_id=None):
@@ -35,6 +37,29 @@ def make(cfg, count, seed_only=False, seed_id=None):
                                      "created_at": stamp, "uploads": [], "design": cfg["video"].get("design", "v2")})
         made.append(d)
     return made
+
+
+def sample(cfg):
+    """Render one script from the stock (without taking it out) into data/sample/, outside the queue, so publish() never sees it."""
+    import json
+    import subprocess
+    from .common import STOCK
+    from .render import render
+    stock = read_json(STOCK, [])
+    if not stock:
+        raise SystemExit("stock is empty; run `stock` first")
+    s = dict(stock[0], variant="")
+    cfg["video"]["design"] = assign_design(cfg)
+    d = DATA / "sample"
+    d.mkdir(parents=True, exist_ok=True)
+    write_json(d / "script.json", s)
+    video, secs, engines = render(cfg, s, d)
+    probe = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "json", str(video)],
+                           capture_output=True, text=True)
+    dur = float(json.loads(probe.stdout)["format"]["duration"])
+    chars = len(s["hook"]) + sum(map(len, s["lines"])) + len(s["cta"])
+    log(f"sample: {s['title']} / {chars} chars / ffprobe {dur:.2f}s / design {cfg['video']['design']} / tts {engines}")
+    return dur
 
 
 def publish(cfg):
@@ -79,7 +104,7 @@ def publish(cfg):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["make", "publish", "daily", "analyze", "landing"])
+    ap.add_argument("cmd", choices=["make", "publish", "daily", "analyze", "landing", "stock", "sample"])
     ap.add_argument("--count", type=int)
     ap.add_argument("--seed-only", action="store_true")
     ap.add_argument("--seed-id", help="render this seed script (e.g. s011) instead of picking the next one")
@@ -98,6 +123,10 @@ def main():
         analytics.report(cfg)
     if a.cmd == "landing":
         landing.build(cfg)
+    if a.cmd == "stock":
+        refill_stock(cfg, a.count or cfg.get("stock", {}).get("target", 24), read_json(DATA / "top_hooks.json", []))
+    if a.cmd == "sample":
+        sample(cfg)
     if failures:
         # state is still saved by the workflow (if: always()); the non-zero exit is what turns the run red
         log(f"{len(failures)} upload(s) failed: " + ", ".join(failures))

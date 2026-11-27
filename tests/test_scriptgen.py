@@ -198,3 +198,33 @@ class SeedAffiliateNeedsLink(unittest.TestCase):
         with mock.patch.object(g, "read_json", side_effect=lambda p, d: {g.SEED: seeds, g.USED: []}.get(p, d)), \
                 mock.patch.object(g, "write_json"):
             self.assertIsNone(g.next_seed(cfg)["affiliate"])
+
+
+class ShortFormatTests(unittest.TestCase):
+    """2026-11-27: 25-30s scripts, stock replaces seeds, risk note on any investing script."""
+
+    def test_length_window_is_tight(self):
+        cmin, cmax = CFG["phases"]["growth"]["chars"]
+        self.assertLessEqual(cmax, 150)
+        long = script("毎月の電気代、実は1割は削れる？", ["あ" * 39] * 5)
+        self.assertTrue(any("length" in p for p in g.validate(long, CFG)))
+
+    def test_investing_outside_category_needs_risk_note(self):
+        s = script("ボーナスを全部NISAに入れる前に？", ["生活費の半年分を先に残します。", "残りを積み立てに回します。",
+                                              "急な出費で売らずに済みます。"], category="saving_habit", fact_check_notes="金融庁 NISA特設サイト")
+        self.assertIn("invest script without a downside note", g.validate(s, CFG))
+        s2 = dict(s, lines=s["lines"] + ["投資は元本割れもあります。"])
+        self.assertNotIn("invest script without a downside note", g.validate(s2, CFG))
+
+    def test_stock_is_used_before_seeds(self):
+        import tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as t:
+            stock = Path(t) / "stock.json"
+            item = dict(GOOD[1], id="k1", title="待機電力", category="fixed_cost", source="claude-stock", affiliate=None)
+            stock.write_text(json.dumps([item], ensure_ascii=False), encoding="utf-8")
+            with mock.patch.object(g, "STOCK", stock), mock.patch.object(g, "validate", lambda s, c: []), \
+                    mock.patch.object(g, "recent_families", lambda c: set()), mock.patch.object(g, "has_llm", lambda: False):
+                s = g.next_script(CFG)
+                self.assertEqual(s["id"], "k1")
+                self.assertEqual(json.loads(stock.read_text(encoding="utf-8")), [])

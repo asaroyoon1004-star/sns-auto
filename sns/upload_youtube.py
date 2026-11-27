@@ -27,12 +27,22 @@ def access_token():
     return r.json()["access_token"]
 
 
+def _invest(script):
+    from .scriptgen import INVEST
+    return script.get("category") == "invest_basic" or bool(INVEST.search(script["hook"] + "".join(script["lines"])))
+
+
 def build_metadata(cfg, script):
     tags = " ".join("#" + h for h in script["hashtags"])
     desc = [script["hook"], "", *script["lines"], "", script["cta"], ""]
     if script.get("affiliate"):
         desc.append("※概要欄・プロフィールのリンクにはアフィリエイト広告（PR）を含みます。")
-    desc += ["※この動画はAI音声・自動生成の字幕で制作しています。内容は一般的な情報で、個別の助言ではありません。", "", tags, "#Shorts"]
+    if script.get("reference"):
+        desc.append(f"参考: {script['reference']}")
+    desc += ["※この動画はAI音声・AIで作成した台本と字幕を使っています（内容は人の基準とチェック項目で確認）。"
+             "一般的な情報で、個別の助言ではありません。投資には元本割れのリスクがあります。" if _invest(script) else
+             "※この動画はAI音声・AIで作成した台本と字幕を使っています（内容は人の基準とチェック項目で確認）。"
+             "一般的な情報で、個別の助言ではありません。", "", tags, "#Shorts"]
     title = f"{script['title']}｜{script['hook']}"
     if len(title) > 95:
         title = script["title"]

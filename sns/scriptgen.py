@@ -4,7 +4,7 @@ import random
 import re
 from datetime import datetime, timezone
 
-from .common import SEED, USED, WEIGHTS, QUEUE, read_json, write_json, log
+from .common import SEED, STOCK, USED, WEIGHTS, QUEUE, read_json, write_json, log
 
 SCRIPT_SCHEMA = {
     "type": "object",
@@ -17,6 +17,7 @@ SCRIPT_SCHEMA = {
         "hashtags": {"type": "array", "items": {"type": "string"}},
         "affiliate": {"type": ["string", "null"]},
         "fact_check_notes": {"type": "string"},
+        "reference": {"type": "string"},
         "visual": {
             "type": ["object", "null"],
             "properties": {
@@ -32,7 +33,7 @@ SCRIPT_SCHEMA = {
             "additionalProperties": False,
         },
     },
-    "required": ["title", "hook", "hook_type", "lines", "cta", "hashtags", "affiliate", "fact_check_notes", "visual"],
+    "required": ["title", "hook", "hook_type", "lines", "cta", "hashtags", "affiliate", "fact_check_notes", "reference", "visual"],
     "additionalProperties": False,
 }
 
@@ -46,8 +47,9 @@ HOOK → QUESTION → REVEAL → EXPLANATION → EXAMPLE → CAVEAT / PAYOFF
 - EXPLANATION: なぜそうなるのかを短く。抽象論で終わらず、金額・比較・具体例を使う。
 - EXAMPLE: 数字には必ず条件を添える（例:「年利3パーセントで20年、毎月1万円積み立てた場合」）。
 - CAVEAT / PAYOFF: 注意事項（元本割れ、手数料、税金など、文脈上必要なもの）と、覚えておくべき結論を1つだけ言う。hookの問いをここまでに回収する。
-- 次の動画への誘導やループ（最後の一文を冒頭につなぐ）は、内容上自然で、再視聴する価値がある場合だけ。
+- 最後の一文（cta の直前）は、hook にそのまま戻れる言い方にする（ループ再生向け）。例: hook が問いなら、最後に「だから、〇〇は△△。」と答えで閉じ、もう一度冒頭を聞くと意味がつながる形。
 1動画に伝えるメッセージは1つだけ。関連する別の話題は削る。
+尺は25〜30秒。説明・具体例・注意を1文ずつに絞る。前置きの相づちや言い換えを削り、数字と結論を先に言う。
 
 書き方:
 - 事実は日本の公的情報（国税庁、厚生労働省、金融庁、消費者庁など）で確認できる、変わりにくい内容だけを書く。自信のない数字は書かない。
@@ -58,12 +60,13 @@ HOOK → QUESTION → REVEAL → EXPLANATION → EXAMPLE → CAVEAT / PAYOFF
 - 注意書き（投資の元本割れなど）が必要なときは、短い1文（25字以内）にする。
 - hook を制度名・商品名＋数字の説明文（例:「新NISAの年間枠は〜」「リボ払いの手数料は年15パーセント」）で始めない。視聴者の行動・持ち物・場面か、してはいけない行動の警告で始め、制度の名前や数字はその後で出す。
 - lines は各40字以内、ナレーションで一息で読める話し言葉。難しい漢語より自然な言い回しにする。
-- 長さの目安は hook+lines+cta で {cmin}〜{cmax} 字。内容が足りるなら短くてよい。字数合わせの水増し（重複、言い換え、不要な注意書き）は禁止。
+- 長さは hook+lines+cta で {cmin}〜{cmax} 字（厳守。超えると尺が30秒を超える）。lines は3〜6個。字数合わせの水増し（重複、言い換え、不要な注意書き）は禁止。
 - 記号や絵文字は使わない。数字は読み上げやすく書く（例: 1万2千円）。
-- cta は保存・コメント・シェアを促す一文。affiliate が null でない場合のみ「プロフィールのリンク」に誘導する。
+- cta は保存・コメント・シェアを促す短い一文（15字以内）。affiliate が null でない場合のみ「プロフィールのリンク」に誘導する。
 - hashtags は4つ。affiliate がある場合は必ず "PR" を含める。
 - affiliate は次から最も自然なもの1つ、なければ null: {affiliates}
 - visual は動画の下に出し続ける図。数字を比べる話なら type=bars（label=項目、value=棒の長さの比、text=表示する数字と単位、line=その数字を話す lines の番号）、そうでなければ type=steps（label=要点を20字以内、text は空文字、value は 0、line=その要点を話す lines の番号）。title は16字以内、rows は2〜4個。text と label に使う数字は台本に出てくるものだけにし、新しい数字を作らない。図にできる内容がなければ null。
+- reference は根拠にした公的情報の名前だけ（例:「国税庁 タックスアンサー No.1120」）、30字以内。概要欄に「参考:」として載る。
 - fact_check_notes（動画には出さない）に、(1)根拠にした公的情報の名前、(2)計算条件・前提、(3)どの文が事実で、どれが仮定・予測かを短く書く。"""
 
 
@@ -139,27 +142,34 @@ def seasonal_hint(cfg, category=None, blocked=()):
 
 # warnings and everyday scenes opened the ~1,000-view videos; plain statistics and rule explanations stalled under 250
 HOOK_ARMS = {"hook:statement": "言い切り", "hook:question": "疑問"}
-HOOK_TYPES = {"警告": 3, "身近な場面": 2, "損失回避": 1, "逆説": 1, "疑問": 1, "比較": 1}
+# 2026-11-27: weighted toward number- and loss-based openings (損失回避 749, 言い切り 458 median vs 警告 254 in the 11/27 report)
+HOOK_TYPES = {"損失回避": 3, "数字の衝撃": 3, "警告": 2, "身近な場面": 2, "逆説": 1, "疑問": 1, "比較": 1}
+HOOK_TYPE_HINTS = {
+    "損失回避": "知らずに払っている・もらい損ねている金額を、条件つきの具体的な数字で示す（例: 〇〇のままだと、年1万2千円の払いすぎ）",
+    "数字の衝撃": "意外な数字を最初の3語以内に置く（例: 1日150円が、1年で5万4千円）",
+}
 
 
-def generate_with_claude(cfg, category, top_hooks=None, feedback=None, hook_type=None):
+def generate_with_claude(cfg, category, top_hooks=None, feedback=None, hook_type=None, extra_avoid=None, cooldown=True):
     import json
 
     client = _client()
     cat_label = cfg["categories"][category]["label"]
     affiliates = ", ".join(live_affiliates(cfg)) or "（まだ無い。必ず null）"
     avoid = "、".join(recent_titles()) or "なし"
-    blocked = recent_families(cfg)
+    blocked = recent_families(cfg) if cooldown else set()
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     hooks = "\n".join(f"- {h}" for h in (top_hooks or [])) or "- （まだデータなし）"
     import random
     hook_type = hook_type or random.choices(list(HOOK_TYPES), weights=list(HOOK_TYPES.values()), k=1)[0]
+    hint = HOOK_TYPE_HINTS.get(hook_type)
     user = (
         f"hookの型: {hook_type}（hook_type にこの語をそのまま入れる）\n"
-        f"カテゴリ: {cat_label}\n"
+        + (f"型の意味: {hint}\n" if hint else "")
+        + f"カテゴリ: {cat_label}\n"
         f"今の時期に関心が高い話題（カテゴリに合えば優先、合わなければ無視）: {seasonal_hint(cfg, category, blocked)}\n"
         f"直近の動画で扱ったので、今回は使わない話題: {'、'.join(sorted(blocked)) or 'なし'}\n"
-        f"過去に作ったタイトル（重複禁止）: {avoid}\n"
+        f"過去に作ったタイトル（重複禁止）: {avoid}{('、' + '、'.join(extra_avoid)) if extra_avoid else ''}\n"
         f"これまで再生数が良かったフック（型を参考に、内容は真似しない）:\n{hooks}\n\n"
         "このカテゴリで、新しい台本を1本作ってください。"
         + (f"\n\n前回の台本は次の点で不合格でした。直して作り直してください:\n- " + "\n- ".join(feedback) if feedback else "")
@@ -233,6 +243,7 @@ HOOK_LECTURE = re.compile(r"^(新?NISA|ニーサ|イデコ|iDeCo|信託報酬|�
                           r"高額療養費|傷病手当金|控除|手数料|金利|年利)[^、。？?]{0,12}は")
 HOOK_DEVICE = re.compile(r"[？?]|\d|[０-９]|実は|意外|なのに|ではなく|じゃない|のに|逆|知らない|損|違い|しないで|ください|危な|危険|間違|やめ")
 PROJECTION = re.compile(r"(年利|利回り|複利).*(なります|になる|増え|貯ま|膨らみ)|(増え|貯ま|膨らみ).*(年利|利回り|複利)")
+INVEST = re.compile(r"NISA|ニーサ|iDeCo|イデコ|投資信託|株式|株を|株に|株は|インデックス|ETF|運用")
 ASSUMPTION = re.compile(r"仮に|たとえば|例えば|として|場合|想定|もし|のとき|なら|前提|とすると")
 
 
@@ -319,9 +330,10 @@ def validate(script, cfg):
     problems = []
     cmin, cmax = cfg["phases"][cfg.get("phase", "growth")]["chars"]
     total = len(script["hook"]) + sum(len(l) for l in script["lines"]) + len(script["cta"])
-    if not 4 <= len(script["lines"]) <= 14:
+    if not 3 <= len(script["lines"]) <= 9:
         problems.append(f"lines={len(script['lines'])}")
-    if not cmin * 0.8 <= total <= cmax * 1.15:
+    # upper bound is tight: every 6-7 chars over is about one more second of narration (2026-11-27: target 25-30s)
+    if not cmin * 0.8 <= total <= cmax * 1.05:
         problems.append(f"length {total} chars outside {cmin}-{cmax}")
     banned = re.compile(r"必ず儲か|絶対に儲か|元本保証で高利回り|確実に(?:儲か|増え|稼げ)|今が買い時|おすすめ銘柄|爆上が|"
                         r"ノーリスク|リスクなしで(?:増|稼|儲)|誰でも簡単に(?:稼|儲)")
@@ -332,7 +344,7 @@ def validate(script, cfg):
     body = script["hook"] + "".join(script["lines"])
     if not script.get("affiliate") and "プロフィール" in body + script.get("cta", ""):
         problems.append("points to a profile link without an affiliate")
-    if script.get("category") == "invest_basic" and not re.search(r"元本割れ|減る|下が|リスク|損", body):
+    if (script.get("category") == "invest_basic" or INVEST.search(body)) and not re.search(r"元本割れ|減る|下が|リスク|損", body):
         problems.append("invest script without a downside note")
     return problems + lint(script)
 
@@ -370,19 +382,79 @@ def assign_design(cfg):
     return random.choice([a for a, c in counts.items() if c == low])
 
 
+def build_script(cfg, category, top_hooks=None, hook_type=None, extra_avoid=None, cooldown=True):
+    """One Claude script that passes validate() (and the topic cooldown when `cooldown`), with one retry; None if both fail."""
+    s = generate_with_claude(cfg, category, top_hooks, hook_type=hook_type, extra_avoid=extra_avoid, cooldown=cooldown)
+    check = lambda x: validate(x, cfg) + (cooldown_problems(x, cfg) if cooldown else [])
+    bad = check(s)
+    if bad:
+        log("generated script failed validation, retrying once:", bad)
+        s = generate_with_claude(cfg, category, top_hooks, feedback=bad[:6], hook_type=hook_type,
+                                 extra_avoid=extra_avoid, cooldown=cooldown)
+        bad = check(s)
+    if bad:
+        log("generated script failed validation twice:", bad)
+        return None
+    return s
+
+
+def refill_stock(cfg, target=24, top_hooks=None):
+    """Top the stock of pre-generated Claude scripts (data/stock/scripts.json) up to `target`. The stock replaces the
+    old hand-written seed bank as the fallback when live generation fails; seeds are now used only if the stock is empty.
+    Categories and hook types rotate so the stock is varied. The topic cooldown is applied when a script is taken."""
+    stock = read_json(STOCK, [])
+    stock = [x for x in stock if not validate(x, cfg)]  # drop scripts that no longer fit the current rules/lengths
+    cats = list(cfg["categories"])
+    types = [t for t, w in HOOK_TYPES.items() for _ in range(w)]
+    i, tries = len(stock), 0
+    while len(stock) < target and tries < target * 2:
+        tries += 1
+        cat, ht = cats[i % len(cats)], types[i % len(types)]
+        try:
+            s = build_script(cfg, cat, top_hooks, hook_type=ht, extra_avoid=[x["title"] for x in stock], cooldown=False)
+        except Exception as e:
+            log("stock generation failed:", repr(e))
+            continue
+        i += 1
+        if s:
+            s["id"] = "k" + s["id"][1:] + f"{len(stock):02d}"
+            s["source"] = "claude-stock"
+            stock.append(s)
+            write_json(STOCK, stock)  # save as we go, so a failure halfway keeps what was made
+    write_json(STOCK, stock)
+    log(f"stock: {len(stock)} scripts (target {target})")
+    return stock
+
+
+def next_stock(cfg, category=None):
+    """Take one script from the stock: the requested category first, skipping topics on cooldown."""
+    stock = read_json(STOCK, [])
+    if not stock:
+        return None
+    blocked = recent_families(cfg)
+    ok = [x for x in stock if not validate(x, cfg) and not topic_families(cfg, script_text(x)) & blocked]
+    if not ok:
+        return None
+    pick = next((x for x in ok if x["category"] == category), ok[0])
+    write_json(STOCK, [x for x in stock if x["id"] != pick["id"]])
+    if pick.get("affiliate") not in live_affiliates(cfg):
+        pick["affiliate"] = None
+    return dict(pick)
+
+
 def next_script(cfg, top_hooks=None, seed_only=False, hook_type=None):
     category = pick_category(cfg)
     if has_llm() and not seed_only:
         try:
-            s = generate_with_claude(cfg, category, top_hooks, hook_type=hook_type)
-            bad = validate(s, cfg) + cooldown_problems(s, cfg)
-            if bad:
-                log("generated script failed validation, retrying once:", bad)
-                s = generate_with_claude(cfg, category, top_hooks, feedback=bad[:6], hook_type=hook_type)
-                bad = validate(s, cfg) + cooldown_problems(s, cfg)
-            if not bad:
+            s = build_script(cfg, category, top_hooks, hook_type=hook_type)
+            if s:
                 return s
-            log("generated script failed validation, using seed:", bad)
         except Exception as e:  # network, auth, refusal: never stop the daily run
-            log("Claude generation failed, using seed:", repr(e))
+            log("Claude generation failed, using stock:", repr(e))
+    if not seed_only:
+        s = next_stock(cfg, category)
+        if s:
+            log("using stock script", s["id"])
+            return s
+        log("stock empty; using the old seed bank")
     return next_seed(cfg, category)
