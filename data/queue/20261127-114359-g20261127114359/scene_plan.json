@@ -1,0 +1,277 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "炊いたご飯、炊飯器で夜まで保温していませんか？",
+   "caption": "炊いたご飯、炊飯器で夜まで保温していませんか？",
+   "key_message": "炊いたご飯、炊飯器で夜まで保温していませんか",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.216
+  },
+  {
+   "index": 1,
+   "role": "reveal",
+   "narration": "国の省エネの目安では、1日7時間の保温をやめると",
+   "caption": "国の省エネの目安では、1日7時間の保温をやめると",
+   "key_message": "1日7時間の保温をやめる",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "残りご飯の節電",
+    "rows": [
+     {
+      "label": "1日7時間の保温をやめる",
+      "text": "",
+      "value": 0,
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "1日",
+    "7時間"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 3.216,
+   "duration": 3.828
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "年間で約46キロワット時の節電になります。",
+   "caption": "年間で約46キロワット時の節電になります。",
+   "key_message": "年約46キロワット時の節電",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "残りご飯の節電",
+    "rows": [
+     {
+      "label": "年約46キロワット時の節電",
+      "text": "",
+      "value": 0,
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "46"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 7.044,
+   "duration": 3.036
+  },
+  {
+   "index": 3,
+   "role": "example",
+   "narration": "仮に1キロワット時31円なら、年約1千4百円です。",
+   "caption": "仮に1キロワット時31円なら、年約1千4百円です。",
+   "key_message": "仮に1キロワット時31円なら、年約1千4百円です",
+   "visual_type": "number",
+   "visual_data": {
+    "hero": "31円"
+   },
+   "emphasis": [
+    "1",
+    "31円",
+    "1千4百円"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 10.08,
+   "duration": 4.215
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "すぐ食べない分は、温かいうちに1食ずつ包んで冷凍へ。",
+   "caption": "すぐ食べない分は、温かいうちに1食ずつ包んで冷凍へ。",
+   "key_message": "残りは1食ずつ冷凍",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "残りご飯の節電",
+    "rows": [
+     {
+      "label": "残りは1食ずつ冷凍",
+      "text": "",
+      "value": 0,
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 14.295,
+   "duration": 3.793
+  },
+  {
+   "index": 5,
+   "role": "explanation",
+   "narration": "温め直すレンジの電気代もかかるので、差は使い方次第です。",
+   "caption": "温め直すレンジの電気代もかかるので、差は使い方次第です。",
+   "key_message": "温め直すレンジの電気代もかかるので、差は使い方次第です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 18.088,
+   "duration": 4.102
+  },
+  {
+   "index": 6,
+   "role": "explanation",
+   "narration": "数時間以上置くなら、保温より冷凍。これで十分です。",
+   "caption": "数時間以上置くなら、保温より冷凍。これで十分です。",
+   "key_message": "数時間以上置くなら、保温より冷凍。これで十分です",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 22.19,
+   "duration": 4.567
+  },
+  {
+   "index": 7,
+   "role": "cta",
+   "narration": "炊飯器の近くで思い出せるよう、保存しておいてください。毎日1本、お金の話。フォローしてね。",
+   "caption": "炊飯器の近くで思い出せるよう、保存しておいてください。毎日1本、お金の話。フォローしてね。",
+   "key_message": "炊飯器の近くで思い出せるよう、保存しておいてください。毎日1本、お金の話。フォローしてね",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "1本"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 資源エネルギー庁の省エネポータル・家庭の省エネ徹底ガイドの炊飯ジャーの目安（1日7時間保温せずプラグを抜いた場合、年間約45.88キロワット時の省エネ）。(2)計算条件: 電気料金を仮に1キロワット時31円とし、45.88×31で約1,422円、約1千4百円と表記。実際の単価は契約や時期で変わる。電子レンジでの温め直しの電力は計算に含めていない。(3)事实: 保温をやめた場合の年間約46キロワット時は公的な目安。仮定: 1キロワット時31円とした金額。冷凍とレンジ温め直しで差が変わる点は一般的な注意で、具体的な差額は示していない。",
+   "caveat": "",
+   "start": 26.757,
+   "duration": 7.865
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '炊いたご飯、': marks in the top zone (162000 px)",
+   "t=0.0s '炊いたご飯、': marks in the bottom zone (453600 px)",
+   "t=0.0s '炊いたご飯、': marks in the right zone (142800 px)",
+   "t=0.0s '炊いたご飯、': marks in the left zone (76800 px)",
+   "t=0.6s '炊飯器で夜まで': marks in the top zone (162000 px)",
+   "t=0.6s '炊飯器で夜まで': marks in the bottom zone (453600 px)",
+   "t=0.6s '炊飯器で夜まで': marks in the right zone (142800 px)",
+   "t=0.6s '炊飯器で夜まで': marks in the left zone (76800 px)",
+   "t=1.7s '保温していませんか？': marks in the top zone (162000 px)",
+   "t=1.7s '保温していませんか？': marks in the bottom zone (453600 px)",
+   "t=1.7s '保温していませんか？': marks in the right zone (142800 px)",
+   "t=1.7s '保温していませんか？': marks in the left zone (76800 px)",
+   "t=3.2s '国の省エネの目安では、': marks in the top zone (162000 px)",
+   "t=3.2s '国の省エネの目安では、': marks in the bottom zone (453600 px)",
+   "t=3.2s '国の省エネの目安では、': marks in the right zone (142800 px)",
+   "t=3.2s '国の省エネの目安では、': marks in the left zone (76800 px)",
+   "t=4.8s '1日7時間の保温をやめると': marks in the top zone (162000 px)",
+   "t=4.8s '1日7時間の保温をやめると': marks in the bottom zone (453600 px)",
+   "t=4.8s '1日7時間の保温をやめると': marks in the right zone (142800 px)",
+   "t=4.8s '1日7時間の保温をやめると': marks in the left zone (76800 px)",
+   "t=7.0s '年間で': marks in the top zone (162000 px)",
+   "t=7.0s '年間で': marks in the bottom zone (453600 px)",
+   "t=7.0s '年間で': marks in the right zone (142800 px)",
+   "t=7.0s '年間で': marks in the left zone (76800 px)",
+   "t=7.5s '約46キロワット時の': marks in the top zone (162000 px)",
+   "t=7.5s '約46キロワット時の': marks in the bottom zone (453600 px)",
+   "t=7.5s '約46キロワット時の': marks in the right zone (142800 px)",
+   "t=7.5s '約46キロワット時の': marks in the left zone (76800 px)",
+   "t=9.0s '節電になります。': marks in the top zone (162000 px)",
+   "t=9.0s '節電になります。': marks in the bottom zone (453600 px)",
+   "t=9.0s '節電になります。': marks in the right zone (142800 px)",
+   "t=9.0s '節電になります。': marks in the left zone (76800 px)",
+   "t=10.1s '仮に': marks in the top zone (162000 px)",
+   "t=10.1s '仮に': marks in the bottom zone (453600 px)",
+   "t=10.1s '仮に': marks in the right zone (142800 px)",
+   "t=10.1s '仮に': marks in the left zone (76800 px)",
+   "t=10.4s '1キロワット時31円なら、': marks in the top zone (162000 px)",
+   "t=10.4s '1キロワット時31円なら、': marks in the bottom zone (453600 px)",
+   "t=10.4s '1キロワット時31円なら、': marks in the right zone (142800 px)",
+   "t=10.4s '1キロワット時31円なら、': marks in the left zone (76800 px)",
+   "t=12.3s '年約1千4百円です。': marks in the top zone (162000 px)",
+   "t=12.3s '年約1千4百円です。': marks in the bottom zone (453600 px)",
+   "t=12.3s '年約1千4百円です。': marks in the right zone (142800 px)",
+   "t=12.3s '年約1千4百円です。': marks in the left zone (76800 px)",
+   "t=14.3s 'すぐ食べない分は、': marks in the top zone (162000 px)",
+   "t=14.3s 'すぐ食べない分は、': marks in the bottom zone (453600 px)",
+   "t=14.3s 'すぐ食べない分は、': marks in the right zone (142800 px)",
+   "t=14.3s 'すぐ食べない分は、': marks in the left zone (76800 px)",
+   "t=15.3s '温かいうちに1食ずつ': marks in the top zone (162000 px)",
+   "t=15.3s '温かいうちに1食ずつ': marks in the bottom zone (453600 px)",
+   "t=15.3s '温かいうちに1食ずつ': marks in the right zone (142800 px)",
+   "t=15.3s '温かいうちに1食ずつ': marks in the left zone (76800 px)",
+   "t=16.9s '包んで冷凍へ。': marks in the top zone (162000 px)",
+   "t=16.9s '包んで冷凍へ。': marks in the bottom zone (453600 px)",
+   "t=16.9s '包んで冷凍へ。': marks in the right zone (142800 px)",
+   "t=16.9s '包んで冷凍へ。': marks in the left zone (76800 px)",
+   "t=18.1s '温め直すレンジの': marks in the top zone (162000 px)",
+   "t=18.1s '温め直すレンジの': marks in the bottom zone (453600 px)",
+   "t=18.1s '温め直すレンジの': marks in the right zone (142800 px)",
+   "t=18.1s '温め直すレンジの': marks in the left zone (76800 px)",
+   "t=19.3s '電気代もかかるので、': marks in the top zone (162000 px)",
+   "t=19.3s '電気代もかかるので、': marks in the bottom zone (453600 px)",
+   "t=19.3s '電気代もかかるので、': marks in the right zone (142800 px)",
+   "t=19.3s '電気代もかかるので、': marks in the left zone (76800 px)",
+   "t=20.6s '差は使い方次第です。': marks in the top zone (162000 px)",
+   "t=20.6s '差は使い方次第です。': marks in the bottom zone (453600 px)",
+   "t=20.6s '差は使い方次第です。': marks in the right zone (142800 px)",
+   "t=20.6s '差は使い方次第です。': marks in the left zone (76800 px)",
+   "t=22.2s '数時間以上置くなら、': marks in the top zone (162000 px)",
+   "t=22.2s '数時間以上置くなら、': marks in the bottom zone (453600 px)",
+   "t=22.2s '数時間以上置くなら、': marks in the right zone (142800 px)",
+   "t=22.2s '数時間以上置くなら、': marks in the left zone (76800 px)",
+   "t=24.0s '保温より冷凍。': marks in the top zone (162000 px)",
+   "t=24.0s '保温より冷凍。': marks in the bottom zone (453600 px)",
+   "t=24.0s '保温より冷凍。': marks in the right zone (142800 px)",
+   "t=24.0s '保温より冷凍。': marks in the left zone (76800 px)",
+   "t=25.2s 'これで十分です。': marks in the top zone (162000 px)",
+   "t=25.2s 'これで十分です。': marks in the bottom zone (453600 px)",
+   "t=25.2s 'これで十分です。': marks in the right zone (142800 px)",
+   "t=25.2s 'これで十分です。': marks in the left zone (76800 px)",
+   "t=26.8s '炊飯器の近くで思い': marks in the top zone (162000 px)",
+   "t=26.8s '炊飯器の近くで思い': marks in the bottom zone (453600 px)",
+   "t=26.8s '炊飯器の近くで思い': marks in the right zone (142800 px)",
+   "t=26.8s '炊飯器の近くで思い': marks in the left zone (76800 px)",
+   "t=28.6s '出せるよう、': marks in the top zone (162000 px)",
+   "t=28.6s '出せるよう、': marks in the bottom zone (453600 px)",
+   "t=28.6s '出せるよう、': marks in the right zone (142800 px)",
+   "t=28.6s '出せるよう、': marks in the left zone (76800 px)",
+   "t=29.4s '保存しておいてください。': marks in the top zone (162000 px)",
+   "t=29.4s '保存しておいてください。': marks in the bottom zone (453600 px)",
+   "t=29.4s '保存しておいてください。': marks in the right zone (142800 px)",
+   "t=29.4s '保存しておいてください。': marks in the left zone (76800 px)",
+   "t=31.1s '毎日1本、お金の話。': marks in the top zone (162000 px)",
+   "t=31.1s '毎日1本、お金の話。': marks in the bottom zone (453600 px)",
+   "t=31.1s '毎日1本、お金の話。': marks in the right zone (142800 px)",
+   "t=31.1s '毎日1本、お金の話。': marks in the left zone (76800 px)",
+   "t=33.3s 'フォローしてね。': marks in the top zone (162000 px)",
+   "t=33.3s 'フォローしてね。': marks in the bottom zone (453600 px)",
+   "t=33.3s 'フォローしてね。': marks in the right zone (142800 px)",
+   "t=33.3s 'フォローしてね。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
