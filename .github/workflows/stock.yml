@@ -1,0 +1,43 @@
+name: script-stock
+on:
+  schedule:
+    - cron: "30 19 * * 0"   # Mondays 04:30 JST
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "在庫の目標本数"
+        required: false
+        default: "24"
+permissions:
+  contents: write
+concurrency: { group: sns-pipeline, cancel-in-progress: false }
+jobs:
+  stock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+      - run: pip install -r requirements.txt
+      - name: check the Claude API key
+        env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
+        run: |
+          test -n "$ANTHROPIC_API_KEY" || { echo "::error::ANTHROPIC_API_KEY secret is empty"; exit 1; }
+      - name: top up the script stock
+        env: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
+        run: python -m sns.pipeline stock --count "${{ github.event.inputs.count || '24' }}"
+      - name: render one sample (not uploaded) and print its length
+        run: python -m sns.pipeline sample
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: "sample-${{ github.run_id }}", path: "data/sample/video.mp4", retention-days: 14, if-no-files-found: ignore }
+      - name: save stock
+        if: always()
+        run: |
+          git config user.name "sns-bot"
+          git config user.email "sns-bot@users.noreply.github.com"
+          git add data/stock
+          git diff --cached --quiet || git commit -m "auto: script stock $(date -u +%F)"
+          for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push && break; sleep $((i*3)); done

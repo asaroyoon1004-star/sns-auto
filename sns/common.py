@@ -5,7 +5,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 QUEUE = DATA / "queue"
-SEED = DATA / "seed" / "scripts.json"
+SEED = DATA / "seed" / "scripts.json"  # retired 2026-11-27: last-resort fallback only
+STOCK = DATA / "stock" / "scripts.json"
 USED = DATA / "used_ids.json"
 METRICS = DATA / "metrics.csv"
 WEIGHTS = DATA / "weights.json"
