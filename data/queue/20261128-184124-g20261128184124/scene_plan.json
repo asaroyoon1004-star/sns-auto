@@ -1,0 +1,216 @@
+{
+ "design": "wh",
+ "scenes": [
+  {
+   "index": 0,
+   "role": "hook",
+   "narration": "寄付先を6か所に増やすと、ワンストップは使えません。",
+   "caption": "寄付先を6か所に増やすと、ワンストップは使えません。",
+   "key_message": "寄付先を6か所に増やすと、ワンストップは使えません",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [
+    "6"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省 ふるさと納税ポータルサイト（ワンストップ特例制度の説明）。(2)前提: もともと確定申告が不要な給与所得者等が対象。寄付先は1年間で5団体以内。同一自治体への複数回寄付は1団体として数える。6団体以上の場合は特例の対象外となり、確定申告で寄附金控除を申告する必要がある。(3)すべて制度上の事実。仮定・予測は含まない。なお医療費控除等で確定申告する場合も特例は無効になるが、メッセージを1つに絞るため本編では省略。",
+   "caveat": "",
+   "start": 0.0,
+   "duration": 3.367
+  },
+  {
+   "index": 1,
+   "role": "explanation",
+   "narration": "申告なしで税金が減る特例は、寄付先が5自治体までの人だけです。",
+   "caption": "申告なしで税金が減る特例は、寄付先が5自治体までの人だけです。",
+   "key_message": "寄付先は5自治体まで",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ワンストップの条件",
+    "rows": [
+     {
+      "label": "寄付先は5自治体まで",
+      "text": "",
+      "value": 0,
+      "line": 1
+     }
+    ]
+   },
+   "emphasis": [
+    "5自治体"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省 ふるさと納税ポータルサイト（ワンストップ特例制度の説明）。(2)前提: もともと確定申告が不要な給与所得者等が対象。寄付先は1年間で5団体以内。同一自治体への複数回寄付は1団体として数える。6団体以上の場合は特例の対象外となり、確定申告で寄附金控除を申告する必要がある。(3)すべて制度上の事実。仮定・予測は含まない。なお医療費控除等で確定申告する場合も特例は無効になるが、メッセージを1つに絞るため本編では省略。",
+   "caveat": "",
+   "start": 3.367,
+   "duration": 4.477
+  },
+  {
+   "index": 2,
+   "role": "explanation",
+   "narration": "同じ自治体に何回寄付しても、1か所と数えます。",
+   "caption": "同じ自治体に何回寄付しても、1か所と数えます。",
+   "key_message": "同じ自治体は1か所と数える",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ワンストップの条件",
+    "rows": [
+     {
+      "label": "同じ自治体は1か所と数える",
+      "text": "",
+      "value": 0,
+      "line": 2
+     }
+    ]
+   },
+   "emphasis": [
+    "1"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省 ふるさと納税ポータルサイト（ワンストップ特例制度の説明）。(2)前提: もともと確定申告が不要な給与所得者等が対象。寄付先は1年間で5団体以内。同一自治体への複数回寄付は1団体として数える。6団体以上の場合は特例の対象外となり、確定申告で寄附金控除を申告する必要がある。(3)すべて制度上の事実。仮定・予測は含まない。なお医療費控除等で確定申告する場合も特例は無効になるが、メッセージを1つに絞るため本編では省略。",
+   "caveat": "",
+   "start": 7.844,
+   "duration": 3.452
+  },
+  {
+   "index": 3,
+   "role": "explanation",
+   "narration": "6か所以上なら、翌年に確定申告をしないと税金は減りません。",
+   "caption": "6か所以上なら、翌年に確定申告をしないと税金は減りません。",
+   "key_message": "6か所以上は確定申告",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ワンストップの条件",
+    "rows": [
+     {
+      "label": "6か所以上は確定申告",
+      "text": "",
+      "value": 0,
+      "line": 3
+     }
+    ]
+   },
+   "emphasis": [
+    "6"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省 ふるさと納税ポータルサイト（ワンストップ特例制度の説明）。(2)前提: もともと確定申告が不要な給与所得者等が対象。寄付先は1年間で5団体以内。同一自治体への複数回寄付は1団体として数える。6団体以上の場合は特例の対象外となり、確定申告で寄附金控除を申告する必要がある。(3)すべて制度上の事実。仮定・予測は含まない。なお医療費控除等で確定申告する場合も特例は無効になるが、メッセージを1つに絞るため本編では省略。",
+   "caveat": "",
+   "start": 11.296,
+   "duration": 4.34
+  },
+  {
+   "index": 4,
+   "role": "explanation",
+   "narration": "5か所までなら、申請書を送るだけで済みます。",
+   "caption": "5か所までなら、申請書を送るだけで済みます。",
+   "key_message": "5か所までは申請書だけ",
+   "visual_type": "steps",
+   "visual_data": {
+    "title": "ワンストップの条件",
+    "rows": [
+     {
+      "label": "5か所までは申請書だけ",
+      "text": "",
+      "value": 0,
+      "line": 4
+     }
+    ]
+   },
+   "emphasis": [
+    "5"
+   ],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省 ふるさと納税ポータルサイト（ワンストップ特例制度の説明）。(2)前提: もともと確定申告が不要な給与所得者等が対象。寄付先は1年間で5団体以内。同一自治体への複数回寄付は1団体として数える。6団体以上の場合は特例の対象外となり、確定申告で寄附金控除を申告する必要がある。(3)すべて制度上の事実。仮定・予測は含まない。なお医療費控除等で確定申告する場合も特例は無効になるが、メッセージを1つに絞るため本編では省略。",
+   "caveat": "",
+   "start": 15.636,
+   "duration": 3.094
+  },
+  {
+   "index": 5,
+   "role": "cta",
+   "narration": "保存して寄付前に確認。フォローで、毎日お金の話。",
+   "caption": "保存して寄付前に確認。フォローで、毎日お金の話。",
+   "key_message": "保存して寄付前に確認。フォローで、毎日お金の話",
+   "visual_type": "text",
+   "visual_data": {},
+   "emphasis": [],
+   "transition": "cut",
+   "source": "(1)根拠: 総務省 ふるさと納税ポータルサイト（ワンストップ特例制度の説明）。(2)前提: もともと確定申告が不要な給与所得者等が対象。寄付先は1年間で5団体以内。同一自治体への複数回寄付は1団体として数える。6団体以上の場合は特例の対象外となり、確定申告で寄附金控除を申告する必要がある。(3)すべて制度上の事実。仮定・予測は含まない。なお医療費控除等で確定申告する場合も特例は無効になるが、メッセージを1つに絞るため本編では省略。",
+   "caveat": "",
+   "start": 18.73,
+   "duration": 4.54
+  }
+ ],
+ "qa": {
+  "frames": [
+   "t=0.0s '寄付先を6か所に増やすと、': marks in the top zone (162000 px)",
+   "t=0.0s '寄付先を6か所に増やすと、': marks in the bottom zone (453600 px)",
+   "t=0.0s '寄付先を6か所に増やすと、': marks in the right zone (142800 px)",
+   "t=0.0s '寄付先を6か所に増やすと、': marks in the left zone (76800 px)",
+   "t=1.6s 'ワンストップは使えません。': marks in the top zone (162000 px)",
+   "t=1.6s 'ワンストップは使えません。': marks in the bottom zone (453600 px)",
+   "t=1.6s 'ワンストップは使えません。': marks in the right zone (142800 px)",
+   "t=1.6s 'ワンストップは使えません。': marks in the left zone (76800 px)",
+   "t=3.4s '申告なしで税金が減る特例は、': marks in the top zone (162000 px)",
+   "t=3.4s '申告なしで税金が減る特例は、': marks in the bottom zone (453600 px)",
+   "t=3.4s '申告なしで税金が減る特例は、': marks in the right zone (142800 px)",
+   "t=3.4s '申告なしで税金が減る特例は、': marks in the left zone (76800 px)",
+   "t=5.5s '寄付先が': marks in the top zone (162000 px)",
+   "t=5.5s '寄付先が': marks in the bottom zone (453600 px)",
+   "t=5.5s '寄付先が': marks in the right zone (142800 px)",
+   "t=5.5s '寄付先が': marks in the left zone (76800 px)",
+   "t=6.1s '5自治体までの': marks in the top zone (162000 px)",
+   "t=6.1s '5自治体までの': marks in the bottom zone (453600 px)",
+   "t=6.1s '5自治体までの': marks in the right zone (142800 px)",
+   "t=6.1s '5自治体までの': marks in the left zone (76800 px)",
+   "t=6.9s '人だけです。': marks in the top zone (162000 px)",
+   "t=6.9s '人だけです。': marks in the bottom zone (453600 px)",
+   "t=6.9s '人だけです。': marks in the right zone (142800 px)",
+   "t=6.9s '人だけです。': marks in the left zone (76800 px)",
+   "t=7.8s '同じ自治体に何回寄付しても、': marks in the top zone (162000 px)",
+   "t=7.8s '同じ自治体に何回寄付しても、': marks in the bottom zone (453600 px)",
+   "t=7.8s '同じ自治体に何回寄付しても、': marks in the right zone (142800 px)",
+   "t=7.8s '同じ自治体に何回寄付しても、': marks in the left zone (76800 px)",
+   "t=9.8s '1か所と数えます。': marks in the top zone (162000 px)",
+   "t=9.8s '1か所と数えます。': marks in the bottom zone (453600 px)",
+   "t=9.8s '1か所と数えます。': marks in the right zone (142800 px)",
+   "t=9.8s '1か所と数えます。': marks in the left zone (76800 px)",
+   "t=11.3s '6か所以上なら、': marks in the top zone (162000 px)",
+   "t=11.3s '6か所以上なら、': marks in the bottom zone (453600 px)",
+   "t=11.3s '6か所以上なら、': marks in the right zone (142800 px)",
+   "t=11.3s '6か所以上なら、': marks in the left zone (76800 px)",
+   "t=12.5s '翌年に確定申告をしないと': marks in the top zone (162000 px)",
+   "t=12.5s '翌年に確定申告をしないと': marks in the bottom zone (453600 px)",
+   "t=12.5s '翌年に確定申告をしないと': marks in the right zone (142800 px)",
+   "t=12.5s '翌年に確定申告をしないと': marks in the left zone (76800 px)",
+   "t=14.4s '税金は減りません。': marks in the top zone (162000 px)",
+   "t=14.4s '税金は減りません。': marks in the bottom zone (453600 px)",
+   "t=14.4s '税金は減りません。': marks in the right zone (142800 px)",
+   "t=14.4s '税金は減りません。': marks in the left zone (76800 px)",
+   "t=15.6s '5か所までなら、': marks in the top zone (162000 px)",
+   "t=15.6s '5か所までなら、': marks in the bottom zone (453600 px)",
+   "t=15.6s '5か所までなら、': marks in the right zone (142800 px)",
+   "t=15.6s '5か所までなら、': marks in the left zone (76800 px)",
+   "t=16.6s '申請書を送るだけで済みます。': marks in the top zone (162000 px)",
+   "t=16.6s '申請書を送るだけで済みます。': marks in the bottom zone (453600 px)",
+   "t=16.6s '申請書を送るだけで済みます。': marks in the right zone (142800 px)",
+   "t=16.6s '申請書を送るだけで済みます。': marks in the left zone (76800 px)",
+   "t=18.7s '保存して寄付前に確認。': marks in the top zone (162000 px)",
+   "t=18.7s '保存して寄付前に確認。': marks in the bottom zone (453600 px)",
+   "t=18.7s '保存して寄付前に確認。': marks in the right zone (142800 px)",
+   "t=18.7s '保存して寄付前に確認。': marks in the left zone (76800 px)",
+   "t=20.7s 'フォローで、': marks in the top zone (162000 px)",
+   "t=20.7s 'フォローで、': marks in the bottom zone (453600 px)",
+   "t=20.7s 'フォローで、': marks in the right zone (142800 px)",
+   "t=20.7s 'フォローで、': marks in the left zone (76800 px)",
+   "t=21.4s '毎日お金の話。': marks in the top zone (162000 px)",
+   "t=21.4s '毎日お金の話。': marks in the bottom zone (453600 px)",
+   "t=21.4s '毎日お金の話。': marks in the right zone (142800 px)",
+   "t=21.4s '毎日お金の話。': marks in the left zone (76800 px)"
+  ],
+  "scenes": [],
+  "video": [],
+  "consistency": []
+ }
+}
